@@ -4,5 +4,5 @@ bootstrap-theme.css
 font-awesome.min.css
 style.css
 /fonts/*
-/js/*
+/js/*.js
 /META-INF/
