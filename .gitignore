@@ -3,6 +3,7 @@ bootstrap.min.css
 bootstrap-theme.css
 font-awesome.min.css
 style.css
-/fonts/*
-/js/*.js
-/META-INF/
+fonts/
+js/
+META-INF/
+.settings
