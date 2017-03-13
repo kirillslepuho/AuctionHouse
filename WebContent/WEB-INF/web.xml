@@ -1,0 +1,43 @@
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>by.epam.auctionhouse.controller.Controller</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Controller</servlet-name>
+		<url-pattern>/Controller</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SignUpPage</servlet-name>
+		<servlet-class>WebContent/pages/signup.jsp</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SignUpPage</servlet-name>
+		<url-pattern>/SignUp</url-pattern>
+	</servlet-mapping>	
+		
+	<filter>
+		<display-name>CharsetFilter</display-name>
+		<filter-name>CharsetFilter</filter-name>
+		<filter-class>by.epam.auctionhouse.filter.CharsetFilter</filter-class>
+		<init-param>
+			<param-name>characterEncoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharsetFilter</filter-name>
+		<url-pattern>/Controller</url-pattern>
+	</filter-mapping>
+	
+	<listener>
+        <listener-class>by.epam.auctionhouse.listener.ServletListener</listener-class>
+    </listener>
+
+</web-app>
