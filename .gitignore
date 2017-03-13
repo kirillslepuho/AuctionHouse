@@ -1,0 +1,11 @@
+/bin/
+/WebContent/css/bootstrap.min.css
+/WebContent/css/bootstrap-theme.css
+/WebContent/css/font-awesome.min.css
+/WebContent/css/style.css
+/WebContent/fonts/*
+/WebContent/js/*
+/WebContent/META-INF/
+/.settings/
+.classpath
+.project
