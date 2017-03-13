@@ -7,3 +7,5 @@ fonts/
 js/
 META-INF/
 .settings
+.classpath
+.project
