@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@include file="../templates/header.jsp"%>
+<%@include file="templates/header.jsp"%>
 
 <fmt:message bundle="${loc}" key="local.addLot" var="addLot"/>
 <fmt:message bundle="${loc}" key="local.lot" var="lot"/>
@@ -31,7 +31,8 @@
 						<hr>
 
 						<form action="/AuctionHouse/Controller?command=add_lot" method="post">
-						    <input type="hidden" name ="is_client" value = "false"/>
+						<input type="hidden" name ="is_client" value = "true"/>
+						<input type="hidden" name ="image" value = "/AuctionHouse/data/common/images/no_photo.png"/>
 							<div class="top-margin">
 								<label>${lotName}</label> <input type="text" class="form-control"
 									name="lot_name">
@@ -48,11 +49,7 @@
 								<label>${description}</label> <input type="text"
 									class="form-control" name="description">
 							</div>
-							<div class="top-margin">
-								<label>${image}</label> <input type="text"
-									class="form-control" name="image">
-							</div>
-							
+				
 
 							<hr>
 
@@ -75,4 +72,4 @@
 </div>
 <!-- /container -->
 
-<%@include file="../templates/footer.jsp"%>
+<%@include file="templates/footer.jsp"%>

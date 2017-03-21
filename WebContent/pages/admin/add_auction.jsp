@@ -4,11 +4,17 @@
 
 <%@include file="../templates/header.jsp"%>
 
-<fmt:setLocale value="${sessionScope.local}"/>
-<fmt:setBundle basename="localization.local" var="loc"/>
-<fmt:message bundle="${loc}" key="local.authorization" var="authorization"/>
-<fmt:message bundle="${loc}" key="local.log" var="log"/>
-<fmt:message bundle="${loc}" key="local.login" var="login"/>
+<fmt:message bundle="${loc}" key="local.addAuction" var="addAuction"/>
+<fmt:message bundle="${loc}" key="local.newAuction" var="newAuction"/>
+<fmt:message bundle="${loc}" key="local.place" var="place"/>
+<fmt:message bundle="${loc}" key="local.beginDate" var="beginDate"/>
+<fmt:message bundle="${loc}" key="local.time" var="time"/>
+<fmt:message bundle="${loc}" key="local.expirationDate" var="expirationDate"/>
+<fmt:message bundle="${loc}" key="local.type" var="type"/>
+<fmt:message bundle="${loc}" key="local.active" var="active"/>
+<fmt:message bundle="${loc}" key="local.rounds" var="rounds"/>
+<fmt:message bundle="${loc}" key="local.create" var="create"/>
+
 
 <!-- container -->
 	<div class="container">
@@ -18,13 +24,13 @@
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Add auction</h1>
+					<h1 class="page-title">${addAuction}</h1>
 				</header>
 				
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3 class="thin text-center">New auction</h3>
+							<h3 class="thin text-center">${newAuction}</h3>
 							<hr>
 							<form action="/AuctionHouse/Controller" method="post">
 							    <input type="hidden" name="command" value = "add_auction" > 
@@ -33,31 +39,31 @@
 									<input type="text" class="form-control" name = "lot_id" > 
 								</div>
 								<div class="top-margin">
-									<label>Place</label>
+									<label>${place}</label>
 									<input type="text" class="form-control" name = "place" > 
 								</div>
 								<div class="top-margin">
-									<label>Begin date</label>
+									<label>${beginDate}</label>
 									<input type="text" class="form-control" name = "begin_date" > 
 								</div>
 
 								<div class="top-margin">
-									<label>Time</label>
+									<label>${time}</label>
 									<input type="text" class="form-control" name = "time" > 
 								</div>
 								
 								<div class="top-margin">
-									<label>Expiration date</label>
+									<label>${expirationDate}</label>
 									<input type="text" class="form-control" name = "expiration_date" > 
 								</div>
 								
 								<div class="top-margin">
-									<label>Type</label>
+									<label>${type}</label>
 									<input type="text" class="form-control" name = "type" > 
 								</div>
 
 								<div class="top-margin">
-									<label>Active?</label>
+									<label>${active}?</label>
 									<select class="form-control input-sm" name="is_active">
 									<option value="" selected="selected"></option>
 									<option value="Yes">Yes</option>
@@ -67,7 +73,7 @@
 								</div>
 								
 								<div class="top-margin">
-									<label>Rounds</label>
+									<label>${rounds}</label>
 									<input type="text" class="form-control" name = "rounds" > 
 								</div>
 								<hr>
@@ -77,7 +83,7 @@
 									<div class="col-lg-8">                      
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">Create</button>
+										<button class="btn btn-action" type="submit">${create}</button>
 									</div>
 								</div>
 							</form>

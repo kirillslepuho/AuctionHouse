@@ -2,6 +2,8 @@ package by.epam.auctionhouse.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import by.epam.auctionhouse.bean.Auction;
 import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.service.exception.ServiceException;
@@ -18,6 +20,8 @@ public interface ClientService{
 	List<Auction> getAuctions() throws ServiceException;
 
 	Auction getAuction(String auctionId) throws ServiceException;
+
+	void signOut(HttpSession session) throws ServiceException;
 	
 	
 }

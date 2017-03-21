@@ -13,9 +13,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 
 public class ClientServiceImpl implements ClientService{
+	
+	private static final String SESSION_USER_ATTRIBUTE = "user";
+    private static final String SESSION_ADMIN_ATTRIBUTE = "admin";
 
 	DAOFactory daoFactory = DAOFactory.getInstance();
 	UserDAO userDAO = daoFactory.getUserDAO();
@@ -37,6 +42,20 @@ public class ClientServiceImpl implements ClientService{
 		}
 
 	}
+	
+	@Override
+    public void signOut(HttpSession session) throws ServiceException {
+        if (session == null) {
+            throw new ServiceException("Session not found");
+        }
+
+        session.removeAttribute(SESSION_USER_ATTRIBUTE);
+        session.removeAttribute(SESSION_ADMIN_ATTRIBUTE);
+
+        if (!session.getAttributeNames().hasMoreElements()) {
+            session.invalidate();
+        }
+    }
 
 	@Override
 	public void registration(String userName, String userEmail, String userPassword,String passwordRepeat, int userCardNumber,

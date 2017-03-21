@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
 			"ON auctions.au_lot = lots.l_id where lots.l_name = ?;";
 
 	private final static String GET_ALL_AUCTIONS_SQL = "SELECT * " + 
-			"FROM auctions INNER JOIN lots ON auctions.au_lot = lots.l_id WHERE auctions.au_expiration_date > DATE_FORMAT(NOW(), '%Y-%m-%d');;";
+			"FROM auctions INNER JOIN lots ON auctions.au_lot = lots.l_id WHERE auctions.au_expiration_date > DATE_FORMAT(NOW(), '%Y-%m-%d') and auctions.au_is_active = true;";
 
 	private final static String GET_AUCTION_BY_ID_SQL = "SELECT * FROM auctions INNER JOIN lots " + 
 			"ON auctions.au_lot = lots.l_id where auctions.au_id = ?";

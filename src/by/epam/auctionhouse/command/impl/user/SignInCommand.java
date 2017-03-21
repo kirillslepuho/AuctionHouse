@@ -28,7 +28,7 @@ public class SignInCommand implements ICommand{
 
 	private final static String LOG_MESSAGE = "User with e-mail : %s sign in";
 	private final static Logger logger = LogManager.getLogger("traceLogger");
-
+	private final static String PATH = "/Controller?command=go_to_main_page";
 
 	@Override
 	public void execute(HttpServletRequest request,HttpServletResponse reponse) throws ServletException, IOException {
@@ -50,11 +50,10 @@ public class SignInCommand implements ICommand{
 			logMessage = String.format(LOG_MESSAGE, user.getEmail());
 			logger.trace(logMessage);
 
-			request.getRequestDispatcher(JspPageName.WELLCOME_PAGE).forward(request, reponse);
+			request.getRequestDispatcher(PATH).forward(request, reponse);
 
 		}catch(ServiceException e){
 			//request.getRequestDispatcher(JspPageName.ERROR_PAGE).forward(request, reponse);
-
 		}
 
 	}

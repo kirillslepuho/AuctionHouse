@@ -50,12 +50,14 @@ public class EditAuctionCommand implements ICommand{
 			auction.setLot(lot);
 			auction.setBeginDate(httpRequest.getParameter(BEGIN_DATE_PARAMETER));
 			auction.setExpirationDate(httpRequest.getParameter(EXPIRATION_DATE_PARAMETER));			
+			
 			if(httpRequest.getParameter(IS_ACTIVE__PARAMETER).equals("Yes")){
 				auction.setIsActive(true);
 			}else if(httpRequest.getParameter(IS_ACTIVE__PARAMETER).equals("No")){
 				auction.setIsActive(false);
 			}
-            auction.setPlace(httpRequest.getParameter(PLACE_PARAMETER));
+            
+			auction.setPlace(httpRequest.getParameter(PLACE_PARAMETER));
             auction.setRounds(Integer.parseInt((httpRequest.getParameter(ROUNDS_PARAMETER))));
             auction.setTime(httpRequest.getParameter(TIME_PARAMETER));
             auction.setType(httpRequest.getParameter(TYPE_PARAMETER));

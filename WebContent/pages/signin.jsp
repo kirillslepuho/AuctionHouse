@@ -1,12 +1,11 @@
-																																																								<%@ page language="java" contentType="text/html;charset=utf-8" %>
+																																																							<%@ page language="java" contentType="text/html;charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@include file="../pages/templates/header.jsp"%>
 
-<fmt:setLocale value="${sessionScope.local}"/>
-<fmt:setBundle basename="localization.local" var="loc"/>
 <fmt:message bundle="${loc}" key="local.authorization" var="authorization"/>
+<fmt:message bundle="${loc}" key="local.registration" var="registration"/>
 <fmt:message bundle="${loc}" key="local.log" var="log"/>
 <fmt:message bundle="${loc}" key="local.login" var="login"/>
 <fmt:message bundle="${loc}" key="local.password" var="password"/>
@@ -28,7 +27,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center"><c:out value = "${authorization}"/></h3>
-							<p class="text-center text-muted"><a href="signup.jsp">Registration</a></p>
+							<p class="text-center text-muted"><a href="signup.jsp">${registration}</a></p>
 							<hr>
 							
 							<form action="/AuctionHouse/Controller" method="post">

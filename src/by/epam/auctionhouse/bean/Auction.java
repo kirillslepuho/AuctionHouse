@@ -3,15 +3,15 @@ package by.epam.auctionhouse.bean;
 
 
 public class Auction {
-	String id;
-	Lot lot;
-	String place;
-	String beginDate;
-	String expirationDate;
-	String time;
-	String type;
-	Boolean isActive;
-	int rounds;
+	private String id;
+	private Lot lot;
+	private String place;
+	private String beginDate;
+	private String expirationDate;
+	private String time;
+	private String type;
+	private Boolean isActive;
+	private int rounds;
 	
 	public Auction() {
 		super();

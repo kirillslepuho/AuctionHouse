@@ -33,8 +33,8 @@ public class AdminDAOImpl implements AdminDAO {
 	private final static String DELETE_AUCTION_SQL = "UPDATE auctions SET auctions.au_is_active = 0 " +  
 			"WHERE auctions.au_id=?";
 
-	private final static String ADD_LOT_SQL = "INSERT INTO auction_house.lots (l_type,l_name,l_current_price,l_description,l_image)" + 
-			"VALUES(?, ?, ?, ?, ?);";
+	private final static String ADD_LOT_SQL = "INSERT INTO auction_house.lots (l_type,l_name,l_current_price,l_description,l_image,l_clients)" + 
+			"VALUES(?, ?, ?, ?, ?, ?);";
 
 	private final static String EDIT_LOT_SQL = 
 			"UPDATE lots SET l_type=?, l_name=?,l_current_price=?, l_description=?, l_image=? " +  
@@ -142,6 +142,7 @@ public class AdminDAOImpl implements AdminDAO {
 			preparedStatement.setString(3, Integer.toString(lot.getCurrentPrice()));
 			preparedStatement.setString(4, lot.getDescriprion());
 			preparedStatement.setString(5, lot.getImage());
+			preparedStatement.setBoolean(6,lot.isClients());
 
 
 			preparedStatement.execute();
@@ -196,6 +197,7 @@ public class AdminDAOImpl implements AdminDAO {
 				lot.setName(resultSet.getString("l_current_price"));
 				lot.setDescriprion(resultSet.getString("l_description"));
 				lot.setImage(resultSet.getString("l_image"));
+				lot.setClients(resultSet.getBoolean("l_clients"));
 			}
 			return lot;
 
@@ -232,6 +234,7 @@ public class AdminDAOImpl implements AdminDAO {
 	    			lot.setName(resultSet.getString("l_name"));
 	    			lot.setType(resultSet.getString("l_type"));
 	    			lot.setImage(resultSet.getString("l_image"));
+	    			lot.setClients(resultSet.getBoolean("l_clients"));
 	    			result.add(lot);
 	    		}
 

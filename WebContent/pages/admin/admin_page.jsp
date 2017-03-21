@@ -5,6 +5,18 @@
 
 <%@include file="../templates/header.jsp"%>
 
+<fmt:message bundle="${loc}" key="local.beginDate" var="beginDate"/>
+<fmt:message bundle="${loc}" key="local.type" var="type"/>
+<fmt:message bundle="${loc}" key="local.expirationDate" var="expirationDate"/>
+
+
+<fmt:message bundle="${loc}" key="local.lot" var="lot"/>
+<fmt:message bundle="${loc}" key="local.lotName" var="lotName"/>
+<fmt:message bundle="${loc}" key="local.category" var="category"/>
+<fmt:message bundle="${loc}" key="local.currentPrice" var="currentPrice"/>
+<fmt:message bundle="${loc}" key="local.description" var="description"/>
+
+
 <c:set var="auctions" value="${requestScope.auctions}" />
 <c:set var="lots" value="${requestScope.lots}" />
 <div class="container">
@@ -20,10 +32,10 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Лот</th>
-							<th>Тип</th>
-							<th>Начало</th>
-							<th>Активность</th>
+							<th>${lot}</th>
+							<th>${type}</th>
+							<th>${beginDate}</th>
+							<th>${expirationDate}</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -44,7 +56,7 @@
 								class="">${temp.beginDate}</a></td>
 								<td><a
 								href="/AuctionHouse/Controller?command=go_to_edit_page&id=${temp.id}"
-								class="">${temp.isActive}</a></td>
+								class="">${temp.expirationDate}</a></td>
 								<td><a href="/AuctionHouse/Controller?command=delete_auction&id=${temp.id}"
 								class="">Удалить</a>
 								</td>
@@ -65,10 +77,10 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Тип</th>
-							<th>Название</th>
-							<th>Текущая цена</th>
-							<th>Описание</th>
+							<th>${category}</th>
+							<th>${lotName}</th>
+							<th>${currentPrice}</th>
+							<th>${description}</th>
 						</tr>
 					</thead>
 					<tbody>

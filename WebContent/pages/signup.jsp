@@ -7,6 +7,7 @@
 <fmt:message bundle="${loc}" key="local.login" var="login"/>
 <fmt:message bundle="${loc}" key="local.password" var="password"/>
 <fmt:message bundle="${loc}" key="local.registration" var="registration"/>
+<fmt:message bundle="${loc}" key="local.authorization" var="authorization"/>
 <fmt:message bundle="${loc}" key="local.name" var="name"/>
 <fmt:message bundle="${loc}" key="local.cardnumber" var="cardnumber"/>
 <fmt:message bundle="${loc}" key="local.repeatPassword" var="repeatPassword"/>
@@ -28,7 +29,7 @@
 					<div class="panel-body">
 						<h3 class="thin text-center">${registration}</h3>
 						<p class="text-center text-muted">
-							<a href="signin.jsp">Login</a>
+							<a href="signin.jsp">${authorization}</a>
 						</p>
 						<hr>
 

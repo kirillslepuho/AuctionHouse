@@ -1,5 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<fmt:message bundle="${loc}" key="local.textWidget" var="textWidget"/>
 
 <footer id="footer" class="top-space">
 
@@ -21,8 +23,7 @@
 					<h3 class="widget-title">Follow me</h3>
 					<div class="widget-body">
 						<p class="follow-me-icons clearfix">
-							<a href=""><i class="fa fa-twitter fa-2"></i></a>
-								<a href=""><i
+							<a href=""><i class="fa fa-twitter fa-2"></i></a> <a href=""><i
 								class="fa fa-facebook fa-2"></i></a>
 						</p>
 					</div>
@@ -31,7 +32,7 @@
 				<div class="col-md-6 widget">
 					<h3 class="widget-title">Text widget</h3>
 					<div class="widget-body">
-						<p></p>
+						<p>${textWidget}</p>
 					</div>
 				</div>
 
@@ -63,5 +64,7 @@
 <script src="/AuctionHouse/js/headroom.min.js"></script>
 <script src="/AuctionHouse/js/jQuery.headroom.min.js"></script>
 <script src="/AuctionHouse/js/template.js"></script>
+
+
 </body>
 </html>

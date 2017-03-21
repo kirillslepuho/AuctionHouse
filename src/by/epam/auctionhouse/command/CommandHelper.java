@@ -12,8 +12,11 @@ import by.epam.auctionhouse.command.impl.admin.EditAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.GoToAddAuctionPage;
 import by.epam.auctionhouse.command.impl.admin.GoToAdminPage;
 import by.epam.auctionhouse.command.impl.admin.GoToEditPage;
+import by.epam.auctionhouse.command.impl.user.GoToAuctionPage;
+import by.epam.auctionhouse.command.impl.user.GoToMainPage;
 import by.epam.auctionhouse.command.impl.user.RegistrationCommand;
 import by.epam.auctionhouse.command.impl.user.SignInCommand;
+import by.epam.auctionhouse.command.impl.user.SignOutCommand;
 
 public class CommandHelper {
 	private static final CommandHelper instance = new CommandHelper();
@@ -22,6 +25,7 @@ public class CommandHelper {
 
 	public CommandHelper(){
 		commands.put(CommandName.SIGN_IN, new SignInCommand());
+		commands.put(CommandName.SIGN_OUT, new SignOutCommand());
 		commands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
 		commands.put(CommandName.LOCALIZATION, new Localization());
 		commands.put(CommandName.REGISTRATION, new RegistrationCommand());
@@ -32,7 +36,8 @@ public class CommandHelper {
 		commands.put(CommandName.GO_TO_ADMIN_PAGE, new GoToAdminPage());
 		commands.put(CommandName.GO_TO_ADD_AUCTION_PAGE, new GoToAddAuctionPage());
 		commands.put(CommandName.GO_TO_EDIT_PAGE, new GoToEditPage());
-
+		commands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPage());
+		commands.put(CommandName.GO_TO_AUCTION_PAGE, new GoToAuctionPage());
 	}
 
 	public static CommandHelper getInstance() {

@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.epam.auctionhouse.command.ICommand;
-import by.epam.auctionhouse.dao.UserDAO;
-import by.epam.auctionhouse.dao.factory.DAOFactory;
 import by.epam.auctionhouse.service.ClientService;
 import by.epam.auctionhouse.service.exception.ServiceException;
 import by.epam.auctionhouse.service.factory.ServiceFactory;
@@ -40,14 +38,10 @@ public class RegistrationCommand implements ICommand{
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		ClientService clientService = serviceFactory.getClientService();
 
-		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO userDAO = daoFactory.getUserDAO();
-
-
 		try {
 			clientService.registration(userName, userEmail, userPassword,userRepeatPassword, Integer.parseInt(userCardNumber), 0);
-			//HttpSession httpSession = httpRequest.getSession(true);
-			//httpSession.setAttribute(SESSION_USER_ATTRIBUTE, userEmail);
+			HttpSession httpSession = httpRequest.getSession(true);
+			httpSession.setAttribute(SESSION_USER_ATTRIBUTE, userEmail);
 		} catch (NumberFormatException e) {
 
 		} catch (ServiceException e) {
