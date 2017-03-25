@@ -7,7 +7,9 @@ import by.epam.auctionhouse.dao.exception.DAOException;
 import by.epam.auctionhouse.dao.factory.DAOFactory;
 import by.epam.auctionhouse.service.ClientService;
 import by.epam.auctionhouse.service.exception.ServiceException;
+import by.epam.auctionhouse.service.util.DataValidator;
 import by.epam.auctionhouse.service.util.MD5;
+
 
 import org.apache.logging.log4j.Logger;
 
@@ -29,8 +31,12 @@ public class ClientServiceImpl implements ClientService{
 	
 	
 	public User signIn(String email,String password) throws ServiceException {
+		
+		DataValidator.checkEmpty(email, password);
+        DataValidator.emailValidation(email);
+        DataValidator.passwordValidation(password);
 
-		if (email == null || password == null) {
+		if (email == null || password == null || email.isEmpty() || password.isEmpty()) {
 			throw new ServiceException("Incorrect data");
 		}
 
@@ -61,6 +67,12 @@ public class ClientServiceImpl implements ClientService{
 	public void registration(String userName, String userEmail, String userPassword,String passwordRepeat, int userCardNumber,
 			int userPersonalAccount) throws ServiceException {
 		
+		DataValidator.checkEmpty(userEmail, userPassword);
+        DataValidator.emailValidation(userEmail);
+        DataValidator.passwordValidation(userPassword);
+        DataValidator.passwordValidation(passwordRepeat);
+        
+		
 		if (!passwordRepeat.equals(userPassword)) {
             throw new ServiceException("Passwords not equals");
         }
@@ -69,7 +81,6 @@ public class ClientServiceImpl implements ClientService{
 			userPassword = MD5.md5(userPassword);
 			userDAO.addUser(userName, userEmail, userPassword, userCardNumber, userPersonalAccount);
 		} catch (DAOException e) {
-			logger.trace("Failed registration e-mail: " + userEmail, e);
             throw new ServiceException("User with such name exist", e);
 		}
 		
@@ -77,6 +88,8 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public Auction findAuction(String lotName) throws ServiceException {
+		
+		DataValidator.checkEmpty(lotName);
          Auction auction;
 
             try {
@@ -96,7 +109,6 @@ public class ClientServiceImpl implements ClientService{
         try {
             result = userDAO.getAuctions();
         } catch (DAOException exception) {
-            logger.trace("Can not take all films");
             throw new ServiceException("Error while getting products");
         }
 
@@ -105,6 +117,8 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public Auction getAuction(String auctionId) throws ServiceException {
+		DataValidator.checkEmpty(auctionId);
+		
 		Auction auction;
 
         try {

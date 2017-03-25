@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MD5 {
 
-    private static String MD_5 = "MD5";
+    private static final String MD_5 = "MD5";
     private static String UTF_8 = "utf-8";
     private static String ZERO = "0";
 

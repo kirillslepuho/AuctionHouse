@@ -6,13 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import by.epam.auctionhouse.bean.Auction;
 import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.command.ICommand;
-import by.epam.auctionhouse.controller.JspPageName;
 import by.epam.auctionhouse.service.AdminService;
 import by.epam.auctionhouse.service.exception.ServiceException;
 import by.epam.auctionhouse.service.factory.ServiceFactory;
+import by.epam.auctionhouse.service.util.Util;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class AddAuctionCommand implements ICommand{
 	private static final String LOT_ID_PARAMETER = "lot_id";
@@ -28,6 +33,8 @@ public class AddAuctionCommand implements ICommand{
 
 	private final static String ERROR_MESSAGE_JSON = "errorMessage";
 	private final static String REDIRECT_JSON = "redirect";
+	
+	private final static Logger logger = LogManager.getLogger(AddAuctionCommand.class.getName());
 
 	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws ServletException, IOException {
@@ -41,13 +48,7 @@ public class AddAuctionCommand implements ICommand{
 			auction.setLot(lot);
 			auction.setBeginDate(httpRequest.getParameter(BEGIN_DATE_PARAMETER));
 			auction.setExpirationDate(httpRequest.getParameter(EXPIRATION_DATE_PARAMETER));
-			
-			if(httpRequest.getParameter(IS_ACTIVE__PARAMETER).equals("Yes")){
-				auction.setIsActive(true);
-			}else if(httpRequest.getParameter(IS_ACTIVE__PARAMETER).equals("No")){
-				auction.setIsActive(false);
-			}
-			
+			auction.setIsActive(Util.checkBoolean(httpRequest.getParameter(IS_ACTIVE__PARAMETER)));
             auction.setPlace(httpRequest.getParameter(PLACE_PARAMETER));
             auction.setRounds(Integer.parseInt((httpRequest.getParameter(ROUNDS_PARAMETER))));
             auction.setTime(httpRequest.getParameter(TIME_PARAMETER));
@@ -55,12 +56,22 @@ public class AddAuctionCommand implements ICommand{
 
 			adminService.addAuction(auction);
 
-			httpResponse.sendRedirect(PATH);
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put(REDIRECT_JSON, PATH);
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
           
-		} catch (ServiceException exception) {
-			httpRequest.getRequestDispatcher(JspPageName.ERROR_PAGE).forward(httpRequest, httpResponse);
+		} catch (ServiceException e) {
+			logger.warn(e);
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put(ERROR_MESSAGE_JSON, e.getMessage());
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
 		} catch (NumberFormatException exception) {
-			
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put(ERROR_MESSAGE_JSON, "Wrong data in rounds");
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
 		} 
 	}
 }

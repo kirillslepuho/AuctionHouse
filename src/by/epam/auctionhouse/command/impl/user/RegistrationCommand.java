@@ -8,13 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.command.ICommand;
 import by.epam.auctionhouse.service.ClientService;
 import by.epam.auctionhouse.service.exception.ServiceException;
 import by.epam.auctionhouse.service.factory.ServiceFactory;
 
+import org.json.simple.JSONObject;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 public class RegistrationCommand implements ICommand{
+
+	private final static String ERROR_MESSAGE_JSON = "errorMessage";
+	private final static String REDIRECT_JSON = "redirect";
 
 	private final static String USER_EMAIL = "email";
 	private final static String USER_PASSWORD = "password";
@@ -22,8 +31,11 @@ public class RegistrationCommand implements ICommand{
 	private final static String USER_NAME = "name";
 	private final static String USER_CARD = "cardnumber";
 	private final static String SESSION_USER_ATTRIBUTE = "user";
-    
 
+	private final static String LOG_MESSAGE = "User with e-mail : %s sign in";
+	private final static Logger logger = LogManager.getLogger("errorLogger");
+
+	private final static String PATH = "/AuctionHouse/Controller?command=go_to_main_page";
 
 	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, ServletException {
@@ -33,19 +45,40 @@ public class RegistrationCommand implements ICommand{
 		String userName = httpRequest.getParameter(USER_NAME);
 		String userCardNumber = httpRequest.getParameter(USER_CARD);
 		String userRepeatPassword = httpRequest.getParameter(USER_REPEAT_PASSWORD);
-		
+
 
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		ClientService clientService = serviceFactory.getClientService();
 
 		try {
 			clientService.registration(userName, userEmail, userPassword,userRepeatPassword, Integer.parseInt(userCardNumber), 0);
-			HttpSession httpSession = httpRequest.getSession(true);
-			httpSession.setAttribute(SESSION_USER_ATTRIBUTE, userEmail);
+			User user = clientService.signIn(userEmail,userPassword);
+
+			HttpSession session = httpRequest.getSession(true);
+			session.setAttribute(SESSION_USER_ATTRIBUTE, user);
+
+			String logMessage;
+			logMessage = String.format(LOG_MESSAGE, user.getEmail());
+			logger.trace(logMessage);
+
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put(REDIRECT_JSON, PATH);
+			String jsonString;
+			jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
+
+
 		} catch (NumberFormatException e) {
-
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put(ERROR_MESSAGE_JSON, "Wrong cardnumber");
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
 		} catch (ServiceException e) {
-
+			logger.warn(e);
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put(ERROR_MESSAGE_JSON, e.getMessage());
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
 		}
 
 

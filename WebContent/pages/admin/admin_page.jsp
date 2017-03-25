@@ -8,13 +8,21 @@
 <fmt:message bundle="${loc}" key="local.beginDate" var="beginDate"/>
 <fmt:message bundle="${loc}" key="local.type" var="type"/>
 <fmt:message bundle="${loc}" key="local.expirationDate" var="expirationDate"/>
-
-
 <fmt:message bundle="${loc}" key="local.lot" var="lot"/>
 <fmt:message bundle="${loc}" key="local.lotName" var="lotName"/>
 <fmt:message bundle="${loc}" key="local.category" var="category"/>
 <fmt:message bundle="${loc}" key="local.currentPrice" var="currentPrice"/>
 <fmt:message bundle="${loc}" key="local.description" var="description"/>
+
+<c:set var="user" value="${sessionScope.user}" />
+<c:set var="admin" value="${sessionScope.admin}" />
+
+<c:if test="${empty admin}">
+		<c:redirect url="/Controller?command=go_to_main_page" />
+</c:if>
+<c:if test="${admin eq false}">
+		<c:redirect url="/Controller?command=go_to_main_page" />
+</c:if>
 
 
 <c:set var="auctions" value="${requestScope.auctions}" />

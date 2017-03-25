@@ -33,31 +33,33 @@
 						</p>
 						<hr>
 
-						<form action="/AuctionHouse/Controller" method="post">
-							<input type="hidden" name="command" value="registration">
+						<form role="form" method="post" action="javascript:void(null);" onsubmit="registration()">
 							<div class="top-margin">
 								<label>${name}</label> <input type="text" class="form-control"
-									name="name">
+									id="registration-name">
 							</div>
 							<div class="top-margin">
 								<label>${cardnumber}</label> <input type="text"
-									class="form-control" name="cardnumber">
+									class="form-control" id="registration-cardnumber">
 							</div>
 							<div class="top-margin">
 								<label>${login}</label> <input type="email"
-									class="form-control" name="email">
+									class="form-control" id="registration-email">
 							</div>
 
 							<div class="row top-margin">
 								<div class="col-sm-6">
 									<label>${password}</label> <input type="password"
-										class="form-control" name="password">
+										class="form-control" id="registration-password">
 								</div>
 								<div class="col-sm-6">
 									<label>${repeatPassword}</label> <input type="password"
-										class="form-control" name="repeatPassword">
+										class="form-control" id="registration-repeat-password">
 								</div>
 							</div>
+							<div class="val_error" id="error-registration-message">
+                                    <b id="messageErr"></b>
+                              </div>
 
 							<hr>
 

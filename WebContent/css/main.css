@@ -253,5 +253,11 @@ img {
     border-color: #ffa500;    
 }
 
+.val_error{
+	color:#FF1F1F;
+    text-align: center;
+    padding: 4px;
+}	
+
 
 

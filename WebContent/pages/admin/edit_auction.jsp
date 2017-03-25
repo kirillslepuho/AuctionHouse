@@ -6,16 +6,26 @@
 <%@include file="../templates/header.jsp"%>
 
 
-<fmt:message bundle="${loc}" key="local.editAuction" var="editAuction"/>
-<fmt:message bundle="${loc}" key="local.auction" var="auction"/>
-<fmt:message bundle="${loc}" key="local.place" var="place"/>
-<fmt:message bundle="${loc}" key="local.beginDate" var="beginDate"/>
-<fmt:message bundle="${loc}" key="local.time" var="time"/>
-<fmt:message bundle="${loc}" key="local.expirationDate" var="expirationDate"/>
-<fmt:message bundle="${loc}" key="local.type" var="type"/>
-<fmt:message bundle="${loc}" key="local.active" var="active"/>
-<fmt:message bundle="${loc}" key="local.rounds" var="rounds"/>
-<fmt:message bundle="${loc}" key="local.edit" var="edit"/>
+<fmt:message bundle="${loc}" key="local.editAuction" var="editAuction" />
+<fmt:message bundle="${loc}" key="local.auction" var="auction" />
+<fmt:message bundle="${loc}" key="local.place" var="place" />
+<fmt:message bundle="${loc}" key="local.beginDate" var="beginDate" />
+<fmt:message bundle="${loc}" key="local.time" var="time" />
+<fmt:message bundle="${loc}" key="local.expirationDate" var="expirationDate" />
+<fmt:message bundle="${loc}" key="local.type" var="type" />
+<fmt:message bundle="${loc}" key="local.active" var="active" />
+<fmt:message bundle="${loc}" key="local.rounds" var="rounds" />
+<fmt:message bundle="${loc}" key="local.edit" var="edit" />
+
+<c:set var="user" value="${sessionScope.user}" />
+<c:set var="admin" value="${sessionScope.admin}" />
+
+<c:if test="${empty admin}">
+		<c:redirect url="/Controller?command=go_to_main_page" />
+</c:if>
+<c:if test="${admin eq false}">
+		<c:redirect url="/Controller?command=go_to_main_page" />
+</c:if>
 
 <c:set var="auctionInfo" value="${requestScope.auction}" />
 
@@ -35,44 +45,43 @@
 					<div class="panel-body">
 						<h3 class="thin text-center">${auction}</h3>
 						<hr>
-						<form action="/AuctionHouse/Controller" method="post">
-							<input type="hidden" name="command" value="edit_auction">
+						<form role="form" method="post" action="javascript:void(null);" onsubmit="editAuction()">
 
-							<input type="hidden" name="change_id" value="${requestScope.id}" />
+							<input type="hidden" id="edit-auction-change-id" value="${requestScope.id}" />
 
 							<div class="top-margin">
 								<label>Lot ID</label> <input type="text" class="form-control"
-									name="lot_id" value="${auctionInfo.lot.id}">
+									id="edit-auction-lot-id" value="${auctionInfo.lot.id}">
 							</div>
 							<div class="top-margin">
 								<label>${place}</label> <input type="text" class="form-control"
-									name="place" value="${auctionInfo.place}">
+									id="edit-auction-place" value="${auctionInfo.place}">
 							</div>
 							<div class="top-margin">
 								<label>${beginDate}</label> <input type="text"
-									class="form-control" name="begin_date"
+									class="form-control" id="edit-auction-begin-date"
 									value="${auctionInfo.beginDate}">
 							</div>
 
 							<div class="top-margin">
 								<label>${time}</label> <input type="text" class="form-control"
-									name="time" value="${auctionInfo.time}">
+									id="edit-auction-time" value="${auctionInfo.time}">
 							</div>
 
 							<div class="top-margin">
 								<label>${expirationDate}</label> <input type="text"
-									class="form-control" name="expiration_date"
+									class="form-control" id="edit-auction-expiration-date"
 									value="${auctionInfo.expirationDate}">
 							</div>
 
 							<div class="top-margin">
 								<label>${type}</label> <input type="text" class="form-control"
-									name="type" value="${auctionInfo.type}">
+									id="edit-auction-type" value="${auctionInfo.type}">
 							</div>
 
 							<div class="top-margin">
 								<label>${active}?</label> <select class="form-control input-sm"
-									name="is_active">
+									id="edit-auction-is-active">
 									<option value="" selected="selected"></option>
 									<option value="Yes">Yes</option>
 									<option value="No">No</option>
@@ -82,10 +91,12 @@
 
 							<div class="top-margin">
 								<label>${rounds}</label> <input type="text" class="form-control"
-									name="rounds" value="${auctionInfo.rounds}">
+									id="edit-auction-rounds" value="${auctionInfo.rounds}">
 							</div>
-							<hr>
-							<hr>
+
+							<div class="val_error" id="error-add-auction-message">
+								<b id="messageErr"></b>
+							</div>
 
 							<div class="row">
 								<div class="col-lg-8"></div>

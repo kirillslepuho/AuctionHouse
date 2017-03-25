@@ -50,7 +50,7 @@
 							</div>
 						</div>
 
-                         <!--Место-->
+						<!--Место-->
 						<div class="col-md-12 information-border-style">
 							<div class="col-md-6">
 								<p class="lead info-type">${place}:</p>
@@ -129,51 +129,52 @@
 					<p class="lead" id="auction-description">${auction.lot.descriprion}</p>
 				</div>
 			</div>
-			<div class="col-lg-10 text-right">
-				<button class="btn btn-action" type="button" data-toggle="modal"
-					data-target="#modal-place-bet">
-					<c:out value="Test" />
-				</button>
-			</div>
+			<c:set var="user" value="${sessionScope.user}" />
+			<c:if test="${not empty admin}">
+				<div class="col-lg-10 text-right">
+					<button class="btn btn-action" type="button" data-toggle="modal"
+						data-target="#modal-place-bet">
+						<c:out value="Test" />
+					</button>
+				</div>
+				</c:if>
 
-			<!-- Модальное окно -->
-			<div class="modal" id="modal-place-bet">
-				<div class="modal-dialog">
-					<div class="modal-content modal-window-style">
-						<div class="modal-header modal-header-style">
-							<div class="modal-title">
-								<div class="col-md-5 h1">Place a bet</div>
+				<!-- Модальное окно -->
+				<div class="modal" id="modal-place-bet">
+					<div class="modal-dialog">
+						<div class="modal-content modal-window-style">
+							<div class="modal-header modal-header-style">
+								<div class="modal-title">
+									<div class="col-md-5 h1">Place a bet</div>
+								</div>
 							</div>
+
+							<div class="modal-body">
+								<form role="form" id="place-bet-form"
+									action="javascript:void(null);" onsubmit="placeBet()"
+									method="post">
+									<div class="form-group">
+										<label for="place-bet">Your bet</label> <input type="text"
+											class="form-control" id="place-bet" placeholder="Bet">
+									</div>
+									<div class="alert alert-danger error-message"
+										id="error-place-bet-message">
+										<strong>${errorMessage}!</strong> <b id="messageErr"></b>
+									</div>
+									<button class="btn btn-default modal-button-style"
+										type="submit">Place</button>
+								</form>
+
+							</div>
+
+							<div class="modal-footer modal-footer-style">
+								<button class="btn btn-default modal-button-style" type="button"
+									data-dismiss="modal">Close</button>
+							</div>
+
 						</div>
-
-						<div class="modal-body">
-							<form role="form" id="place-bet-form"
-								action="javascript:void(null);" onsubmit="placeBet()"
-								method="post">
-								<div class="form-group">
-									<label for="place-bet">Your bet</label> 
-									<input
-										type="text" class="form-control" id="place-bet"
-										placeholder="Bet">
-								</div>
-								<div class="alert alert-danger error-message"
-									id="error-place-bet-message">
-									<strong>${errorMessage}!</strong> <b id="messageErr"></b>
-								</div>
-								<button class="btn btn-default modal-button-style" type="submit">Place</button>
-							</form>
-
-						</div>
-
-						<div class="modal-footer modal-footer-style">
-							<button class="btn btn-default modal-button-style" type="button"
-								data-dismiss="modal">Close</button>
-						</div>
-
 					</div>
 				</div>
-			</div>
-
 		</article>
 	</div>
 </div>

@@ -65,15 +65,17 @@ public class UserDAOImpl implements UserDAO {
 			preparedStatement = connection.prepareStatement(GET_USER_SQL);
 			preparedStatement.setString(1, userEmail);
 			preparedStatement.setString(2, userPassword);
-			user = new User();
 			ResultSet resultSet = preparedStatement.executeQuery();
-			while(resultSet.next()){
+			if(resultSet.next()){
+				user = new User();
 				user.setId(Integer.parseInt(resultSet.getString("us_id")));
 				user.setName(resultSet.getString("us_name"));
 				user.setEmail(resultSet.getString("us_email"));
 				user.setPassword(resultSet.getString("us_password"));
 				user.setCardnumber(Integer.parseInt(resultSet.getString("us_cardnumber")));
 				user.setAdmin(resultSet.getBoolean("us_adminstatus"));
+			}else{
+				throw new DAOException("No such user with email" + userEmail);
 			}
 			return user;
 
