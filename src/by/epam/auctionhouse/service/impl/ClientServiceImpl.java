@@ -1,6 +1,7 @@
 package by.epam.auctionhouse.service.impl;
 
 import by.epam.auctionhouse.bean.Auction;
+import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.dao.UserDAO;
 import by.epam.auctionhouse.dao.exception.DAOException;
@@ -35,10 +36,6 @@ public class ClientServiceImpl implements ClientService{
 		DataValidator.checkEmpty(email, password);
         DataValidator.emailValidation(email);
         DataValidator.passwordValidation(password);
-
-		if (email == null || password == null || email.isEmpty() || password.isEmpty()) {
-			throw new ServiceException("Incorrect data");
-		}
 
 		try {
 			password = MD5.md5(password);
@@ -129,6 +126,24 @@ public class ClientServiceImpl implements ClientService{
         }
 
         return auction;
+	}
+
+	@Override
+	public void placeEngishBet(String clientId,Lot lot, String auctionId, String bet) throws ServiceException {
+		
+		DataValidator.checkEmpty(clientId, auctionId, bet);
+		
+		DataValidator.betValidation(bet, lot);
+
+		
+		try {
+			userDAO.placeEngishBet(clientId, auctionId, bet);
+			userDAO.changeLotCurrentPrice(bet, lot);
+		} catch (DAOException e) {
+            throw new ServiceException("Error while placing bet", e);
+		}
+		
+		
 	}
 	
 	

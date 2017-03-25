@@ -14,6 +14,7 @@ import by.epam.auctionhouse.command.impl.admin.GoToAdminPage;
 import by.epam.auctionhouse.command.impl.admin.GoToEditPage;
 import by.epam.auctionhouse.command.impl.user.GoToAuctionPage;
 import by.epam.auctionhouse.command.impl.user.GoToMainPage;
+import by.epam.auctionhouse.command.impl.user.PlaceEnglishBet;
 import by.epam.auctionhouse.command.impl.user.RegistrationCommand;
 import by.epam.auctionhouse.command.impl.user.SignInCommand;
 import by.epam.auctionhouse.command.impl.user.SignOutCommand;
@@ -38,6 +39,7 @@ public class CommandHelper {
 		commands.put(CommandName.GO_TO_EDIT_PAGE, new GoToEditPage());
 		commands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPage());
 		commands.put(CommandName.GO_TO_AUCTION_PAGE, new GoToAuctionPage());
+		commands.put(CommandName.PLACE_ENGLISH_BET, new PlaceEnglishBet());
 	}
 
 	public static CommandHelper getInstance() {

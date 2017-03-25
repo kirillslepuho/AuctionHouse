@@ -3,6 +3,7 @@ package by.epam.auctionhouse.dao;
 import java.util.List;
 
 import by.epam.auctionhouse.bean.Auction;
+import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.dao.exception.DAOException;
 
@@ -18,5 +19,9 @@ public interface UserDAO {
 	List<Auction> getAuctions() throws DAOException;
 
 	Auction getAuction(String auctionId) throws DAOException;
+	
+	void placeEngishBet(String clientId, String auctionId, String bet) throws DAOException;
+
+	void changeLotCurrentPrice(String bet, Lot lot) throws DAOException;
 
 }

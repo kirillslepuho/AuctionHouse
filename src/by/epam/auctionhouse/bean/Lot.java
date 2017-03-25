@@ -8,11 +8,12 @@ public class Lot {
 	private String descriprion;
 	private String image;
 	private boolean isClients;
+	private String clientOwer;
 	
 	
 	
 	public Lot(String id, String type, String name, int currentPrice, String descriprion, String image,
-			boolean isClients) {
+			boolean isClients,String clientOwer) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -21,6 +22,7 @@ public class Lot {
 		this.descriprion = descriprion;
 		this.image = image;
 		this.isClients = isClients;
+		this.clientOwer = clientOwer;
 	}
 	
 	public Lot() {
@@ -81,6 +83,14 @@ public class Lot {
 	
 	public void setClients(boolean isClients) {
 		this.isClients = isClients;
+	}
+
+	public String getClientOwer() {
+		return clientOwer;
+	}
+
+	public void setClientOwer(String clientOwer) {
+		this.clientOwer = clientOwer;
 	}
 	
 	

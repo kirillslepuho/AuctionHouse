@@ -1,12 +1,9 @@
 package by.epam.auctionhouse.service.util;
 
-
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.service.exception.ServiceException;
 
 public class DataValidator {
@@ -64,14 +61,18 @@ public class DataValidator {
         }
     }
 
-    public static void cardNumberValidation(String data) throws ServiceException {
+    public static void betValidation(String bet,Lot lot) throws ServiceException {
         int temp;
         try {
-            temp = Integer.parseInt(data);
+            temp = Integer.parseInt(bet);
         } catch (NumberFormatException exception) {
             throw new ServiceException("Wrong number format", exception);
         }
-
+        
+        if(temp < lot.getCurrentPrice()){
+        	throw new ServiceException("Your bet less then current price " + lot.getCurrentPrice());
+        }
+        
     }
 
 

@@ -75,8 +75,13 @@
 							</div>
 
 							<div class="top-margin">
-								<label>${type}</label> <input type="text" class="form-control"
-									id="edit-auction-type" value="${auctionInfo.type}">
+								<label>${type}</label> 
+									<select class="form-control input-sm"
+									id="edit-auction-type">
+									<option value="${auctionInfo.type}" selected="selected">${auctionInfo.type}</option>
+									<option value="блиц-аукцион">блиц-аукцион</option>
+									<option value="английский аукцион">английский аукцион</option>
+									</select>
 							</div>
 
 							<div class="top-margin">

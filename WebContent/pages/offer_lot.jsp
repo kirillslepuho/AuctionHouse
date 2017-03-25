@@ -13,7 +13,7 @@
 <fmt:message bundle="${loc}" key="local.image" var="image" />
 <fmt:message bundle="${loc}" key="local.create" var="create" />
 
-
+<c:set var="user" value="${sessionScope.user}" />
 
 <!-- container -->
 <div class="container">
@@ -34,9 +34,11 @@
 
 						<form role="form" method="post" action="javascript:void(null);"
 							onsubmit="addLot()">
-							<input type="hidden" id="add-lot-is-client" value="true" /> <input
-								type="hidden" id="add-lot-image"
+							<input type="hidden" id="add-lot-is-client" value="true" /> 
+							<input type="hidden" id="add-lot-image"
 								value="/AuctionHouse/data/common/images/no_photo.png" />
+								<input type="hidden" id="add-lot-client-id" value="${user.id}" />
+								
 							<div class="top-margin">
 								<label>${lotName}</label> <input type="text"
 									class="form-control" id="add-lot-lot-name">
@@ -59,8 +61,8 @@
 
 							<hr>
 
-							<c:set var="user" value="${sessionScope.user}" />
-							<c:if test="${not empty admin}">
+						
+							<c:if test="${not empty user}">
 								<div class="row">
 									<div class="col-lg-8"></div>
 									<div class="col-lg-4 text-right">

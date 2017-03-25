@@ -25,7 +25,13 @@ public class UserDAOImpl implements UserDAO {
 			"ON auctions.au_lot = lots.l_id where auctions.au_id = ?";
 
 	private final static String ADD_USER_SQL = "INSERT INTO users (us_name,us_email, us_password, us_cardnumber,us_personal_account) VALUES(?, ?, ?, ?, ?);";
+	
 	private final static String GET_USER_SQL = "SELECT * FROM users WHERE us_email=? and us_password=?;";
+	
+	private final static String PLACE_ENGLISH_BET_SQL = "INSERT INTO auction_house.bets (be_client,be_auction,be_bet) VALUES(?, ?, ?);";
+	
+	private final static String CHANGE_LOT_CURRENT_PRICE_SQL = "UPDATE lots SET l_current_price=? " +  
+			"WHERE l_id=?;";
 
 	public UserDAOImpl() {
 
@@ -207,6 +213,53 @@ public class UserDAOImpl implements UserDAO {
 
 		}
 		return result;
+	}
+	
+	@Override
+	public void placeEngishBet(String clientId, String auctionId, String bet) throws DAOException {
+		Connection connection = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(PLACE_ENGLISH_BET_SQL);
+
+			preparedStatement.setString(1, clientId);
+			preparedStatement.setString(2, auctionId);
+			preparedStatement.setString(3, bet);
+
+			preparedStatement.execute();
+		} catch (SQLException exception) {
+			throw new DAOException("Can not place english bet", exception);
+		} finally {
+			releasePreparedStatement(preparedStatement);
+			connectionPool.putConnection(connection);
+		}
+		
+	}
+	
+	@Override
+	public void changeLotCurrentPrice(String bet, Lot lot) throws DAOException {
+		Connection connection = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(CHANGE_LOT_CURRENT_PRICE_SQL);
+
+			preparedStatement.setString(1, bet);
+			preparedStatement.setString(2, lot.getId());
+
+			preparedStatement.execute();
+		} catch (SQLException exception) {
+			throw new DAOException("Can update lot price", exception);
+		} finally {
+			releasePreparedStatement(preparedStatement);
+			connectionPool.putConnection(connection);
+		}
+		
 	}
 	
 	private void releasePreparedStatement(PreparedStatement preparedStatement) {

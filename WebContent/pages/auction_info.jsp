@@ -13,8 +13,11 @@
 <fmt:message bundle="${loc}" key="local.place" var="place" />
 <fmt:message bundle="${loc}" key="local.round" var="round" />
 <fmt:message bundle="${loc}" key="local.currentPrice" var="currentPrice" />
+<fmt:message bundle="${loc}" key="local.placeBet" var="placeBet" />
+<fmt:message bundle="${loc}" key="local.close" var="close" />
 
 <c:set var="auction" value="${requestScope.auction}" />
+
 
 <div class="container">
 
@@ -134,7 +137,7 @@
 				<div class="col-lg-10 text-right">
 					<button class="btn btn-action" type="button" data-toggle="modal"
 						data-target="#modal-place-bet">
-						<c:out value="Test" />
+						<c:out value="${placeBet}" />
 					</button>
 				</div>
 				</c:if>
@@ -145,33 +148,33 @@
 						<div class="modal-content modal-window-style">
 							<div class="modal-header modal-header-style">
 								<div class="modal-title">
-									<div class="col-md-5 h1">Place a bet</div>
+									<div class="col-md-5 h1">${placeBet}</div>
 								</div>
 							</div>
 
 							<div class="modal-body">
 								<form role="form" id="place-bet-form"
-									action="javascript:void(null);" onsubmit="placeBet()"
+									action="javascript:void(null);" onsubmit="placeEnglishBet()"
 									method="post">
+									<input type="hidden" id="place-english-auction-id" value="${auction.id}" />
+									<input type="hidden" id="place-english-lot-id" value="${auction.lot.id}" />
+									<input type="hidden" id="place-english-client-id" value="${user.id}" />
 									<div class="form-group">
-										<label for="place-bet">Your bet</label> <input type="text"
-											class="form-control" id="place-bet" placeholder="Bet">
+										<label for="place-bet"></label> <input type="text"
+											class="form-control" id="place-english-bet" placeholder="Bet">
 									</div>
 									<div class="alert alert-danger error-message"
 										id="error-place-bet-message">
 										<strong>${errorMessage}!</strong> <b id="messageErr"></b>
 									</div>
 									<button class="btn btn-default modal-button-style"
-										type="submit">Place</button>
+										type="submit">${placeBet}</button>
 								</form>
-
 							</div>
-
 							<div class="modal-footer modal-footer-style">
 								<button class="btn btn-default modal-button-style" type="button"
-									data-dismiss="modal">Close</button>
+									data-dismiss="modal">${close}</button>
 							</div>
-
 						</div>
 					</div>
 				</div>

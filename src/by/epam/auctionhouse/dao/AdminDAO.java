@@ -14,5 +14,4 @@ public interface AdminDAO {
 	void editLot(Lot lot, String changeId) throws DAOException;
 	Lot getLotById(String lotId) throws DAOException;
 	List<Lot> getLots() throws DAOException;
-	
 }

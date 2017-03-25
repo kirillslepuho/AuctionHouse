@@ -33,8 +33,8 @@ public class AdminDAOImpl implements AdminDAO {
 	private final static String DELETE_AUCTION_SQL = "UPDATE auctions SET auctions.au_is_active = 0 " +  
 			"WHERE auctions.au_id=?";
 
-	private final static String ADD_LOT_SQL = "INSERT INTO auction_house.lots (l_type,l_name,l_current_price,l_description,l_image,l_clients)" + 
-			"VALUES(?, ?, ?, ?, ?, ?);";
+	private final static String ADD_LOT_SQL = "INSERT INTO auction_house.lots (l_type,l_name,l_current_price,l_description,l_image,l_clients,l_ower)" + 
+			"VALUES(?, ?, ?, ?, ?, ?, ?);";
 
 	private final static String EDIT_LOT_SQL = 
 			"UPDATE lots SET l_type=?, l_name=?,l_current_price=?, l_description=?, l_image=? " +  
@@ -45,9 +45,6 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	private final static String GET_ALL_LOTS_SQL = "SELECT * " + 
 	"FROM lots";
-
-
-
 
 	public AdminDAOImpl() {
 
@@ -143,6 +140,7 @@ public class AdminDAOImpl implements AdminDAO {
 			preparedStatement.setString(4, lot.getDescriprion());
 			preparedStatement.setString(5, lot.getImage());
 			preparedStatement.setBoolean(6,lot.isClients());
+			preparedStatement.setString(7, lot.getClientOwer());
 
 
 			preparedStatement.execute();
@@ -194,10 +192,12 @@ public class AdminDAOImpl implements AdminDAO {
 			while(resultSet.next()){
 				lot.setId(lotId);
 				lot.setType(resultSet.getString("l_type"));
-				lot.setName(resultSet.getString("l_current_price"));
+				lot.setName(resultSet.getString("l_name"));
+				lot.setCurrentPrice(resultSet.getInt("l_current_price"));
 				lot.setDescriprion(resultSet.getString("l_description"));
 				lot.setImage(resultSet.getString("l_image"));
 				lot.setClients(resultSet.getBoolean("l_clients"));
+				lot.setClientOwer(resultSet.getString("l_ower"));
 			}
 			return lot;
 
@@ -247,6 +247,8 @@ public class AdminDAOImpl implements AdminDAO {
 
 	        return result;
 	    }
+	
+	
 
 	private void releasePreparedStatement(PreparedStatement preparedStatement) {
 		if (preparedStatement != null) {
@@ -257,4 +259,6 @@ public class AdminDAOImpl implements AdminDAO {
 			}
 		}
 	}
+
+	
 }
