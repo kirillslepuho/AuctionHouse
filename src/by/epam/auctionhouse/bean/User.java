@@ -11,26 +11,13 @@ public class User implements Serializable{
 	private String password;
 	private int cardnumber;
 	private boolean isAdmin;
+	private boolean blocked;
 
 	
 	
 	public User() {
 		super();
 	}
-
-
-
-	public User(int id, String name, String email, String password, int cardnumber, boolean isAdmin) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.cardnumber = cardnumber;
-		this.isAdmin = isAdmin;
-	}
-
-
 
 	public int getId() {
 		return id;
@@ -106,6 +93,14 @@ public class User implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public boolean isBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
 	}
 
 	

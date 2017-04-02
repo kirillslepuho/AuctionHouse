@@ -10,7 +10,8 @@
 <fmt:message bundle="${loc}" key="local.place" var="place" />
 <fmt:message bundle="${loc}" key="local.beginDate" var="beginDate" />
 <fmt:message bundle="${loc}" key="local.time" var="time" />
-<fmt:message bundle="${loc}" key="local.expirationDate" var="expirationDate" />
+<fmt:message bundle="${loc}" key="local.expirationDate"
+	var="expirationDate" />
 <fmt:message bundle="${loc}" key="local.type" var="type" />
 <fmt:message bundle="${loc}" key="local.active" var="active" />
 <fmt:message bundle="${loc}" key="local.rounds" var="rounds" />
@@ -20,10 +21,10 @@
 <c:set var="admin" value="${sessionScope.admin}" />
 
 <c:if test="${empty admin}">
-		<c:redirect url="/Controller?command=go_to_main_page" />
+	<c:redirect url="/Controller?command=go_to_main_page" />
 </c:if>
 <c:if test="${admin eq false}">
-		<c:redirect url="/Controller?command=go_to_main_page" />
+	<c:redirect url="/Controller?command=go_to_main_page" />
 </c:if>
 
 
@@ -47,8 +48,12 @@
 						<form role="form" method="post" action="javascript:void(null);"
 							onsubmit="addAuction()">
 							<div class="top-margin">
-								<label>Lot ID</label> <input type="text" class="form-control"
-									id="add-auction-lot-id">
+								<label>Lot ID</label>
+									<select class="form-control" id="add-auction-lot-id">
+									<c:forEach items="${requestScope.lots}" var="temp">
+									<option value="${temp.id}">${temp.name}</option>
+									</c:forEach>
+								</select>
 							</div>
 							<div class="top-margin">
 								<label>${place}</label> <input type="text" class="form-control"
@@ -72,13 +77,12 @@
 							</div>
 
 							<div class="top-margin">
-								<label>${type}</label> 
-									<select class="form-control input-sm"
+								<label>${type}</label> <select class="form-control input-sm"
 									id="add-auction-type">
 									<option value="" selected="selected"></option>
 									<option value="блиц-аукцион">блиц-аукцион</option>
 									<option value="английский аукцион">английский аукцион</option>
-									</select>
+								</select>
 							</div>
 
 							<div class="top-margin">

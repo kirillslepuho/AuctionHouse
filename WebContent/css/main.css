@@ -259,5 +259,39 @@ img {
     padding: 4px;
 }	
 
+.shadow-container {
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
+    -moz-box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
+    -webkit-box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
+}
 
+.container-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #c0c0c0;
+}
 
+.container-btn a {
+    margin: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.table-bets {
+    margin-left: 70px;
+}
+
+@media screen and (min-width: 800px) and (min-device-width: 800px) {
+
+    .container-btn {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .container-btn a {
+        width: 50%;
+    }
+}

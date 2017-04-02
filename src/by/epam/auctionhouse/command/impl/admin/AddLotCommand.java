@@ -26,8 +26,9 @@ public class AddLotCommand implements ICommand{
 	private static final String IMAGE_PARAMETER = "image";
 	private static final String IS_CLIENT = "is_client";
 	private static final String CLIENT_ID = "client_id";
+	private static final String BLITZ_BET = "blitz_bet";
 	
-	private static final String PATH = "/AuctionHouse/Controller?command=go_to_admin_page";
+	private static final String PATH = "/AuctionHouse/Controller?command=go_to_lots_page";
 
 	private final static String ERROR_MESSAGE_JSON = "errorMessage";
 	private final static String REDIRECT_JSON = "redirect";
@@ -49,6 +50,7 @@ public class AddLotCommand implements ICommand{
 			lot.setCurrentPrice(Integer.parseInt(httpRequest.getParameter(CURRENT_PRICE_PARAMETER)));
 			lot.setClients(Util.checkBoolean(httpRequest.getParameter(IS_CLIENT)));
 			lot.setClientOwer(httpRequest.getParameter(CLIENT_ID));
+			lot.setBlitzBet(httpRequest.getParameter(BLITZ_BET));
 			adminService.addLot(lot);
 
 			JSONObject jsonObject = new JSONObject();
@@ -56,6 +58,11 @@ public class AddLotCommand implements ICommand{
 			String jsonString = jsonObject.toString();
 			httpResponse.getWriter().write(jsonString);
 			
+		}catch (NumberFormatException e) {
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put(ERROR_MESSAGE_JSON, "Wrong current price");
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
 		} catch (ServiceException e) {
 			logger.warn(e);
 			JSONObject jsonObject = new JSONObject();

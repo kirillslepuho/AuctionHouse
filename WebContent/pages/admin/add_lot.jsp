@@ -41,7 +41,7 @@
 						<hr>
 
 						<form role="form" method="post" action="javascript:void(null);"
-							onsubmit="addLot()">
+							onsubmit="addLot()" id="add_lot_form">
 							<input type="hidden" id="add-lot-is-client" value="false" />
 							<div class="top-margin">
 								<label>${lotName}</label> <input type="text"
@@ -64,10 +64,14 @@
 									id="add-lot-image">
 							</div>
 							
+							<div id="emails" class="top-margin">
+							
+							</div>
+							<button class="btn btn-primary btn-sm" id = "add" type="button">Add</button>
 							<div class="val_error" id="error-add-auction-message">
 								<b id="messageErr"></b>
 							</div>
-
+                            
 
 							<hr>
 
@@ -88,6 +92,30 @@
 
 	</div>
 </div>
-<!-- /container -->
-
+<script type="text/javascript">
+add.onclick = function() {
+			var div = document.createElement("div");
+			div.setAttribute('class', 'top-margin');
+			var label = document.createElement("label")
+			label.innerHTML="blitz-bet";
+			div.appendChild(label);
+			var input = document.createElement("input");
+			input.setAttribute('class','form-control');
+			input.type = "text";
+			input.id = "add-lot-blitz-bet";
+			div.appendChild(input);
+			var btn = document.createElement("button");
+			btn.type="button";
+			btn.name = "remove";
+			btn.innerHTML="Remove";
+			btn.setAttribute('class', 'del-btn');
+			btn.onclick = function(){
+				div.parentNode.removeChild(div);
+				add.style.display = "block";
+			};
+			div.appendChild(btn);
+			emails.appendChild(div);
+			add.style.display = "none"
+		};
+</script>
 <%@include file="../templates/footer.jsp"%>

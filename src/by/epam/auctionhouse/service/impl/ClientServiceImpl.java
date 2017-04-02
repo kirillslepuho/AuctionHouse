@@ -1,6 +1,7 @@
 package by.epam.auctionhouse.service.impl;
 
 import by.epam.auctionhouse.bean.Auction;
+import by.epam.auctionhouse.bean.Bet;
 import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.dao.UserDAO;
@@ -25,8 +26,8 @@ public class ClientServiceImpl implements ClientService{
 	private static final String SESSION_USER_ATTRIBUTE = "user";
     private static final String SESSION_ADMIN_ATTRIBUTE = "admin";
 
-	DAOFactory daoFactory = DAOFactory.getInstance();
-	UserDAO userDAO = daoFactory.getUserDAO();
+	private DAOFactory daoFactory = DAOFactory.getInstance();
+	private UserDAO userDAO = daoFactory.getUserDAO();
 	
 	private final Logger logger = LogManager.getLogger("traceLogger");
 	
@@ -137,13 +138,38 @@ public class ClientServiceImpl implements ClientService{
 
 		
 		try {
-			userDAO.placeEngishBet(clientId, auctionId, bet);
-			userDAO.changeLotCurrentPrice(bet, lot);
+			userDAO.placeEngishBet(clientId, auctionId, bet, lot);
 		} catch (DAOException e) {
             throw new ServiceException("Error while placing bet", e);
 		}
 		
 		
+	}
+
+	@Override
+	public List<Bet> getUsersBets(String userId) throws ServiceException {
+		DataValidator.checkEmpty(userId);
+		List<Bet> usersBets = null;
+		
+				try {
+					usersBets = userDAO.getUsersBets(userId);
+				} catch (DAOException e) {
+					throw new ServiceException("Error while getting users bets", e);
+				}
+				return usersBets;
+	}
+
+	@Override
+	public List<Lot> getUsersLots(String userId) throws ServiceException {
+		DataValidator.checkEmpty(userId);
+		List<Lot> usersLots = null;
+		
+				try {
+					usersLots = userDAO.getUsersLots(userId);
+				} catch (DAOException e) {
+					throw new ServiceException("Error while getting users bets", e);
+				}
+				return usersLots;
 	}
 	
 	

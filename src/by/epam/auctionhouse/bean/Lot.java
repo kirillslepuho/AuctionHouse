@@ -7,13 +7,13 @@ public class Lot {
 	private int currentPrice;
 	private String descriprion;
 	private String image;
-	private boolean isClients;
+	private boolean clients;
 	private String clientOwer;
-	
+	private String blitzBet;
 	
 	
 	public Lot(String id, String type, String name, int currentPrice, String descriprion, String image,
-			boolean isClients,String clientOwer) {
+			boolean clients,String clientOwer, String blitzBet) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -21,8 +21,9 @@ public class Lot {
 		this.currentPrice = currentPrice;
 		this.descriprion = descriprion;
 		this.image = image;
-		this.isClients = isClients;
+		this.clients = clients;
 		this.clientOwer = clientOwer;
+		this.blitzBet = blitzBet;
 	}
 	
 	public Lot() {
@@ -78,11 +79,11 @@ public class Lot {
 	}
 	
 	public boolean isClients() {
-		return isClients;
+		return clients;
 	}
 	
-	public void setClients(boolean isClients) {
-		this.isClients = isClients;
+	public void setClients(boolean clients) {
+		this.clients = clients;
 	}
 
 	public String getClientOwer() {
@@ -92,11 +93,17 @@ public class Lot {
 	public void setClientOwer(String clientOwer) {
 		this.clientOwer = clientOwer;
 	}
+
+	public String getBlitzBet() {
+		return blitzBet;
+	}
+
+	public void setBlitzBet(String blitzBet) {
+		this.blitzBet = blitzBet;
+	}
+
 	
 	
-
-
-
-
+	
 
 }

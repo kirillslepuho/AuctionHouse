@@ -12,7 +12,7 @@
 		<servlet-name>Controller</servlet-name>
 		<url-pattern>/Controller</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>SignUpPage</servlet-name>
 		<servlet-class>WebContent/pages/signup.jsp</servlet-class>
@@ -20,8 +20,8 @@
 	<servlet-mapping>
 		<servlet-name>SignUpPage</servlet-name>
 		<url-pattern>/SignUp</url-pattern>
-	</servlet-mapping>	
-		
+	</servlet-mapping>
+
 	<filter>
 		<display-name>CharsetFilter</display-name>
 		<filter-name>CharsetFilter</filter-name>
@@ -35,9 +35,11 @@
 		<filter-name>CharsetFilter</filter-name>
 		<url-pattern>/Controller</url-pattern>
 	</filter-mapping>
-	
-	<listener>
-        <listener-class>by.epam.auctionhouse.listener.ServletListener</listener-class>
-    </listener>
 
+	<listener>
+		<listener-class>by.epam.auctionhouse.listener.ServletListener</listener-class>
+	</listener>
+	<error-page>
+		<location>/error.jsp</location>
+	</error-page>
 </web-app>

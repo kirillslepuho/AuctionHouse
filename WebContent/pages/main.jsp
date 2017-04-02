@@ -21,19 +21,21 @@
 			</header>
 			
 		<c:forEach items="${auctions}" var="temp">
-			<div class="col-sm-4 ">
+		<a href="/AuctionHouse/Controller?command=go_to_auction_page&id=${temp.id}">
+			<div class="col-sm-4">
 				<div class="auction">
 					<div>
-						<a href="#"><img
-							src="${temp.lot.image}" alt="cover"></a>
+						<img
+							src="${temp.lot.image}" alt="cover">
 					</div>
 					<p class="auction-title">
-						<a href="/AuctionHouse/Controller?command=go_to_auction_page&id=${temp.id}">${temp.lot.name}</a>
+						${temp.lot.name}
 					</p>
 					<p class="auction-desc">${temp.lot.type}</p>
 					<p class="auction-price">${temp.lot.currentPrice}</p>
 				</div>
 			</div>
+			</a>
 			</c:forEach>
 		</article>
 		<!-- /Article -->

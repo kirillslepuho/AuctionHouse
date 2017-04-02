@@ -31,7 +31,7 @@ public class EditAuctionCommand implements ICommand{
 	private static final String ROUNDS_PARAMETER = "rounds";
 	private static final String CHANGE_PRODUCT_ID = "change_id";
 
-	private static final String PATH = "/AuctionHouse/Controller?command=go_to_admin_page";
+	private static final String PATH = "/AuctionHouse/Controller?command=go_to_auctions_page";
 
 	private final static String ERROR_MESSAGE_JSON = "errorMessage";
 	private final static  String REDIRECT_JSON = "redirect";

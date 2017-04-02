@@ -1,39 +1,34 @@
 package by.epam.auctionhouse.service.impl;
 
 import by.epam.auctionhouse.bean.Auction;
+import by.epam.auctionhouse.bean.Bet;
 import by.epam.auctionhouse.bean.Lot;
+import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.dao.AdminDAO;
 import by.epam.auctionhouse.dao.exception.DAOException;
 import by.epam.auctionhouse.dao.factory.DAOFactory;
 import by.epam.auctionhouse.service.AdminService;
 import by.epam.auctionhouse.service.exception.ServiceException;
 import by.epam.auctionhouse.service.util.DataValidator;
-
-import org.apache.logging.log4j.Logger;
-
-import com.mysql.fabric.xmlrpc.base.Data;
-
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
+
 
 
 public class AdminServiceImpl implements AdminService{
 
-	private static final Logger logger = LogManager.getLogger(AdminService.class.getName());
 
-	DAOFactory daoFactory = DAOFactory.getInstance();
-	AdminDAO adminDAO = daoFactory.getAdminDAO();
+	private DAOFactory daoFactory = DAOFactory.getInstance();
+	private AdminDAO adminDAO = daoFactory.getAdminDAO();
 
 
 	@Override
 	public void addAuction(Auction auction) throws ServiceException {
 		validateInputData(auction);
-		
+
 		try {
 			adminDAO.addAuction(auction);
 		} catch(DAOException exception) {
-			logger.trace("Error adding auction");
 			throw new ServiceException("Can not add auction", exception);
 		}
 
@@ -41,11 +36,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteAuction(String deleteId) throws ServiceException {
 		DataValidator.checkEmpty(deleteId);
-		
+
 		try {
 			adminDAO.deleteAuction(deleteId);
 		} catch(DAOException exception) {
-			logger.trace("Error while deleting auction");
 			throw new ServiceException("Can not delete auction", exception);
 		}
 
@@ -57,7 +51,6 @@ public class AdminServiceImpl implements AdminService{
 		try {
 			adminDAO.editAuction(auction, changeId);
 		} catch(DAOException exception) {
-			logger.trace("Error editing auction");
 			throw new ServiceException("Can not edit auction", exception);
 		}
 
@@ -68,7 +61,6 @@ public class AdminServiceImpl implements AdminService{
 		try {
 			adminDAO.addLot(lot);
 		} catch(DAOException exception) {
-			logger.trace("Error while adding auction");
 			throw new ServiceException("Can not add lot", exception);
 		}
 
@@ -80,7 +72,6 @@ public class AdminServiceImpl implements AdminService{
 		try {
 			adminDAO.editLot(lot, changeId);
 		} catch(DAOException exception) {
-			logger.trace("Error while editing lot");
 			throw new ServiceException("Can not edit lot", exception);
 		}
 
@@ -88,12 +79,11 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Lot getLotById(String lotId) throws ServiceException {
 		DataValidator.checkEmpty(lotId);
-		
+
 		Lot lot = null;
 		try {
 			lot = adminDAO.getLotById(lotId);
 		} catch(DAOException exception) {
-			logger.trace("Error while getting lot");
 			throw new ServiceException("Can not get lot", exception);
 		}
 
@@ -113,6 +103,68 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 
+
+
+
+	@Override
+	public void setAuctionWinner(String auctionID, String clientID, String bet) throws ServiceException {
+		DataValidator.checkEmpty(auctionID);
+		DataValidator.checkEmpty(clientID);
+		DataValidator.checkEmpty(bet);
+		try {
+			adminDAO.setAuctionWinner(auctionID, clientID, bet);
+		} catch(DAOException exception) {
+			throw new ServiceException("Can not set winner", exception);
+		}
+
+	}
+	@Override
+	public User getAuctionWinner(String auctionID) throws ServiceException {
+		DataValidator.checkEmpty(auctionID);
+		User user = null;
+		try {
+			user = adminDAO.getAuctionWinner(auctionID);
+		} catch(DAOException exception) {
+			throw new ServiceException("Can not get winner", exception);
+		}
+		return user;
+	}
+	@Override
+	public List<User> getUsers() throws ServiceException {
+		List<User> users = null;
+
+		try {
+			users = adminDAO.getUsers();
+		} catch (DAOException e) {
+			throw new ServiceException("Error while getting users", e);
+		}
+		return users;
+	}
+	@Override
+	public List<Bet> getAuctionsBets(String auctionId) throws ServiceException {
+		DataValidator.checkEmpty(auctionId);
+		List<Bet> bets = null;
+
+		try {
+			bets = adminDAO.getAuctionsBets(auctionId);
+		} catch (DAOException e) {
+			throw new ServiceException("Error while getting users", e);
+		}
+		return bets;
+	}
+	@Override
+	public void setUserBlockStatus(String userId,boolean status) throws ServiceException {
+		DataValidator.checkEmpty(userId);
+		DataValidator.checkEmpty(status);
+		try {
+			adminDAO.setUserBlockStatus(userId, status);
+		} catch(DAOException exception) {
+			throw new ServiceException("Can not block user", exception);
+		}
+
+	}
+
+
 	private void validateInputData(Auction auction) throws ServiceException {
 		DataValidator.checkEmpty(auction.getBeginDate());
 		DataValidator.checkEmpty(auction.getExpirationDate());
@@ -123,14 +175,13 @@ public class AdminServiceImpl implements AdminService{
 		DataValidator.checkEmpty(auction.getType());
 		DataValidator.checkEmpty(auction.getRounds());
 	}
-	
+
 	private void validateInputData(Lot lot) throws ServiceException {
-		DataValidator.checkEmpty(lot.isClients());
+
 		DataValidator.checkEmpty(lot.getCurrentPrice());
 		DataValidator.checkEmpty(lot.getDescriprion());
 		DataValidator.checkEmpty(lot.getName());
 		DataValidator.checkEmpty(lot.getImage());
 		DataValidator.checkEmpty(lot.getType());
 	}
-
 }

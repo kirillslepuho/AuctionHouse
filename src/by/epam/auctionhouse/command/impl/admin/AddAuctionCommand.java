@@ -29,7 +29,7 @@ public class AddAuctionCommand implements ICommand{
 	private static final String IS_ACTIVE__PARAMETER = "is_active";
 	private static final String ROUNDS_PARAMETER = "rounds";
 
-	private static final String PATH = "/AuctionHouse/Controller?command=go_to_admin_page";
+	private static final String PATH = "/AuctionHouse/Controller?command=go_to_auctions_page";
 
 	private final static String ERROR_MESSAGE_JSON = "errorMessage";
 	private final static String REDIRECT_JSON = "redirect";
@@ -67,7 +67,8 @@ public class AddAuctionCommand implements ICommand{
 			jsonObject.put(ERROR_MESSAGE_JSON, e.getMessage());
 			String jsonString = jsonObject.toString();
 			httpResponse.getWriter().write(jsonString);
-		} catch (NumberFormatException exception) {
+		} catch (NumberFormatException e) {
+			logger.warn(e);
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put(ERROR_MESSAGE_JSON, "Wrong data in rounds");
 			String jsonString = jsonObject.toString();

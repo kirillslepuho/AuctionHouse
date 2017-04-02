@@ -2,15 +2,15 @@ package by.epam.auctionhouse.service.util;
 
 
 public class Util {
-	private static final String TRUE = "true";
-    private static final String FALSE = "false";
-    private static final String YES = "Yes";
-    private static final String NO = "No";
+	private static final String TRUE = "TRUE";
+    private static final String FALSE = "FALSE";
+    private static final String YES = "YES";
+    private static final String NO = "NO";
 
 	public static final boolean checkBoolean(String bool){
 		 boolean rezult;
 
-	        switch (bool) {
+	        switch (bool.toUpperCase()) {
 	            case TRUE:
 	                rezult = true;
 	                break;

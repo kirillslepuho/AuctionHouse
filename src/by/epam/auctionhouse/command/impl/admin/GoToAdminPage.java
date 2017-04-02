@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.auctionhouse.bean.Auction;
 import by.epam.auctionhouse.bean.Lot;
+import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.command.ICommand;
 import by.epam.auctionhouse.service.AdminService;
 import by.epam.auctionhouse.service.ClientService;
@@ -19,6 +20,7 @@ public class GoToAdminPage implements ICommand{
 	
 	private final static String AUCTION_ATTRIBUTE_NAME = "auctions";
 	private final static String LOT_ATTRIBUTE_NAME = "lots";
+	private final static String CLIENT_ATTRIBUTE_NAME = "clients";
     private static final String PATH = "pages/admin/admin_page.jsp";
 	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, ServletException {
@@ -29,16 +31,17 @@ public class GoToAdminPage implements ICommand{
         try {
             List<Auction> auctionList;
             List<Lot> lotList;
+            List<User> clientList;
+            
             
             auctionList = clientService.getAuctions();
             lotList = adminService.getLots();
-            
 
             httpRequest.setAttribute(AUCTION_ATTRIBUTE_NAME, auctionList);
             httpRequest.setAttribute(LOT_ATTRIBUTE_NAME, lotList);
             httpRequest.getRequestDispatcher(PATH).forward(httpRequest, httpResponse);
         } catch (ServiceException exception) {
-            //httpResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
+         httpResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
         
 		

@@ -64,7 +64,7 @@
 					</c:if>
 
 					<c:if test="${not empty user}">
-						<li><a href="#">${user.name}</a></li>
+						<li><a href="/AuctionHouse/Controller?command=go_to_client_page&userId=${user.id}">${user.name}</a></li>
 						<li><a href="/AuctionHouse/Controller?command=sign_out">${signout}</a></li>
 					</c:if>
 
@@ -77,19 +77,6 @@
 						</ul>
 					</li>
 
-					<!--Поиск-->
-					<!-- <li>
-                    <form class="navbar-form" role="search" method="get" action="/find">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Поиск" name="name" value="">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit" name="command" value="FIND_PRODUCT">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </li>-->
 				</ul>
 			</div>
 		</div>

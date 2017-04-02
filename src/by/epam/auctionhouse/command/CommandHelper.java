@@ -7,13 +7,21 @@ import by.epam.auctionhouse.command.impl.Localization;
 import by.epam.auctionhouse.command.impl.NoSuchCommand;
 import by.epam.auctionhouse.command.impl.admin.AddAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.AddLotCommand;
+import by.epam.auctionhouse.command.impl.admin.ChangeUserStatusCommand;
 import by.epam.auctionhouse.command.impl.admin.DeleteAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.EditAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.GoToAddAuctionPage;
 import by.epam.auctionhouse.command.impl.admin.GoToAdminPage;
+import by.epam.auctionhouse.command.impl.admin.GoToAuctionsBetsPageCommand;
+import by.epam.auctionhouse.command.impl.admin.GoToAuctionsPage;
+import by.epam.auctionhouse.command.impl.admin.GoToClientsPage;
 import by.epam.auctionhouse.command.impl.admin.GoToEditPage;
+import by.epam.auctionhouse.command.impl.admin.GoToLotsPage;
+import by.epam.auctionhouse.command.impl.admin.SetAuctionWinner;
 import by.epam.auctionhouse.command.impl.user.GoToAuctionPage;
+import by.epam.auctionhouse.command.impl.user.GoToClientPage;
 import by.epam.auctionhouse.command.impl.user.GoToMainPage;
+import by.epam.auctionhouse.command.impl.user.PlaceBlitzBet;
 import by.epam.auctionhouse.command.impl.user.PlaceEnglishBet;
 import by.epam.auctionhouse.command.impl.user.RegistrationCommand;
 import by.epam.auctionhouse.command.impl.user.SignInCommand;
@@ -40,6 +48,14 @@ public class CommandHelper {
 		commands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPage());
 		commands.put(CommandName.GO_TO_AUCTION_PAGE, new GoToAuctionPage());
 		commands.put(CommandName.PLACE_ENGLISH_BET, new PlaceEnglishBet());
+		commands.put(CommandName.PLACE_BLITZ_BET,new PlaceBlitzBet() );
+		commands.put(CommandName.GO_TO_CLIENT_PAGE,new GoToClientPage() );
+		commands.put(CommandName.GO_TO_AUCTIONS_PAGE,new GoToAuctionsPage());
+		commands.put(CommandName.GO_TO_CLIENTS_PAGE,new GoToClientsPage() );
+		commands.put(CommandName.GO_TO_LOTS_PAGE,new GoToLotsPage() );
+		commands.put(CommandName.CHANGE_USER_STATUS, new ChangeUserStatusCommand());
+		commands.put(CommandName.GO_TO_AUCTION_BETS_PAGE, new GoToAuctionsBetsPageCommand());
+		commands.put(CommandName.SET_AUCTION_WINNER, new SetAuctionWinner());
 	}
 
 	public static CommandHelper getInstance() {
@@ -47,9 +63,14 @@ public class CommandHelper {
 	}
 
 	public ICommand getCommand(String commandName){
-		CommandName name = CommandName.valueOf(commandName.toUpperCase());
 		ICommand command;
-		if(name != null){
+		if(commandName != null){
+			command = commands.get(CommandName.NO_SUCH_COMMAND);
+		}
+		
+		CommandName name = CommandName.valueOf(commandName.toUpperCase());
+		if(name != null && commands.get(name) != null){
+			
 			command = commands.get(name);
 		}else{
 			command = commands.get(CommandName.NO_SUCH_COMMAND);

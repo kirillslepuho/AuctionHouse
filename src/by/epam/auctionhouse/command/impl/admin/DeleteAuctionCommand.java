@@ -19,7 +19,7 @@ public class DeleteAuctionCommand implements ICommand{
 
 	 private static final Logger logger = LogManager.getLogger(DeleteAuctionCommand.class.getName());
 	
-	private static final String PATH = "/AuctionHouse/Controller?command=go_to_admin_page";
+	 private final static String REFERRER = "referer";
 	private static final String ID="id";
 	
 	@Override
@@ -32,7 +32,7 @@ public class DeleteAuctionCommand implements ICommand{
 
 		try {
 			adminService.deleteAuction(deleteId);
-			httpResponse.sendRedirect(PATH);
+			httpResponse.sendRedirect(httpRequest.getHeader(REFERRER));
 		} catch (ServiceException exception) {
 			logger.error("Error deleting file", exception);
             httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
