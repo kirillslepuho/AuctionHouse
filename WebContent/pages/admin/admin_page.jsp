@@ -4,8 +4,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@include file="../templates/header.jsp"%>
-
-
+<fmt:message bundle="${loc}" key="local.AdminPage" var="adminPage" />
+<fmt:message bundle="${loc}" key="local.users" var="users" />
+<fmt:message bundle="${loc}" key="local.auctions"
+	var="auctions" />
+<fmt:message bundle="${loc}" key="local.lots"
+	var="lots" />
+<fmt:message bundle="${loc}" key="local.bets"
+	var="bets" />
+	
 <c:set var="user" value="${sessionScope.user}" />
 <c:set var="admin" value="${sessionScope.admin}" />
 
@@ -16,43 +23,40 @@
 		<c:redirect url="/Controller?command=go_to_main_page" />
 </c:if>
 
-
-<c:set var="auctions" value="${requestScope.auctions}" />
-<c:set var="lots" value="${requestScope.lots}" />
 <div class="container">
 	<div class="row">
 
 		<!-- Article main content -->
 		<article class="col-xs-12 maincontent">
 			<header class="page-header">
-				<h1 class="page-title">Страница администратора</h1>
+				<h1 class="page-title">${adminPage}</h1>
 			</header>
 			
 				<div class="container-btn">
             <a href="/AuctionHouse/Controller?command=go_to_clients_page">
                 <div>
-                   <h2> USERS</h2>
+                   <h2>${users}</h2>
                 </div>
             </a>
             </div>
             <div class="container-btn">
             <a href="/AuctionHouse/Controller?command=go_to_auctions_page">
                 <div>
-                   <h2> Auctions</h2>
+                   <h2>${auctions}</h2>
                 </div>
             </a>
         </div>
         <div class="container-btn">
             <a href="/AuctionHouse/Controller?command=go_to_lots_page">
                 <div>
-                    <h2>Lots</h2>
+                    <h2>${lots}</h2>
                 </div>
             </a>
             </div>
             <div class="container-btn">
             <a href="genres_table.jsp">
                 <div>
-                    <h2>BETS</h2>
+                    <h2>${bets}</h2>
                 </div>
             </a>
         </div>

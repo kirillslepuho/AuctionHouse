@@ -20,6 +20,12 @@
 <fmt:message bundle="${loc}" key="local.currentPrice" var="currentPrice" />
 <fmt:message bundle="${loc}" key="local.description" var="description" />
 <fmt:message bundle="${loc}" key="local.blitzBet" var="blitzBet" />
+<fmt:message bundle="${loc}" key="local.clientPage" var="clientPage" />
+<fmt:message bundle="${loc}" key="local.contactDetails" var="contactDetails" />
+<fmt:message bundle="${loc}" key="local.yourBets" var="yourBets" />
+<fmt:message bundle="${loc}" key="local.yourLots" var="yourLots" />
+
+
 <c:set var="user" value="${sessionScope.user}" />
 <c:set var="bets" value="${requestScope.bets}" />
 
@@ -28,11 +34,11 @@
 		<!-- Article main content -->
 		<article class="col-xs-12 maincontent">
 			<header class="page-header">
-				<h1 class="page-title">Страница пользователя</h1>
+				<h1 class="page-title">${clientPage}</h1>
 			</header>
 			<!--Имя пользователя-->
 			<div class="col-md-4 col-md-offset-1">
-				<h2>Контактные данные</h2>
+				<h2>${contactDetails}</h2>
 				<div class="col-md-12 information-border-style">
 					<div class="col-md-6">
 						<p class="lead info-type">${userName}:</p>
@@ -79,7 +85,7 @@
 			<div class="col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2">
 				<table class="table table-bordered table-striped table-bets">
 					<caption>
-						<h2>Ваши ставки</h2>
+						<h2>${yourBets}</h2>
 					</caption>
 					<thead>
 						<tr>
@@ -101,7 +107,7 @@
 								<td><a
 									href="/AuctionHouse/Controller?command=go_to_auction_page&id=${temp.auction}"
 									class="">${temp.winner}</a></td>
-								<td><a href="" class=""></a></td>
+								<td><a href="/AuctionHouse/Controller?command=cancel_bet&auctionId=${temp.auction}&clientId=${temp.client}&bet=${temp.bet}" class="">Cancel</a></td>
 							</tr>
 
 						</c:forEach>
@@ -114,7 +120,7 @@
 			<div class="col-md-12 col-md-offset-0 col-sm-8 col-sm-offset-2">
 				<table class="table table-bordered table-striped">
 					<caption>
-						<h2>Ваши лоты</h2>
+						<h2>${yourLots}</h2>
 					</caption>
 					<thead>
 						<tr>

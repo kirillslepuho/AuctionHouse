@@ -7,15 +7,19 @@ import by.epam.auctionhouse.command.impl.Localization;
 import by.epam.auctionhouse.command.impl.NoSuchCommand;
 import by.epam.auctionhouse.command.impl.admin.AddAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.AddLotCommand;
+import by.epam.auctionhouse.command.impl.admin.BlockLotCommand;
+import by.epam.auctionhouse.command.impl.admin.CancelBetCommand;
 import by.epam.auctionhouse.command.impl.admin.ChangeUserStatusCommand;
 import by.epam.auctionhouse.command.impl.admin.DeleteAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.EditAuctionCommand;
+import by.epam.auctionhouse.command.impl.admin.EditLotCommand;
 import by.epam.auctionhouse.command.impl.admin.GoToAddAuctionPage;
 import by.epam.auctionhouse.command.impl.admin.GoToAdminPage;
 import by.epam.auctionhouse.command.impl.admin.GoToAuctionsBetsPageCommand;
 import by.epam.auctionhouse.command.impl.admin.GoToAuctionsPage;
 import by.epam.auctionhouse.command.impl.admin.GoToClientsPage;
 import by.epam.auctionhouse.command.impl.admin.GoToEditPage;
+import by.epam.auctionhouse.command.impl.admin.GoToLotEditPage;
 import by.epam.auctionhouse.command.impl.admin.GoToLotsPage;
 import by.epam.auctionhouse.command.impl.admin.SetAuctionWinner;
 import by.epam.auctionhouse.command.impl.user.GoToAuctionPage;
@@ -56,6 +60,11 @@ public class CommandHelper {
 		commands.put(CommandName.CHANGE_USER_STATUS, new ChangeUserStatusCommand());
 		commands.put(CommandName.GO_TO_AUCTION_BETS_PAGE, new GoToAuctionsBetsPageCommand());
 		commands.put(CommandName.SET_AUCTION_WINNER, new SetAuctionWinner());
+		commands.put(CommandName.EDIT_LOT,new EditLotCommand());
+		commands.put(CommandName.GO_TO_LOT_EDIT_PAGE, new GoToLotEditPage());
+		commands.put(CommandName.BLOCK_LOT, new BlockLotCommand());
+		commands.put(CommandName.CANCEL_BET, new CancelBetCommand());
+		
 	}
 
 	public static CommandHelper getInstance() {

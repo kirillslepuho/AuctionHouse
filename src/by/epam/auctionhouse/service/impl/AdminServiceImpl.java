@@ -77,6 +77,17 @@ public class AdminServiceImpl implements AdminService{
 
 	}
 	@Override
+	public void blockLot(String deleteId) throws ServiceException {
+		DataValidator.checkEmpty(deleteId);
+		try {
+			adminDAO.blockLot(deleteId);
+		} catch(DAOException exception) {
+			throw new ServiceException("Can not add lot", exception);
+		}
+		
+	}
+	
+	@Override
 	public Lot getLotById(String lotId) throws ServiceException {
 		DataValidator.checkEmpty(lotId);
 
@@ -112,6 +123,7 @@ public class AdminServiceImpl implements AdminService{
 		DataValidator.checkEmpty(clientID);
 		DataValidator.checkEmpty(bet);
 		try {
+			adminDAO.setBetsWinFalse(auctionID);
 			adminDAO.setAuctionWinner(auctionID, clientID, bet);
 		} catch(DAOException exception) {
 			throw new ServiceException("Can not set winner", exception);
@@ -184,4 +196,5 @@ public class AdminServiceImpl implements AdminService{
 		DataValidator.checkEmpty(lot.getImage());
 		DataValidator.checkEmpty(lot.getType());
 	}
+	
 }

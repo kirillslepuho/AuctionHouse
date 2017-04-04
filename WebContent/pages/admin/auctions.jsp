@@ -11,7 +11,9 @@
 <fmt:message bundle="${loc}" key="local.lot" var="lot"/>
 <fmt:message bundle="${loc}" key="local.lotName" var="lotName"/>
 <fmt:message bundle="${loc}" key="local.description" var="description"/>
-<fmt:message bundle="${loc}" key="local.bet" var="bet"/>
+<fmt:message bundle="${loc}" key="local.bets" var="bets"/>
+<fmt:message bundle="${loc}" key="local.auctions" var="auctionsInfo"/>
+<fmt:message bundle="${loc}" key="local.delete" var="delete"/>
 
 <c:set var="auctions" value="${requestScope.auctions}" />
 <div class="container">
@@ -20,7 +22,7 @@
 		<!-- Article main content -->
 		<article class="col-xs-12 maincontent">
 			<header class="page-header">
-				<h1 class="page-title">Аукционы</h1>
+				<h1 class="page-title">${auctionsInfo}</h1>
 			</header>
 			<div class="col-md-12 col-md-offset-0 col-sm-8 col-sm-offset-2">
 				<table class="table table-bordered table-striped">
@@ -59,9 +61,9 @@
 								class="">${temp.type}</a></td>
 								<td><a
 								href="/AuctionHouse/Controller?command=go_to_auction_bets_page&auctionId=${temp.id}"
-								class="">${bet}</a></td>
+								class="">${bets}</a></td>
 								<td><a href="/AuctionHouse/Controller?command=delete_auction&id=${temp.id}"
-								class="">Удалить</a>
+								class="">${delete}</a>
 								</td>
 								</tr>
 		

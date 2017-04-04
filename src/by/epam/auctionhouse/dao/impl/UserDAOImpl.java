@@ -81,7 +81,7 @@ public class UserDAOImpl implements UserDAO {
 			"ON auctions.au_lot = lots.l_id where lots.l_name = ?;";
 
 	private final static String GET_ALL_AUCTIONS_SQL = "SELECT * " + 
-			"FROM auctions INNER JOIN lots ON auctions.au_lot = lots.l_id WHERE auctions.au_expiration_date > DATE_FORMAT(NOW(), '%Y-%m-%d') and auctions.au_is_active = true;";
+			"FROM auctions INNER JOIN lots ON auctions.au_lot = lots.l_id WHERE auctions.au_expiration_date > DATE_FORMAT(NOW(), '%Y-%m-%d') and auctions.au_is_active = true order by au_expiration_date;";
 
 	private final static String GET_AUCTION_BY_ID_SQL = "SELECT * FROM auctions INNER JOIN lots " + 
 			"ON auctions.au_lot = lots.l_id where auctions.au_id = ?";
@@ -94,9 +94,15 @@ public class UserDAOImpl implements UserDAO {
 
 	private final static String CHANGE_LOT_CURRENT_PRICE_SQL = "UPDATE lots SET l_current_price=? " +  
 			"WHERE l_id=?;";
+	
+	private final static String DELETE_BET_SQL = "Delete from bets" + 
+			" WHERE be_client = ? and be_auction = ? and be_bet = ?;";
 
 	private final static String GET_USERS_BETS_SQL = "SELECT * FROM bets " +  
 			"WHERE be_client=?;";
+	
+	private final static String GET_HIGHEST_BET_SQL = "SELECT * FROM bets " +  
+			" where be_auction = ? order by be_bet desc Limit 1;";
 
 	private final static String GET_USERS_LOTS_SQL = "SELECT * FROM lots " +  
 			"WHERE l_ower=?;";
@@ -269,7 +275,7 @@ public class UserDAOImpl implements UserDAO {
 			connection = connectionPool.takeConnection();
 			connection.setAutoCommit(false);
             placeBet(clientId,auctionId,bet);
-			changeLotCurrentPrice(bet, lot);
+			changeLotCurrentPrice(bet, lot.getId());
 			connection.commit();
 		} catch (SQLException exception) {
 			try {
@@ -308,7 +314,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void changeLotCurrentPrice(String bet, Lot lot) throws DAOException {
+	public void changeLotCurrentPrice(String bet, String lotId) throws DAOException {
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
 		PreparedStatement preparedStatement = null;
@@ -318,7 +324,7 @@ public class UserDAOImpl implements UserDAO {
 			preparedStatement = connection.prepareStatement(CHANGE_LOT_CURRENT_PRICE_SQL);
 
 			preparedStatement.setString(1, bet);
-			preparedStatement.setString(2, lot.getId());
+			preparedStatement.setString(2, lotId);
 
 			preparedStatement.execute();
 		} catch (SQLException exception) {
@@ -330,6 +336,31 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	@Override
+	public void cancellationBet(String clientId, String auctionId, String bet, String lotId) throws DAOException {
+		Connection connection = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+        String highestBet = null;
+		try {
+			connection = connectionPool.takeConnection();
+			connection.setAutoCommit(false);
+            deleteBet(clientId, auctionId, bet);
+			highestBet = getHighestBet(auctionId);
+			changeLotCurrentPrice(highestBet, lotId);
+			connection.commit();
+		} catch (SQLException exception) {
+			try {
+				connection.rollback();
+			} catch (SQLException e) {
+				throw new DAOException("Can not place english bet", exception);
+			} 
+			throw new DAOException("Can not place english bet", exception);
+		} finally {
+			connectionPool.putConnection(connection);
+		}
+
+	}
+	
 	@Override
 	public List<Bet> getUsersBets(String userId) throws DAOException {
 		List<Bet> result;
@@ -446,6 +477,58 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return result;
 	}
+	
+	private void deleteBet(String clientId, String auctionId, String bet) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(DELETE_BET_SQL);
+
+			preparedStatement.setString(1, clientId);
+			preparedStatement.setString(2, auctionId);
+			preparedStatement.setString(3, bet);
+
+			preparedStatement.execute();
+		} catch (SQLException exception) {
+			throw new DAOException("Delete error", exception);
+		} finally {
+			releasePreparedStatement(preparedStatement);
+			connectionPool.putConnection(connection);
+		}
+		
+	}
+	
+	private String getHighestBet(String auctionId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(GET_HIGHEST_BET_SQL);
+			preparedStatement.setString(1, auctionId);
+			ResultSet resultSet;
+			resultSet = preparedStatement.executeQuery();
+			String highestBet = null;
+			
+			if(resultSet.next()) {
+				highestBet = resultSet.getString(BET_BET_SQL);
+			}
+			
+			return highestBet;
+		} catch (SQLException exception) {
+			throw new DAOException("Delete error", exception);
+		} finally {
+			releasePreparedStatement(preparedStatement);
+			connectionPool.putConnection(connection);
+		}
+		
+	}
+
+	
 
 
 

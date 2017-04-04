@@ -6,7 +6,6 @@ import by.epam.auctionhouse.bean.Auction;
 import by.epam.auctionhouse.bean.Bet;
 import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.bean.User;
-import by.epam.auctionhouse.dao.exception.DAOException;
 import by.epam.auctionhouse.service.exception.ServiceException;
 
 public interface AdminService {
@@ -15,6 +14,7 @@ public interface AdminService {
 	void editAuction(Auction auction, String changeId) throws ServiceException;
 	void addLot(Lot lot) throws ServiceException;
 	void editLot(Lot lot, String changeId) throws ServiceException;
+	void blockLot(String deleteId) throws ServiceException;
 	Lot getLotById(String lotId) throws ServiceException;
 	List<Lot> getLots() throws ServiceException;
 	void setAuctionWinner(String auctionID, String clientID, String bet) throws ServiceException;

@@ -76,14 +76,17 @@ public class AdminDAOImpl implements AdminDAO {
 			"VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
 
 	private final static String EDIT_LOT_SQL = 
-			"UPDATE lots SET l_type=?, l_name=?,l_current_price=?, l_description=?, l_image=?, l_blitz_price=? " +  
+			"UPDATE lots SET l_type=?, l_name=?,l_current_price=?, l_description=?, l_image=?, l_blitz_bet=? " +  
 					"WHERE l_id=?;";
+	
+	private final static String DELETE_LOT_SQL = "UPDATE lots SET lots.l_blocked = true " +  
+			"WHERE lots.l_id=?";
 
 	private final static String GET_LOT_BY_ID_SQL = "SELECT * FROM lots " +  
 			"WHERE l_id = ?;";
 
 	private final static String GET_ALL_AVAILABLE_LOTS_SQL = "SELECT * FROM auction_house.lots " + 
-			" where l_id NOT IN (Select au_lot FROM auctions) ;";
+			" where l_id NOT IN (Select au_lot FROM auctions) AND l_blocked=false;";
 
 	private final static String GET_ALL_USERS_SQL = "SELECT * " + 
 			"FROM users";
@@ -93,6 +96,9 @@ public class AdminDAOImpl implements AdminDAO {
 
 	private final static String SET_AUCTION_WINNER_SQL = "UPDATE bets SET be_winner=true " + 
 			" WHERE be_client = ? and be_auction = ? and be_bet = ?;";
+	
+	private final static String SET_BETS_FALSE_WINNER_SQL = "UPDATE bets SET be_winner=false " + 
+			" WHERE be_auction = ?;";
 
 	private final static String GET_AUCTIONS_BETS_SQL = "SELECT * FROM bets " +  
 			"WHERE be_auction=? order by be_bet desc;";
@@ -330,6 +336,27 @@ public class AdminDAOImpl implements AdminDAO {
 			connectionPool.putConnection(connection);
 		}		
 	}
+	
+	@Override
+	public void setBetsWinFalse(String auctionId) throws DAOException {
+		Connection connection = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(SET_BETS_FALSE_WINNER_SQL);
+			preparedStatement.setString(1, auctionId);
+			
+			preparedStatement.execute();
+		} catch (SQLException exception) {
+			throw new DAOException("Can update bets", exception);
+		} finally {
+			releasePreparedStatement(preparedStatement);
+			connectionPool.putConnection(connection);
+		}		
+		
+	}
 
 	@Override
 	public User getAuctionWinner(String auctionID) throws DAOException {
@@ -451,6 +478,27 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 
+	@Override
+	public void blockLot(String deleteId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(DELETE_LOT_SQL);
+
+			preparedStatement.setString(1, deleteId);
+
+			preparedStatement.execute();
+		} catch (SQLException exception) {
+			throw new DAOException("Delete lot error", exception);
+		} finally {
+			releasePreparedStatement(preparedStatement);
+			connectionPool.putConnection(connection);
+		}
+		
+	}
 
 
 	private void releasePreparedStatement(PreparedStatement preparedStatement) {
@@ -462,6 +510,10 @@ public class AdminDAOImpl implements AdminDAO {
 			}
 		}
 	}
+
+	
+
+	
 
 
 

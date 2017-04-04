@@ -8,7 +8,6 @@ import by.epam.auctionhouse.bean.Auction;
 import by.epam.auctionhouse.bean.Bet;
 import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.bean.User;
-import by.epam.auctionhouse.dao.exception.DAOException;
 import by.epam.auctionhouse.service.exception.ServiceException;
 
 public interface ClientService{
@@ -31,4 +30,6 @@ public interface ClientService{
 	List<Bet> getUsersBets(String userId) throws ServiceException;
 	
 	List<Lot> getUsersLots(String userId) throws ServiceException;
+	
+	void cancellationBet(String clientId, String auctionId, String bet, String lotId) throws ServiceException;
 }

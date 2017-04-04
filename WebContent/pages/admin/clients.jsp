@@ -11,15 +11,11 @@
 	var="userCardNumber" />
 <fmt:message bundle="${loc}" key="local.userBlockedStatus"
 	var="userBlockedStatus" />
-<fmt:message bundle="${loc}" key="local.id"
-	var="id" />
-<fmt:message bundle="${loc}" key="local.blocked"
-	var="blocked" />
-	<fmt:message bundle="${loc}" key="local.not_blocked"
-	var="not_blocked" />
-	<fmt:message bundle="${loc}" key="local.ok"
-	var="ok" />
-
+<fmt:message bundle="${loc}" key="local.id" var="id" />
+<fmt:message bundle="${loc}" key="local.blocked" var="blocked" />
+<fmt:message bundle="${loc}" key="local.not_blocked" var="not_blocked" />
+<fmt:message bundle="${loc}" key="local.ok" var="ok" />
+<fmt:message bundle="${loc}" key="local.users" var="users" />
 
 
 <div class="container">
@@ -28,7 +24,7 @@
 		<!-- Article main content -->
 		<article class="col-xs-12 maincontent">
 			<header class="page-header">
-				<h1 class="page-title">Клиенты</h1>
+				<h1 class="page-title">${users}</h1>
 			</header>
 			<div class="col-md-1 col-md-offset-0 col-sm-8 col-sm-offset-2">
 				<table class="table table-striped table-bordered">
@@ -51,12 +47,12 @@
 				</table>
 			</div>
 			<div class="col-md-5 col-md-offset-6 col-sm-8 col-sm-offset-2">
-				<form action="/AuctionHouse/Controller"
-					method="post">
+				<form action="/AuctionHouse/Controller" method="post">
 					<div class="form-group ">
-						<input type="hidden" name="command" value="change_user_status" /> <label
-							for="id">${id}</label> <input class="form-control" type="number"
-							id="id" name="user_id" min="1" max="2000000000" required>
+						<input type="hidden" name="command" value="change_user_status" />
+						<label for="id">${id}</label> <input class="form-control"
+							type="number" id="id" name="user_id" min="1" max="2000000000"
+							required>
 					</div>
 					<div class="form-group">
 						<label for="isBlocked">${userBlockedStatus}</label> <select

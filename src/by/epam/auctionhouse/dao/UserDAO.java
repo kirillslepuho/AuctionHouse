@@ -22,12 +22,13 @@ public interface UserDAO {
 	Auction getAuction(String auctionId) throws DAOException;
 	
 	void placeEngishBet(String clientId, String auctionId, String bet, Lot lot) throws DAOException;
-
-	void changeLotCurrentPrice(String bet, Lot lot) throws DAOException;
 	
 	List<Bet> getUsersBets(String userId) throws DAOException;
 	
 	List<Lot> getUsersLots(String userId) throws DAOException;
-	
 
+	void cancellationBet(String clientId, String auctionId, String bet, String lotId) throws DAOException;
+
+	void changeLotCurrentPrice(String bet, String lotId) throws DAOException;
+	
 }

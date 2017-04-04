@@ -19,11 +19,15 @@ public interface AdminDAO {
 	
 	void editLot(Lot lot, String changeId) throws DAOException;
 	
+	void blockLot(String deleteId) throws DAOException;
+	
 	Lot getLotById(String lotId) throws DAOException;
 	
 	List<Lot> getLots() throws DAOException;
 	
 	void setAuctionWinner(String auctionID, String clientID, String bet) throws DAOException;
+	
+	void setBetsWinFalse(String auctionID) throws DAOException;
 	
 	User getAuctionWinner(String auctionID) throws DAOException;
 	
