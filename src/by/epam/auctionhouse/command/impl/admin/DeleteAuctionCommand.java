@@ -14,14 +14,27 @@ import by.epam.auctionhouse.service.AdminService;
 import by.epam.auctionhouse.service.exception.ServiceException;
 import by.epam.auctionhouse.service.factory.ServiceFactory;
 
-
+/**
+ * Provides an implementation of the ICommand interface.
+ *
+ * @author Kirill Slepuho
+ * @see ICommand
+ */
 public class DeleteAuctionCommand implements ICommand{
 
-	 private static final Logger logger = LogManager.getLogger(DeleteAuctionCommand.class.getName());
-	
-	 private final static String REFERRER = "referer";
+	private static final Logger logger = LogManager.getLogger(DeleteAuctionCommand.class.getName());
+
+	private final static String REFERRER = "referer";
 	private static final String ID="id";
-	
+
+	/**
+	 * Gets auction id from request parameter and passes it to the deleteAuction method of the AdminService.
+	 *
+	 * @param httpRequest  the HttpServletRequest object that contains the request the client made of the servlet
+	 * @param httpResponse the HttpServletResponse object that contains the response the servlet returns to the client
+	 * @see ServiceException
+	 * @see AdminService
+	 */
 	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws ServletException, IOException {
 		String deleteId;
@@ -35,7 +48,7 @@ public class DeleteAuctionCommand implements ICommand{
 			httpResponse.sendRedirect(httpRequest.getHeader(REFERRER));
 		} catch (ServiceException exception) {
 			logger.error("Error deleting file", exception);
-            httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}
 

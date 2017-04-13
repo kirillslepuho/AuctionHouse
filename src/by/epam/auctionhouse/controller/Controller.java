@@ -15,9 +15,6 @@ import org.apache.logging.log4j.LogManager;
 
 public class Controller extends HttpServlet{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final Logger logger = LogManager.getRootLogger();
 
@@ -33,17 +30,18 @@ public class Controller extends HttpServlet{
 		doProcess(request,response);  	
 
 	}
-	
+
 	private void doProcess(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
-		
-        String commandName = request.getParameter(RequestParameterName.COMMAND_NAME);
-        
-        ICommand command = CommandHelper.getInstance().getCommand(commandName);
-        
 
-		command.execute(request,response);
+		String commandName = request.getParameter(RequestParameterName.COMMAND_NAME);
+		ICommand command = CommandHelper.getInstance().getCommand(commandName);
 
-		
+		try{
+			command.execute(request,response);
+		}catch (ServletException | IOException e) {
+			logger.error(e);
+		}
+
 	}
 
 }

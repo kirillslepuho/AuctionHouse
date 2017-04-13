@@ -19,98 +19,31 @@ import by.epam.auctionhouse.dao.exception.DAOException;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import static by.epam.auctionhouse.dao.sql.ColumnNames.*;
+import static by.epam.auctionhouse.dao.sql.AdminQueries.*;
+
+/**
+ * Contains all methods for the administrator operations.
+ *
+ * @author Kirill Slepuho
+ */
 public class AdminDAOImpl implements AdminDAO {
 
 	private static final Logger logger = LogManager.getLogger(AdminDAOImpl.class.getName());
 
-	private final static String LOT_ID_SQL = "l_id";
-
-	private final static String LOT_TYPE_SQL = "l_type";
-
-	private final static String LOT_NAME_SQL = "l_name";
-
-	private final static String LOT_CURRENT_PRICE_SQL = "l_current_price";
-
-	private final static String LOT_DESCRIPTION_SQL = "l_description";
-
-	private final static String LOT_IMAGE_SQL = "l_image";
-
-	private final static String LOT_CLIENTS_SQL = "l_clients";
-
-	private final static String LOT_OWER_SQL = "l_ower";
-
-	private final static String LOT_BLITZ_BET_SQL = "l_blitz_bet";
-
-	private final static String USER_ID_SQL = "us_id";
-
-	private final static String USER_NAME_SQL = "us_name";
-
-	private final static String USER_EMAIL_SQL = "us_email";
-
-	private final static String USER_CARDNUMBER_SQL = "us_cardnumber";
-
-	private final static String USER_BLOCKED_SQL = "us_blocked";
-
-	private final static String BET_CLIENT_SQL = "be_client";
-
-	private final static String BET_AUCTION_SQL = "be_auction";
-
-	private final static String BET_BET_SQL = "be_bet";
-
-	private final static String BET_WINNER_SQL = "be_winner";
-
-
-	private final static String ADD_AUCTION_SQL =
-			"INSERT INTO auction_house.auctions (au_lot,au_place,au_begin_date,au_expiration_date,au_time,au_type,au_is_active) " +
-					"VALUES(?, ?, ?, ?, ?, ?, ?);";
-
-	private final static String EDIT_AUCTION_SQL =
-			"UPDATE auctions SET au_lot=?, au_place=?, au_begin_date=?," +  
-					"au_expiration_date=?, au_time=?, au_type=?, au_is_active=?, au_rounds=? " +  
-					"WHERE au_id=?";
-
-	private final static String DELETE_AUCTION_SQL = "UPDATE auctions SET auctions.au_is_active = 0 " +  
-			"WHERE auctions.au_id=?";
-
-	private final static String ADD_LOT_SQL = "INSERT INTO auction_house.lots (l_type,l_name,l_current_price,l_description,l_image,l_clients,l_ower,l_blitz_bet)" + 
-			"VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
-
-	private final static String EDIT_LOT_SQL = 
-			"UPDATE lots SET l_type=?, l_name=?,l_current_price=?, l_description=?, l_image=?, l_blitz_bet=? " +  
-					"WHERE l_id=?;";
-	
-	private final static String DELETE_LOT_SQL = "UPDATE lots SET lots.l_blocked = true " +  
-			"WHERE lots.l_id=?";
-
-	private final static String GET_LOT_BY_ID_SQL = "SELECT * FROM lots " +  
-			"WHERE l_id = ?;";
-
-	private final static String GET_ALL_AVAILABLE_LOTS_SQL = "SELECT * FROM auction_house.lots " + 
-			" where l_id NOT IN (Select au_lot FROM auctions) AND l_blocked=false;";
-
-	private final static String GET_ALL_USERS_SQL = "SELECT * " + 
-			"FROM users";
-
-	private final static String GET_AUCTION_WINNER_SQL = "SELECT * FROM users " + 
-			" where us_id = (Select be_client from bets where be_auction = ? and be_winner = true);";
-
-	private final static String SET_AUCTION_WINNER_SQL = "UPDATE bets SET be_winner=true " + 
-			" WHERE be_client = ? and be_auction = ? and be_bet = ?;";
-	
-	private final static String SET_BETS_FALSE_WINNER_SQL = "UPDATE bets SET be_winner=false " + 
-			" WHERE be_auction = ?;";
-
-	private final static String GET_AUCTIONS_BETS_SQL = "SELECT * FROM bets " +  
-			"WHERE be_auction=? order by be_bet desc;";
-
-	private final static String SET_USER_BLOCKED_STATUS_SQL = "UPDATE users SET us_blocked = ? " + 
-			" where us_id = ?;";
 
 
 	public AdminDAOImpl() {
 
 	}
-
+	
+	/**
+     * Adds auction to the database.
+     *
+     * @param auction the Auction object to add to the database
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public void addAuction(Auction auction) throws DAOException {
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -138,6 +71,13 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 	}
 
+	/**
+     * Change auction active status in database.
+     *
+     * @param deleteId the specified auction id
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public void deleteAuction(String deleteId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -158,6 +98,13 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 	}
 
+	/**
+     * Updates auction in the database.
+     *
+     * @param auction the Auction object to update to the database
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public void editAuction(Auction auction, String changeId) throws DAOException {
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -174,8 +121,7 @@ public class AdminDAOImpl implements AdminDAO {
 			preparedStatement.setString(5, auction.getTime());
 			preparedStatement.setString(6, auction.getType());
 			preparedStatement.setBoolean(7, auction.getIsActive());
-			preparedStatement.setInt(8, auction.getRounds());
-			preparedStatement.setString(9, changeId);
+			preparedStatement.setString(8, changeId);
 
 			preparedStatement.execute();
 		} catch (SQLException exception) {
@@ -186,6 +132,13 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 	}
 
+	/**
+     * Adds lot to the database.
+     *
+     * @param lot the Lot object to add to the database
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public void addLot(Lot lot) throws DAOException {
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -198,11 +151,13 @@ public class AdminDAOImpl implements AdminDAO {
 			preparedStatement.setString(1, lot.getType());
 			preparedStatement.setString(2, lot.getName());
 			preparedStatement.setString(3, Integer.toString(lot.getCurrentPrice()));
-			preparedStatement.setString(4, lot.getDescriprion());
-			preparedStatement.setString(5, lot.getImage());
-			preparedStatement.setBoolean(6,lot.isClients());
-			preparedStatement.setString(7, lot.getClientOwer());
-			preparedStatement.setString(8, lot.getBlitzBet());
+			preparedStatement.setString(4, Integer.toString(lot.getCurrentPrice()));
+			preparedStatement.setString(5, lot.getDescriprion());
+			preparedStatement.setString(6, lot.getImage());
+			preparedStatement.setBoolean(7,lot.isClients());
+			preparedStatement.setString(8, lot.getClientOwer());
+			preparedStatement.setString(9, lot.getBlitzBet());
+			preparedStatement.setString(10, lot.getBlitzPrice());
 
 
 			preparedStatement.execute();
@@ -214,7 +169,13 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 	}
 
-
+	/**
+     * Updates lot in the database.
+     *
+     * @param lot the Lot object to update to the database
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public void editLot(Lot lot, String changeId) throws DAOException {
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -230,7 +191,8 @@ public class AdminDAOImpl implements AdminDAO {
 			preparedStatement.setString(4, lot.getDescriprion());
 			preparedStatement.setString(5, lot.getImage());
 			preparedStatement.setString(6, lot.getBlitzBet());
-			preparedStatement.setString(7, changeId);
+			preparedStatement.setString(7, lot.getBlitzPrice());
+			preparedStatement.setString(8, changeId);
 
 			preparedStatement.execute();
 		} catch (SQLException exception) {
@@ -240,7 +202,44 @@ public class AdminDAOImpl implements AdminDAO {
 			connectionPool.putConnection(connection);
 		}
 	}
+	
+	/**
+     * Change lot block status in database.
+     *
+     * @param deleteId the specified lot id
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
+	@Override
+	public void blockLot(String deleteId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
 
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(DELETE_LOT_SQL);
+
+			preparedStatement.setString(1, deleteId);
+
+			preparedStatement.execute();
+		} catch (SQLException exception) {
+			throw new DAOException("Delete lot error", exception);
+		} finally {
+			releasePreparedStatement(preparedStatement);
+			connectionPool.putConnection(connection);
+		}
+		
+	}
+
+	/**
+     * Returns the lot by specified id.
+     *
+     * @param lotId the specified lot id
+     * @return the Lot object if there is a lot with the specified id in the database, otherwise returns null
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public Lot getLotById(String lotId) throws DAOException{
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -256,12 +255,14 @@ public class AdminDAOImpl implements AdminDAO {
 				lot.setId(lotId);
 				lot.setType(resultSet.getString(LOT_TYPE_SQL));
 				lot.setName(resultSet.getString(LOT_NAME_SQL));
+				lot.setStartPrice(resultSet.getInt(LOT_START_PRICE_SQL));
 				lot.setCurrentPrice(resultSet.getInt(LOT_CURRENT_PRICE_SQL));
 				lot.setDescriprion(resultSet.getString(LOT_DESCRIPTION_SQL));
 				lot.setImage(resultSet.getString(LOT_IMAGE_SQL));
 				lot.setClients(resultSet.getBoolean(LOT_CLIENTS_SQL));
 				lot.setClientOwer(resultSet.getString(LOT_OWER_SQL));
 				lot.setBlitzBet(resultSet.getString(LOT_BLITZ_BET_SQL));
+				lot.setBlitzPrice(resultSet.getString(LOT_BLITZ_PRICE_SQL));
 			}
 			return lot;
 
@@ -274,6 +275,13 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 
+	/**
+     * Returns the list of lots.
+     *
+     * @return the list of Lots objects
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public List<Lot> getLots() throws DAOException {
 		List<Lot> result;
@@ -295,12 +303,14 @@ public class AdminDAOImpl implements AdminDAO {
 				lot.setId(resultSet.getString(LOT_ID_SQL));
 				lot.setType(resultSet.getString(LOT_TYPE_SQL));
 				lot.setName(resultSet.getString(LOT_NAME_SQL));
+				lot.setStartPrice(resultSet.getInt(LOT_START_PRICE_SQL));
 				lot.setCurrentPrice(resultSet.getInt(LOT_CURRENT_PRICE_SQL));
 				lot.setDescriprion(resultSet.getString(LOT_DESCRIPTION_SQL));
 				lot.setImage(resultSet.getString(LOT_IMAGE_SQL));
 				lot.setClients(resultSet.getBoolean(LOT_CLIENTS_SQL));
 				lot.setClientOwer(resultSet.getString(LOT_OWER_SQL));
 				lot.setBlitzBet(resultSet.getString(LOT_BLITZ_BET_SQL));
+				lot.setBlitzPrice(resultSet.getString(LOT_BLITZ_PRICE_SQL));
 				result.add(lot);
 			}
 
@@ -314,6 +324,15 @@ public class AdminDAOImpl implements AdminDAO {
 		return result;
 	}
 
+	/**
+     * Set auction winner by specified auction Id,client Id, bet value.
+     *
+     * @param auctionID the specified auction Id
+     * @param clientID  the specified client Id
+     * @param bet the wins bet Value
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public void setAuctionWinner(String auctionID, String clientID, String bet) throws DAOException {
 		Connection connection = null;
@@ -337,6 +356,13 @@ public class AdminDAOImpl implements AdminDAO {
 		}		
 	}
 	
+	/**
+     * Set all bets false in specified auction.
+     *
+     * @param auctionID the specified auction Id
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public void setBetsWinFalse(String auctionId) throws DAOException {
 		Connection connection = null;
@@ -358,6 +384,14 @@ public class AdminDAOImpl implements AdminDAO {
 		
 	}
 
+	/**
+     * Get auction winner by specified auction Id.
+     *
+     * @param auctionID the specified auction Id
+     * @return the User, who win auction
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public User getAuctionWinner(String auctionID) throws DAOException {
 		User user = null;
@@ -390,6 +424,13 @@ public class AdminDAOImpl implements AdminDAO {
 		return user;
 	}
 
+	/**
+     * Returns the list of users.
+     *
+     * @return the list of Users objects
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public List<User> getUsers() throws DAOException {
 		List<User> result;
@@ -423,6 +464,14 @@ public class AdminDAOImpl implements AdminDAO {
 		return result;
 	}
 
+	/**
+     * Returns the list of bets by specified auction id.
+     *
+     * @param auctionID the specified auction Id
+     * @return the list of Bets objects
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public List<Bet> getAuctionsBets(String auctionId) throws DAOException {
 		List<Bet> result;
@@ -456,6 +505,14 @@ public class AdminDAOImpl implements AdminDAO {
 		return result;
 	}
 
+	/**
+     * Updates user status.
+     *
+     * @param userId the specified user id
+     * @param status the user status, such as Blocked, Unblocked
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public void setUserBlockStatus(String userId,boolean status) throws DAOException {
 		Connection connection = null;
@@ -478,29 +535,14 @@ public class AdminDAOImpl implements AdminDAO {
 
 	}
 
-	@Override
-	public void blockLot(String deleteId) throws DAOException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+	
 
-		try {
-			connection = connectionPool.takeConnection();
-			preparedStatement = connection.prepareStatement(DELETE_LOT_SQL);
-
-			preparedStatement.setString(1, deleteId);
-
-			preparedStatement.execute();
-		} catch (SQLException exception) {
-			throw new DAOException("Delete lot error", exception);
-		} finally {
-			releasePreparedStatement(preparedStatement);
-			connectionPool.putConnection(connection);
-		}
-		
-	}
-
-
+	/**
+     * Close preparedStatement
+     *
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	private void releasePreparedStatement(PreparedStatement preparedStatement) {
 		if (preparedStatement != null) {
 			try {

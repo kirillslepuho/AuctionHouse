@@ -14,6 +14,7 @@
 <fmt:message bundle="${loc}" key="local.currentPrice" var="currentPrice"/>
 <fmt:message bundle="${loc}" key="local.description" var="description"/>
 <fmt:message bundle="${loc}" key="local.blitzBet" var="blitzBet"/>
+<fmt:message bundle="${loc}" key="local.blitzPrice" var="blitzPrice" />
 <fmt:message bundle="${loc}" key="local.clients" var="clients"/>
 <fmt:message bundle="${loc}" key="local.lots" var="lotsInfo"/>
 <fmt:message bundle="${loc}" key="local.delete" var="delete"/>
@@ -38,6 +39,7 @@
 							<th>${description}</th>
 							<th>${clients}</th>
 							<th>${blitzBet}</th>
+							<th>${blitzPrice}</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -65,6 +67,9 @@
 								<td><a
 								href="/AuctionHouse/Controller?command=go_to_lot_edit_page&id=${temp.id}"
 								>${temp.blitzBet}</a></td>
+								<td><a
+								href="/AuctionHouse/Controller?command=go_to_lot_edit_page&id=${temp.id}"
+								>${temp.blitzPrice}</a></td>
 								<td><a
 								href="/AuctionHouse/Controller?command=block_lot&id=${temp.id}"
 								>${delete}</a></td>

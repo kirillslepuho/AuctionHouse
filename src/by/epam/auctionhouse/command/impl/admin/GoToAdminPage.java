@@ -15,38 +15,30 @@ import by.epam.auctionhouse.service.AdminService;
 import by.epam.auctionhouse.service.ClientService;
 import by.epam.auctionhouse.service.exception.ServiceException;
 import by.epam.auctionhouse.service.factory.ServiceFactory;
-
+/**
+ * Provides an implementation of the ICommand interface.
+ *
+ * @author Kirill Slepuho
+ * @see ICommand
+ */
 public class GoToAdminPage implements ICommand{
-	
-	private final static String AUCTION_ATTRIBUTE_NAME = "auctions";
-	private final static String LOT_ATTRIBUTE_NAME = "lots";
-	private final static String CLIENT_ATTRIBUTE_NAME = "clients";
-    private static final String PATH = "pages/admin/admin_page.jsp";
+
+
+	private static final String PATH = "pages/admin/admin_page.jsp";
+
+	/**
+	 * Forward to admin_page page.
+	 *
+	 * @param httpRequest  the HttpServletRequest object that contains the request the client made of the servlet
+	 * @param httpResponse the HttpServletResponse object that contains the response the servlet returns to the client
+	 * @see ServiceException
+	 * @see AdminService
+	 */
 	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, ServletException {
-		ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        ClientService clientService = serviceFactory.getClientService();
-        AdminService adminService = serviceFactory.getAdminService();
-         
-        try {
-            List<Auction> auctionList;
-            List<Lot> lotList;
-            List<User> clientList;
-            
-            
-            auctionList = clientService.getAuctions();
-            lotList = adminService.getLots();
-
-            httpRequest.setAttribute(AUCTION_ATTRIBUTE_NAME, auctionList);
-            httpRequest.setAttribute(LOT_ATTRIBUTE_NAME, lotList);
-            httpRequest.getRequestDispatcher(PATH).forward(httpRequest, httpResponse);
-        } catch (ServiceException exception) {
-         httpResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
-        }
-        
-		
+		httpRequest.getRequestDispatcher(PATH).forward(httpRequest, httpResponse);
 	}
-    
-    
+
+
 
 }

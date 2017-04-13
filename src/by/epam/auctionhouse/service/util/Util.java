@@ -7,6 +7,12 @@ public class Util {
     private static final String YES = "YES";
     private static final String NO = "NO";
 
+    /**
+     * Returns converted to boolean type value.
+     *
+     * @param value String value
+     * @return boolean value
+     */
 	public static final boolean checkBoolean(String bool){
 		 boolean rezult;
 

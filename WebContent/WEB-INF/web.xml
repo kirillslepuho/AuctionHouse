@@ -15,31 +15,58 @@
 
 	<servlet>
 		<servlet-name>SignUpPage</servlet-name>
-		<servlet-class>WebContent/pages/signup.jsp</servlet-class>
+		<jsp-file>/pages/signup.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SignUpPage</servlet-name>
 		<url-pattern>/SignUp</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SignInPage</servlet-name>
+		<jsp-file>/pages/signin.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SignInPage</servlet-name>
+		<url-pattern>/SignIn</url-pattern>
+	</servlet-mapping>
+
+    <servlet>
+		<servlet-name>OfferLot</servlet-name>
+		<jsp-file>/pages/offer_lot.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OfferLot</servlet-name>
+		<url-pattern>/OfferLot</url-pattern>
+	</servlet-mapping>
 
 	<filter>
-		<display-name>CharsetFilter</display-name>
-		<filter-name>CharsetFilter</filter-name>
-		<filter-class>by.epam.auctionhouse.filter.CharsetFilter</filter-class>
-		<init-param>
-			<param-name>characterEncoding</param-name>
-			<param-value>utf-8</param-value>
-		</init-param>
+		<display-name>RoleFilter</display-name>
+		<filter-name>RoleFilter</filter-name>
+		<filter-class>by.epam.auctionhouse.filter.RoleFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>CharsetFilter</filter-name>
-		<url-pattern>/Controller</url-pattern>
+		<filter-name>RoleFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<listener>
 		<listener-class>by.epam.auctionhouse.listener.ServletListener</listener-class>
 	</listener>
-	<error-page>
-		<location>/error.jsp</location>
-	</error-page>
+ <error-page>
+    <error-code>401</error-code>
+    <location>/pages/errors/401.html</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/pages/errors/404.html</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/pages/errors/403.html</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/pages/errors/500.html</location>
+  </error-page>
 </web-app>

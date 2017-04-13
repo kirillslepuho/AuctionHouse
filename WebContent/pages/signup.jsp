@@ -29,7 +29,7 @@
 					<div class="panel-body">
 						<h3 class="thin text-center">${registration}</h3>
 						<p class="text-center text-muted">
-							<a href="signin.jsp">${authorization}</a>
+							<a href="/AuctionHouse/SignIn">${authorization}</a>
 						</p>
 						<hr>
 

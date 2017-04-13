@@ -8,7 +8,6 @@ import by.epam.auctionhouse.command.impl.NoSuchCommand;
 import by.epam.auctionhouse.command.impl.admin.AddAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.AddLotCommand;
 import by.epam.auctionhouse.command.impl.admin.BlockLotCommand;
-import by.epam.auctionhouse.command.impl.admin.CancelBetCommand;
 import by.epam.auctionhouse.command.impl.admin.ChangeUserStatusCommand;
 import by.epam.auctionhouse.command.impl.admin.DeleteAuctionCommand;
 import by.epam.auctionhouse.command.impl.admin.EditAuctionCommand;
@@ -22,10 +21,12 @@ import by.epam.auctionhouse.command.impl.admin.GoToEditPage;
 import by.epam.auctionhouse.command.impl.admin.GoToLotEditPage;
 import by.epam.auctionhouse.command.impl.admin.GoToLotsPage;
 import by.epam.auctionhouse.command.impl.admin.SetAuctionWinner;
+import by.epam.auctionhouse.command.impl.user.CancelBetCommand;
 import by.epam.auctionhouse.command.impl.user.GoToAuctionPage;
 import by.epam.auctionhouse.command.impl.user.GoToClientPage;
 import by.epam.auctionhouse.command.impl.user.GoToMainPage;
 import by.epam.auctionhouse.command.impl.user.PlaceBlitzBet;
+import by.epam.auctionhouse.command.impl.user.PlaceBlitzPrice;
 import by.epam.auctionhouse.command.impl.user.PlaceEnglishBet;
 import by.epam.auctionhouse.command.impl.user.RegistrationCommand;
 import by.epam.auctionhouse.command.impl.user.SignInCommand;
@@ -64,7 +65,8 @@ public class CommandHelper {
 		commands.put(CommandName.GO_TO_LOT_EDIT_PAGE, new GoToLotEditPage());
 		commands.put(CommandName.BLOCK_LOT, new BlockLotCommand());
 		commands.put(CommandName.CANCEL_BET, new CancelBetCommand());
-		
+		commands.put(CommandName.PLACE_BLITZ_PRICE, new PlaceBlitzPrice());
+
 	}
 
 	public static CommandHelper getInstance() {
@@ -72,18 +74,22 @@ public class CommandHelper {
 	}
 
 	public ICommand getCommand(String commandName){
+
 		ICommand command;
+		CommandName name;
+
 		if(commandName != null){
 			command = commands.get(CommandName.NO_SUCH_COMMAND);
 		}
 		
-		CommandName name = CommandName.valueOf(commandName.toUpperCase());
-		if(name != null && commands.get(name) != null){
-			
-			command = commands.get(name);
-		}else{
-			command = commands.get(CommandName.NO_SUCH_COMMAND);
+		try{
+			name = CommandName.valueOf(commandName.toUpperCase());
+		}catch (IllegalArgumentException e) {
+			name = CommandName.NO_SUCH_COMMAND;
 		}
+		
+			command = commands.get(name);
+
 
 		return command;
 	}

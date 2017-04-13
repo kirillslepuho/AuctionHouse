@@ -94,11 +94,6 @@
 								<!-- <input type="text" class="form-control" name = "is_active" > -->
 							</div>
 
-							<div class="top-margin">
-								<label>${rounds}</label> <input type="text" class="form-control"
-									id="edit-auction-rounds" value="${auctionInfo.rounds}">
-							</div>
-
 							<div class="val_error" id="error-add-auction-message">
 								<b id="messageErr"></b>
 							</div>

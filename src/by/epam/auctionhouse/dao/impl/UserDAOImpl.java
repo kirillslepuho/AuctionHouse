@@ -15,103 +15,34 @@ import by.epam.auctionhouse.dao.exception.DAOException;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import static by.epam.auctionhouse.dao.sql.ColumnNames.*;
+import static by.epam.auctionhouse.dao.sql.UserQueries.*;
+
+/**
+ * Contains all methods for the users operations.
+ *
+ * @author Kirill Slepuho
+ */
 public class UserDAOImpl implements UserDAO {
 
 	private static final Logger logger = LogManager.getLogger(UserDAOImpl.class.getName());
 
-	private final static String AUCTION_ID_SQL = "au_id";
-
-	private final static String AUCTION_LOT_SQL = "au_lot";
-
-	private final static String AUCTION_PLACE_SQL = "au_place";
-
-	private final static String AUCTION_BEGIN_DATE_SQL = "au_begin_date";
-
-	private final static String AUCTION_EXPIRATION_DATE_SQL = "au_expiration_date";
-
-	private final static String AUCTION_TIME_SQL = "au_time";
-
-	private final static String AUCTION_TYPE_SQL = "au_type";
-
-	private final static String AUCTION_IS_ACTIVE_SQL = "au_is_active";
-
-	private final static String AUCTION_ROUNDS_SQL = "au_rounds";
-
-	private final static String LOT_ID_SQL = "l_id";
-
-	private final static String LOT_TYPE_SQL = "l_type";
-
-	private final static String LOT_NAME_SQL = "l_name";
-
-	private final static String LOT_CURRENT_PRICE_SQL = "l_current_price";
-
-	private final static String LOT_DESCRIPTION_SQL = "l_description";
-
-	private final static String LOT_IMAGE_SQL = "l_image";
-
-	private final static String LOT_CLIENTS_SQL = "l_clients";
-
-	private final static String LOT_OWER_SQL = "l_ower";
-
-	private final static String LOT_BLITZ_BET_SQL = "l_blitz_bet";
-
-	private final static String USER_ID_SQL = "us_id";
-
-	private final static String USER_NAME_SQL = "us_name";
-
-	private final static String USER_EMAIL_SQL = "us_email";
-
-	private final static String USER_CARDNUMBER_SQL = "us_cardnumber";
-
-	private final static String USER_ADMIN_STATUS_SQL = "us_adminstatus";
-
-	private final static String USER_BLOCKED_SQL = "us_blocked";
-
-	private final static String USER_PASSWORD_SQL = "us_password";
-
-	private final static String BET_CLIENT_SQL = "be_client";
-
-	private final static String BET_AUCTION_SQL = "be_auction";
-
-	private final static String BET_BET_SQL = "be_bet";
-
-	private final static String BET_WINNER_SQL = "be_winner";
-
-	private final static String FIND_AUCTION_BY_LOT_NAME_SQL = "SELECT * FROM auctions INNER JOIN lots " + 
-			"ON auctions.au_lot = lots.l_id where lots.l_name = ?;";
-
-	private final static String GET_ALL_AUCTIONS_SQL = "SELECT * " + 
-			"FROM auctions INNER JOIN lots ON auctions.au_lot = lots.l_id WHERE auctions.au_expiration_date > DATE_FORMAT(NOW(), '%Y-%m-%d') and auctions.au_is_active = true order by au_expiration_date;";
-
-	private final static String GET_AUCTION_BY_ID_SQL = "SELECT * FROM auctions INNER JOIN lots " + 
-			"ON auctions.au_lot = lots.l_id where auctions.au_id = ?";
-
-	private final static String ADD_USER_SQL = "INSERT INTO users (us_name,us_email, us_password, us_cardnumber,us_personal_account) VALUES(?, ?, ?, ?, ?);";
-
-	private final static String GET_USER_SQL = "SELECT * FROM users WHERE us_email=? and us_password=?;";
-
-	private final static String PLACE_ENGLISH_BET_SQL = "INSERT INTO auction_house.bets (be_client,be_auction,be_bet) VALUES(?, ?, ?);";
-
-	private final static String CHANGE_LOT_CURRENT_PRICE_SQL = "UPDATE lots SET l_current_price=? " +  
-			"WHERE l_id=?;";
 	
-	private final static String DELETE_BET_SQL = "Delete from bets" + 
-			" WHERE be_client = ? and be_auction = ? and be_bet = ?;";
-
-	private final static String GET_USERS_BETS_SQL = "SELECT * FROM bets " +  
-			"WHERE be_client=?;";
-	
-	private final static String GET_HIGHEST_BET_SQL = "SELECT * FROM bets " +  
-			" where be_auction = ? order by be_bet desc Limit 1;";
-
-	private final static String GET_USERS_LOTS_SQL = "SELECT * FROM lots " +  
-			"WHERE l_ower=?;";
-
-
 	public UserDAOImpl() {
 
 	}
 
+	/**
+     * Adds user to the database.
+     *
+     * @param userName name of User
+     * @param userEmail Emails user
+     * @param userPassword Users password
+     * @param userCardNumber Users card number
+     * @param userPersonalAcount
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public void addUser(String userName, String userEmail, String userPassword, int userCardNumber, int userPersonalAccount) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -135,7 +66,15 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-
+	/**
+     * Returns the user by specified email and password.
+     *
+     * @param userEmail the specified user email
+     * @param userPassword the specified user password
+     * @return the User object
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public User getUserByEmail(String userEmail,String userPassword) throws DAOException{
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -170,6 +109,14 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	/**
+     * Returns auction that contain the lotName.
+     *
+     * @param lotName
+     * @return the auction
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public Auction findAuction(String lotName) throws DAOException {
 		Auction auction = null;
@@ -199,6 +146,13 @@ public class UserDAOImpl implements UserDAO {
 		return auction;
 	}
 
+	/**
+     * Returns the list of auctions.
+     *
+     * @return the list of Auctions objects
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public List<Auction> getAuctions() throws DAOException {
 		List<Auction> result;
@@ -232,6 +186,14 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	/**
+     * Returns the auction by specified id.
+     *
+     * @param auctionId the specified auction id
+     * @return the Auction object if there is a lot with the specified id in the database, otherwise returns null
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public Auction getAuction(String auctionId) throws DAOException {
 		Auction auction = null;
@@ -281,15 +243,24 @@ public class UserDAOImpl implements UserDAO {
 			try {
 				connection.rollback();
 			} catch (SQLException e) {
-				throw new DAOException("Can not place english bet", exception);
+				throw new DAOException("Can not place bet", exception);
 			} 
-			throw new DAOException("Can not place english bet", exception);
+			throw new DAOException("Can not place bet", exception);
 		} finally {
 			connectionPool.putConnection(connection);
 		}
 
 	}
 
+	/**
+     * Add bet to the database.
+     *
+     * @param clientId the specified client id
+     * @param auctionId the specified auction id
+     * @param bet Bet value
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	public void placeBet(String clientId, String auctionId, String bet) throws DAOException {
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -313,6 +284,14 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	/**
+     * Change lot current price in dataBase.
+     *
+     * @param bet new bet value
+     * @param lotId the specified lot id
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public void changeLotCurrentPrice(String bet, String lotId) throws DAOException {
 		Connection connection = null;
@@ -335,32 +314,46 @@ public class UserDAOImpl implements UserDAO {
 		}
 
 	}
+	
+	
+	
 
 	@Override
-	public void cancellationBet(String clientId, String auctionId, String bet, String lotId) throws DAOException {
+	public void cancellationBet(String clientId, String auctionId, String bet, Lot lot) throws DAOException {
 		Connection connection = null;
 		ConnectionPool connectionPool = ConnectionPool.getInstance();
-        String highestBet = null;
 		try {
+			
 			connection = connectionPool.takeConnection();
 			connection.setAutoCommit(false);
             deleteBet(clientId, auctionId, bet);
-			highestBet = getHighestBet(auctionId);
-			changeLotCurrentPrice(highestBet, lotId);
+            String lastHighestBet = getHighestBet(auctionId);
+			if(lastHighestBet == null){
+				lastHighestBet = String.valueOf(lot.getStartPrice());
+			}
+			changeLotCurrentPrice(lastHighestBet, lot.getId());
 			connection.commit();
 		} catch (SQLException exception) {
 			try {
 				connection.rollback();
 			} catch (SQLException e) {
-				throw new DAOException("Can not place english bet", exception);
+				throw new DAOException("Can not cancell bet", exception);
 			} 
-			throw new DAOException("Can not place english bet", exception);
+			throw new DAOException("Can not cancell bet", exception);
 		} finally {
 			connectionPool.putConnection(connection);
 		}
 
 	}
 	
+	/**
+     * Returns the list of bets by specified user id.
+     *
+     * @param userId Users id
+     * @return the list of Bets objects
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public List<Bet> getUsersBets(String userId) throws DAOException {
 		List<Bet> result;
@@ -397,6 +390,14 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	/**
+     * Returns the list of lots by specified user id.
+     *
+     * @param userId Users id
+     * @return the list of Lots objects
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	@Override
 	public List<Lot> getUsersLots(String userId) throws DAOException {
 		List<Lot> result;
@@ -438,16 +439,12 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-	private void releasePreparedStatement(PreparedStatement preparedStatement) {
-		if (preparedStatement != null) {
-			try {
-				preparedStatement.close();
-			} catch (SQLException e) {
-				logger.error("Prepared statement not closed : ", e);
-			}
-		}
-	}
-
+	/**
+     * Get auction from resultSet.
+     *
+     * @param resultSet
+     * @return result,if exists,otherwise return null
+     */
 	private Auction getAuctionFromResultSet(ResultSet resultSet) throws SQLException {
 		Auction result = null;
 		Lot lot;
@@ -460,10 +457,10 @@ public class UserDAOImpl implements UserDAO {
 			result.setTime(resultSet.getString(AUCTION_TIME_SQL));
 			result.setType(resultSet.getString(AUCTION_TYPE_SQL));
 			result.setIsActive(resultSet.getBoolean(AUCTION_IS_ACTIVE_SQL));
-			result.setRounds(resultSet.getInt(AUCTION_ROUNDS_SQL));
 
 			lot = new Lot();
 			lot.setId(resultSet.getString(LOT_ID_SQL));
+			lot.setStartPrice(resultSet.getInt(LOT_START_PRICE_SQL));
 			lot.setCurrentPrice(resultSet.getInt(LOT_CURRENT_PRICE_SQL));
 			lot.setDescriprion(resultSet.getString(LOT_DESCRIPTION_SQL));
 			lot.setName(resultSet.getString(LOT_NAME_SQL));
@@ -472,12 +469,22 @@ public class UserDAOImpl implements UserDAO {
 			lot.setClients(resultSet.getBoolean(LOT_CLIENTS_SQL));
 			lot.setClientOwer(resultSet.getString(LOT_OWER_SQL));
 			lot.setBlitzBet(resultSet.getString(LOT_BLITZ_BET_SQL));
+			lot.setBlitzPrice(resultSet.getString(LOT_BLITZ_PRICE_SQL));
 			result.setLot(lot);
 
 		}
 		return result;
 	}
 	
+	/**
+     * Deletes bet from the database.
+     *
+     * @param clientId the specified client id
+     * @param auctionId the specified auction id
+     * @param bet Bet value
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	private void deleteBet(String clientId, String auctionId, String bet) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -501,6 +508,14 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 	
+	/**
+     * Returns the highest bet of specified auction id.
+     *
+     * @param auctonId Auction id
+     * @return the value of highest bet
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
 	private String getHighestBet(String auctionId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -528,7 +543,21 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
-	
+	/**
+     * Close preparedStatement
+     *
+     * @throws DAOException if the SQLException is thrown
+     * @see SQLException
+     */
+	private void releasePreparedStatement(PreparedStatement preparedStatement) {
+		if (preparedStatement != null) {
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {
+				logger.error("Prepared statement not closed : ", e);
+			}
+		}
+	}
 
 
 

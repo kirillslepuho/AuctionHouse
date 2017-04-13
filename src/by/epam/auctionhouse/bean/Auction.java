@@ -1,8 +1,10 @@
 package by.epam.auctionhouse.bean;
 
+import java.io.Serializable;
 
+public class Auction implements Serializable{
 
-public class Auction {
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private Lot lot;
 	private String place;
@@ -11,25 +13,11 @@ public class Auction {
 	private String time;
 	private String type;
 	private Boolean isActive;
-	private int rounds;
 	
 	public Auction() {
 		super();
 	}
 
-	public Auction(String id, Lot lot, String place, String beginDate, String expirationDate, String time, String type,
-			Boolean isActive, int rounds) {
-		super();
-		this.id = id;
-		this.lot = lot;
-		this.place = place;
-		this.beginDate = beginDate;
-		this.expirationDate = expirationDate;
-		this.time = time;
-		this.type = type;
-		this.isActive = isActive;
-		this.rounds = rounds;
-	}
 
 	public String getId() {
 		return id;
@@ -95,13 +83,6 @@ public class Auction {
 		this.isActive = isActive;
 	}
 
-	public int getRounds() {
-		return rounds;
-	}
-
-	public void setRounds(int rounds) {
-		this.rounds = rounds;
-	}
 
 	@Override
 	public int hashCode() {
@@ -113,11 +94,11 @@ public class Auction {
 		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
 		result = prime * result + ((lot == null) ? 0 : lot.hashCode());
 		result = prime * result + ((place == null) ? 0 : place.hashCode());
-		result = prime * result + rounds;
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -158,8 +139,6 @@ public class Auction {
 				return false;
 		} else if (!place.equals(other.place))
 			return false;
-		if (rounds != other.rounds)
-			return false;
 		if (time == null) {
 			if (other.time != null)
 				return false;
@@ -173,6 +152,6 @@ public class Auction {
 		return true;
 	}
 
-		
-
+	
+	
 }

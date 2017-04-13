@@ -31,5 +31,7 @@ public interface ClientService{
 	
 	List<Lot> getUsersLots(String userId) throws ServiceException;
 	
-	void cancellationBet(String clientId, String auctionId, String bet, String lotId) throws ServiceException;
+	void cancellationBet(String clientId, String auctionId, String bet, Lot lot) throws ServiceException;
+
+	void setLocal(String local) throws ServiceException;
 }

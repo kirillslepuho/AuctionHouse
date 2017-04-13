@@ -14,10 +14,14 @@
 <fmt:message bundle="${loc}" key="local.round" var="round" />
 <fmt:message bundle="${loc}" key="local.currentPrice" var="currentPrice" />
 <fmt:message bundle="${loc}" key="local.placeBet" var="placeBet" />
+<fmt:message bundle="${loc}" key="local.placeBlitzPrice" var="placeBlitzPrice" />
 <fmt:message bundle="${loc}" key="local.blitzBet" var="blitzBet" />
+<fmt:message bundle="${loc}" key="local.blitzPrice" var="blitzPrice" />
 <fmt:message bundle="${loc}" key="local.close" var="close" />
 <fmt:message bundle="${loc}" key="local.bet" var="bet" />
+<fmt:message bundle="${loc}" key="local.bets" var="bets" />
 <fmt:message bundle="${loc}" key="local.winner" var="winner" />
+<fmt:message bundle="${loc}" key="local.areyousure" var="areyousure" />
 
 <c:set var="auction" value="${requestScope.auction}" />
 
@@ -105,16 +109,6 @@
 							</div>
 						</div>
 
-						<!--Текущий раунд-->
-						<div class="col-md-12 information-border-style">
-							<div class="col-md-6">
-								<p class="lead info-type">${round}:</p>
-							</div>
-							<div class="col-md-6">
-								<p class="lead">${auction.rounds}</p>
-							</div>
-						</div>
-
 						<!--Текущая цена-->
 						<div class="col-md-12 information-border-style">
 							<div class="col-md-6">
@@ -137,7 +131,19 @@
 							</div>
 						</c:if>
 
-                        <!--Победитель-->
+						<!--Блиц цена-->
+						<c:if test="${auction.type eq 'блиц-аукцион'}">
+							<div class="col-md-12 information-border-style">
+								<div class="col-md-6">
+									<p class="lead info-type">${blitzPrice}:</p>
+								</div>
+								<div class="col-md-6">
+									<p class="lead">${auction.lot.blitzPrice}</p>
+								</div>
+							</div>
+						</c:if>
+
+						<!--Победитель-->
 						<c:if test="${not empty requestScope.winner}">
 							<div class="col-md-12 information-border-style">
 								<div class="col-md-6">
@@ -158,18 +164,18 @@
 				</div>
 			</div>
 
-            <c:set var="admin" value="${sessionScope.admin}" />
+			<c:set var="admin" value="${sessionScope.admin}" />
 			<c:if test="${not empty admin}">
-						<c:if test="${admin eq true}">
+				<c:if test="${admin eq true}">
 					<div class="col-lg-4 text-right">
 						<a
 							href="/AuctionHouse/Controller?command=go_to_auction_bets_page&auctionId=${auction.id}">
 							<button class="btn btn-info" type="button">
-								<c:out value="${bet}" />
+								<c:out value="${bets}" />
 							</button>
 						</a>
 					</div>
-			</c:if>
+				</c:if>
 			</c:if>
 			<c:set var="user" value="${sessionScope.user}" />
 			<c:if test="${not empty user}">
@@ -185,7 +191,11 @@
 
 			<c:if test="${not empty user}">
 				<c:if test="${auction.type eq 'блиц-аукцион'}">
-					<div class="col-lg-10 text-right">
+					<div class="col-lg-10 text-right">										
+						<button class="btn btn-action" type="button" data-toggle="modal"
+							data-target="#modal-place-blitz-price">
+							<c:out value="${placeBlitzPrice}" />
+						</button>
 						<button class="btn btn-action" type="button" data-toggle="modal"
 							data-target="#modal-place-blitz-bet">
 							<c:out value="${placeBet}" />
@@ -251,6 +261,42 @@
 									value="${auction.lot.blitzBet}" />
 								<div class="form-group">
 									<p>Are you sure?</p>
+								</div>
+
+								<div class="val_error" id="error-add-auction-message">
+									<b id="messageErr"></b>
+								</div>
+								<button class="btn btn-default modal-button-style" type="submit">${placeBet}</button>
+							</form>
+						</div>
+						<div class="modal-footer modal-footer-style">
+							<button class="btn btn-default modal-button-style" type="button"
+								data-dismiss="modal">${close}</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="modal" id="modal-place-blitz-price">
+				<div class="modal-dialog">
+					<div class="modal-content modal-window-style">
+						<div class="modal-header modal-header-style">
+							<div class="modal-title">
+								<div class="col-md-5 h1">${placeBet}</div>
+							</div>
+						</div>
+
+						<div class="modal-body">
+							<form role="form" action="javascript:void(null);"
+								onsubmit="placeBlitzPrice()" method="post">
+								<input type="hidden" id="place-blitz-auction-id"
+									value="${auction.id}" /> <input type="hidden"
+									id="place-blitz-lot-id" value="${auction.lot.id}" /> <input
+									type="hidden" id="place-blitz-client-id" value="${user.id}" />
+								<input type="hidden" id="place-blitz-price-lot"
+									value="${auction.lot.blitzPrice}" />
+								<div class="form-group">
+									<p>${areyousure}</p>
 								</div>
 
 								<div class="val_error" id="error-add-auction-message">

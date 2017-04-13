@@ -5,7 +5,11 @@ import java.util.regex.Pattern;
 
 import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.service.exception.ServiceException;
-
+/**
+ * Provides methods to validate request parameters.
+ *
+ * @author Kirill Slepuho
+ */
 public class DataValidator {
 
     private static final int MIN_PASSWORD_LENGTH = 5;
@@ -14,7 +18,15 @@ public class DataValidator {
     private static final String EMAIL_REG_EXP = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
                                             "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-
+    private static final String RU = "ru";
+    private static final String EN = "en";
+    
+    /**
+     * Validates request parameters and throws ServiceException if validation is unsuccessful.
+     *
+     * @param data data
+     * @throws ServiceException if the parameters are empty
+     */
     public static void checkEmpty(String ...data) throws ServiceException {
         for (String temp : data) {
             if (temp == null || temp.isEmpty()) {
@@ -38,7 +50,20 @@ public class DataValidator {
         
     }
     
-
+    public static void localValidation(String local) throws ServiceException {
+        if (!local.equals(RU)) {
+            if (!local.equals(EN)) {
+                throw new ServiceException("No such local.");
+            }
+        }
+    }
+    
+    /**
+     * Validates password and throws ServiceException if validation is unsuccessful.
+     *
+     * @param password user password
+     * @throws ServiceException if the password are incorrect
+     */
     public static void passwordValidation(String password) throws ServiceException {
         int passwordLength;
         passwordLength = password.length();
@@ -50,7 +75,12 @@ public class DataValidator {
             throw new ServiceException("Password very big(max 17)");
         }
     }
-
+    /**
+     * Validates email and throws ServiceExceptions if validation is unsuccessful.
+     *
+     * @param email email
+     * @throws ServiceException if the email is incorrect
+     */
     public static void emailValidation(String email) throws ServiceException {
         Pattern pattern;
         Matcher matcher;
@@ -60,7 +90,12 @@ public class DataValidator {
             throw new ServiceException("E-mail not right");
         }
     }
-
+    /**
+     * Validates bets and throws ServiceException  if validation is unsuccessful.
+     *
+     * @param email email
+     * @throws ServiceException if the email is incorrect
+     */
     public static void betValidation(String bet,Lot lot) throws ServiceException {
         int temp;
         try {

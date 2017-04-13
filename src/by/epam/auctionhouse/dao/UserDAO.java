@@ -27,7 +27,7 @@ public interface UserDAO {
 	
 	List<Lot> getUsersLots(String userId) throws DAOException;
 
-	void cancellationBet(String clientId, String auctionId, String bet, String lotId) throws DAOException;
+	void cancellationBet(String clientId, String auctionId, String bet, Lot lot) throws DAOException;
 
 	void changeLotCurrentPrice(String bet, String lotId) throws DAOException;
 	

@@ -12,6 +12,8 @@
 <fmt:message bundle="${loc}" key="local.description" var="description" />
 <fmt:message bundle="${loc}" key="local.image" var="image" />
 <fmt:message bundle="${loc}" key="local.create" var="create" />
+<fmt:message bundle="${loc}" key="local.blitzBet" var="blitzBet" />
+<fmt:message bundle="${loc}" key="local.blitzPrice" var="blitzPrice" />
 
 <c:set var="user" value="${sessionScope.user}" />
 
@@ -56,10 +58,10 @@
 									class="form-control" id="add-lot-description">
 							</div>
 
-							<div id="emails" class="top-margin">
+							<div id="blitz" class="top-margin">
 							
 							</div>
-							<button class="btn btn-info btn-sm" id = "add" type="button">Add</button>
+							<button class="btn btn-small" id = "add" type="button">Add</button>
 							
 							<div class="val_error" id="error-add-auction-message">
 								<b id="messageErr"></b>
@@ -93,24 +95,32 @@ add.onclick = function() {
 			var div = document.createElement("div");
 			div.setAttribute('class', 'top-margin');
 			var label = document.createElement("label")
-			label.innerHTML="blitz-price";
+			label.innerHTML="${blitzBet}";
 			div.appendChild(label);
 			var input = document.createElement("input");
 			input.setAttribute('class','form-control');
 			input.type = "text";
 			input.id = "add-lot-blitz-bet";
 			div.appendChild(input);
+			var labelTwo = document.createElement("label")
+			labelTwo.innerHTML="${blitzPrice}";
+			div.appendChild(labelTwo);
+			var inputPrice = document.createElement("input");
+			inputPrice.setAttribute('class','form-control');
+			inputPrice.type = "text";
+			inputPrice.id = "add-lot-blitz-price";
+			div.appendChild(inputPrice);
 			var btn = document.createElement("button");
 			btn.type="button";
 			btn.name = "remove";
 			btn.innerHTML="Remove";
-			btn.setAttribute('class', 'btn btn-info btn-sm');
+			btn.setAttribute('class', 'btn btn-small');
 			btn.onclick = function(){
 				div.parentNode.removeChild(div);
 				add.style.display = "block";
 			};
 			div.appendChild(btn);
-			emails.appendChild(div);
+			blitz.appendChild(div);
 			add.style.display = "none"
 		};
 </script>

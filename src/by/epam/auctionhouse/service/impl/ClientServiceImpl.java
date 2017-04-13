@@ -4,6 +4,7 @@ import by.epam.auctionhouse.bean.Auction;
 import by.epam.auctionhouse.bean.Bet;
 import by.epam.auctionhouse.bean.Lot;
 import by.epam.auctionhouse.bean.User;
+import by.epam.auctionhouse.dao.AdminDAO;
 import by.epam.auctionhouse.dao.UserDAO;
 import by.epam.auctionhouse.dao.exception.DAOException;
 import by.epam.auctionhouse.dao.factory.DAOFactory;
@@ -31,7 +32,16 @@ public class ClientServiceImpl implements ClientService{
 
 	private final Logger logger = LogManager.getLogger("traceLogger");
 
-
+	/**
+	 * Gets User object from the getUserByEmail method of the UserDAO.
+	 *
+	 * @param email User email
+	 * @param password User password
+	 * @return User object
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	public User signIn(String email,String password) throws ServiceException {
 
 		DataValidator.checkEmpty(email, password);
@@ -42,11 +52,17 @@ public class ClientServiceImpl implements ClientService{
 			password = MD5.md5(password);
 			return userDAO.getUserByEmail(email,password);
 		} catch (DAOException e) {
-			throw new ServiceException("Error while getting user", e);
+			throw new ServiceException("Wrong email or password", e);
 		}
 
 	}
 
+	/**
+	 * Invalidates current session if exists.
+	 *
+	 * @param session  the HttpSession
+	 * @throws ServiceException if session not exists
+	 */
 	@Override
 	public void signOut(HttpSession session) throws ServiceException {
 		if (session == null) {
@@ -61,6 +77,27 @@ public class ClientServiceImpl implements ClientService{
 		}
 	}
 
+	/**
+	 * Check current local.
+	 *
+	 * @param local  
+	 * @throws ServiceException if local is no valid
+	 */
+	@Override
+	public void setLocal(String local) throws ServiceException {
+		DataValidator.checkEmpty(local);
+		DataValidator.localValidation(local);
+	}
+
+	/**
+	 * Gets User object from the signUp method of the UserDAO.
+	 *
+	 * @param user User object
+	 * @throws ServiceException if the ConnectionPoolException or the DAOException is thrown
+	 * @see ConnectionPoolException
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
 	public void registration(String userName, String userEmail, String userPassword,String passwordRepeat, int userCardNumber,
 			int userPersonalAccount) throws ServiceException {
@@ -84,6 +121,15 @@ public class ClientServiceImpl implements ClientService{
 
 	}
 
+	/**
+	 * Gets Auction object collection by the specified lot name from the findAuction method of the UserDAO.
+	 *
+	 * @param lotName  Lot name
+	 * @return the Auction
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
 	public Auction findAuction(String lotName) throws ServiceException {
 
@@ -100,6 +146,14 @@ public class ClientServiceImpl implements ClientService{
 		return auction;
 	}
 
+	/**
+	 * Gets Auction object collection from the getAuctions method of the UserDAO.
+	 *
+	 * @return the list of Auctions objects
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
 	public List<Auction> getAuctions() throws ServiceException {
 		List<Auction> result;
@@ -113,6 +167,15 @@ public class ClientServiceImpl implements ClientService{
 		return result;
 	}
 
+	/**
+	 * Gets Auction object from the getAuction method of the UserDAO.
+	 *
+	 * @param auctionId   
+	 * @return the Auction object
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
 	public Auction getAuction(String auctionId) throws ServiceException {
 		DataValidator.checkEmpty(auctionId);
@@ -129,6 +192,17 @@ public class ClientServiceImpl implements ClientService{
 		return auction;
 	}
 
+	/**
+	 * Passes the client id,auction id, bet value, needed lot to the placeEnglishBet method in the UserDAO.
+	 *
+	 * @param clientId Client id
+	 * @param lot    Needed lot
+	 * @param auctionId    Auction id
+	 * @param bet Bet value
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
 	public void placeEngishBet(String clientId,Lot lot, String auctionId, String bet) throws ServiceException {
 
@@ -146,6 +220,15 @@ public class ClientServiceImpl implements ClientService{
 
 	}
 
+	/**
+	 * Gets Bet object collection by the specified user id from the getUsersBets method of the UserDAO.
+	 *
+	 * @param userId   
+	 * @return the list of Bets objects
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
 	public List<Bet> getUsersBets(String userId) throws ServiceException {
 		DataValidator.checkEmpty(userId);
@@ -159,6 +242,15 @@ public class ClientServiceImpl implements ClientService{
 		return usersBets;
 	}
 
+	/**
+	 * Gets Lot object collection by the specified user id from the getUsersLots method of the UserDAO.
+	 *
+	 * @param userId   
+	 * @return the list of Lots objects
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
 	public List<Lot> getUsersLots(String userId) throws ServiceException {
 		DataValidator.checkEmpty(userId);
@@ -172,12 +264,23 @@ public class ClientServiceImpl implements ClientService{
 		return usersLots;
 	}
 
+	/**
+	 * Passes the client id,auction id, bet value, needed lot to the cancellationBet method in the UserDAO.
+	 *
+	 * @param clientId Client id
+	 * @param auctionId    Auction id
+	 * @param bet Bet value
+	 * @param lot    Needed lot
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see UserDAO
+	 */
 	@Override
-	public void cancellationBet(String clientId, String auctionId, String bet, String lotId) throws ServiceException {
-		DataValidator.checkEmpty(clientId, auctionId, bet, lotId);
+	public void cancellationBet(String clientId, String auctionId, String bet, Lot lot) throws ServiceException {
+		DataValidator.checkEmpty(clientId, auctionId, bet);
 
 		try {
-			userDAO.cancellationBet(clientId, auctionId, bet, lotId);
+			userDAO.cancellationBet(clientId, auctionId, bet, lot);
 		} catch (DAOException e) {
 			throw new ServiceException("Error while placing bet", e);
 		}

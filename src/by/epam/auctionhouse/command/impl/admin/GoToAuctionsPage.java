@@ -9,25 +9,40 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.auctionhouse.bean.Auction;
 import by.epam.auctionhouse.command.ICommand;
+import by.epam.auctionhouse.service.AdminService;
 import by.epam.auctionhouse.service.ClientService;
 import by.epam.auctionhouse.service.exception.ServiceException;
 import by.epam.auctionhouse.service.factory.ServiceFactory;
-
+/**
+ * Provides an implementation of the ICommand interface.
+ *
+ * @author Kirill Slepuho
+ * @see ICommand
+ */
 public class GoToAuctionsPage implements ICommand{
 	private final static String AUCTION_ATTRIBUTE_NAME = "auctions";
-    private static final String PATH = "pages/admin/auctions.jsp";
+	private static final String PATH = "pages/admin/auctions.jsp";
+
+	/**
+	 * Gets auctions list from the AdminService and forward to auctions page.
+	 *
+	 * @param httpRequest  the HttpServletRequest object that contains the request the client made of the servlet
+	 * @param httpResponse the HttpServletResponse object that contains the response the servlet returns to the client
+	 * @see ServiceException
+	 * @see AdminService
+	 */
 	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, ServletException {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        ClientService clientService = serviceFactory.getClientService();
-         
-        try {
-            List<Auction> auctionList;
-               auctionList = clientService.getAuctions();
-            httpRequest.setAttribute(AUCTION_ATTRIBUTE_NAME, auctionList);
-            httpRequest.getRequestDispatcher(PATH).forward(httpRequest, httpResponse);
-        } catch (ServiceException exception) {
-         httpResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
-        }
-}
+		ClientService clientService = serviceFactory.getClientService();
+
+		try {
+			List<Auction> auctionList;
+			auctionList = clientService.getAuctions();
+			httpRequest.setAttribute(AUCTION_ATTRIBUTE_NAME, auctionList);
+			httpRequest.getRequestDispatcher(PATH).forward(httpRequest, httpResponse);
+		} catch (ServiceException exception) {
+			httpResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+	}
 }

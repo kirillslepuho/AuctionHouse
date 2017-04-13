@@ -18,21 +18,6 @@ public class ServiceFactory {
 	private ServiceFactory() {
 	}
 	
-	 public void init() throws ServiceException {
-	        try {
-	            ConnectionPool connectionPool;
-	            connectionPool = ConnectionPool.getInstance();
-	            connectionPool.init();
-	        } catch (DAOException e) {
-	            throw new ServiceException(e);
-	        }
-	    }
-
-	    public void destroy() {
-	        ConnectionPool connectionPool;
-	        connectionPool = ConnectionPool.getInstance();
-	        connectionPool.destroy();
-	    }
 
 	public ClientService getClientService() {
 		return clientService;

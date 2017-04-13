@@ -17,7 +17,12 @@ import by.epam.auctionhouse.service.factory.ServiceFactory;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.apache.logging.log4j.LogManager;
-
+/**
+ * Provides an implementation of the ICommand interface.
+ *
+ * @author Kirill Slepuho
+ * @see ICommand
+ */
 public class SignInCommand implements ICommand{
 
 	private final static String USER_LOGIN = "login";
@@ -34,6 +39,14 @@ public class SignInCommand implements ICommand{
 
 	private final static String PATH = "/AuctionHouse/Controller?command=go_to_main_page";
 
+	/**
+     * Gets email, passwword from the request parameters and gets user from signIn method in the ClientService, and sets it as the session attribute.
+     *
+     * @param httpRequest  the HttpServletRequest object that contains the request the client made of the servlet
+	 * @param httpResponse the HttpServletResponse object that contains the response the servlet returns to the client
+     * @see ServiceException
+     * @see ClientService
+     */
 	@Override
 	public void execute(HttpServletRequest httpRequest,HttpServletResponse httpResponse) throws ServletException, IOException {
 
@@ -60,7 +73,6 @@ public class SignInCommand implements ICommand{
 			httpResponse.getWriter().write(jsonString);
 		}catch(ServiceException e){
 			logger.warn(e);
-
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put(ERROR_MESSAGE_JSON, e.getMessage());
 			String jsonString = jsonObject.toString();

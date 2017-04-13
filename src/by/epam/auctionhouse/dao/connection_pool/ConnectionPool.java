@@ -1,5 +1,9 @@
 package by.epam.auctionhouse.dao.connection_pool;
-
+/**
+ * Provides methods to manage the connection pool.
+ *
+ * @author Kirill Slepuho
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

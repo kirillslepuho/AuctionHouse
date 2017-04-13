@@ -57,10 +57,10 @@
 					</c:if>
 
 					<li><a href="/AuctionHouse/Controller?command=go_to_main_page">${main}</a></li>
-					<li><a href="/AuctionHouse/pages/offer_lot.jsp">${offer}</a></li>
+					<li><a href=<c:url value ="/OfferLot" ></c:url>>${offer}</a></li>
 
 					<c:if test="${empty user}">
-						<li><a href="/AuctionHouse/pages/signin.jsp">${sign_in_up}</a></li>
+						<li><a href=<c:url value ="/SignIn" ></c:url>>${sign_in_up}</a></li>
 					</c:if>
 
 					<c:if test="${not empty user}">

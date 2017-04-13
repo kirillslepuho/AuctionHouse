@@ -1,9 +1,14 @@
 package by.epam.auctionhouse.bean;
 
-public class Lot {
+import java.io.Serializable;
+
+public class Lot implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	private String type;
 	private String name;
+	private int startPrice;
 	private int currentPrice;
 	private String descriprion;
 	private String image;
@@ -12,21 +17,6 @@ public class Lot {
 	private String blitzBet;
 	private String blitzPrice;
 	
-	
-	public Lot(String id, String type, String name, int currentPrice, String descriprion, String image,
-			boolean clients,String clientOwer, String blitzBet, String blitzPrice) {
-		super();
-		this.id = id;
-		this.type = type;
-		this.name = name;
-		this.currentPrice = currentPrice;
-		this.descriprion = descriprion;
-		this.image = image;
-		this.clients = clients;
-		this.clientOwer = clientOwer;
-		this.blitzBet = blitzBet;
-		this.blitzPrice = blitzPrice;
-	}
 	
 	public Lot() {
 		super();
@@ -110,6 +100,90 @@ public class Lot {
 
 	public void setBlitzPrice(String blitzPrice) {
 		this.blitzPrice = blitzPrice;
+	}
+
+	public int getStartPrice() {
+		return startPrice;
+	}
+
+	public void setStartPrice(int startPrice) {
+		this.startPrice = startPrice;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((blitzBet == null) ? 0 : blitzBet.hashCode());
+		result = prime * result + ((blitzPrice == null) ? 0 : blitzPrice.hashCode());
+		result = prime * result + ((clientOwer == null) ? 0 : clientOwer.hashCode());
+		result = prime * result + (clients ? 1231 : 1237);
+		result = prime * result + currentPrice;
+		result = prime * result + ((descriprion == null) ? 0 : descriprion.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + startPrice;
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lot other = (Lot) obj;
+		if (blitzBet == null) {
+			if (other.blitzBet != null)
+				return false;
+		} else if (!blitzBet.equals(other.blitzBet))
+			return false;
+		if (blitzPrice == null) {
+			if (other.blitzPrice != null)
+				return false;
+		} else if (!blitzPrice.equals(other.blitzPrice))
+			return false;
+		if (clientOwer == null) {
+			if (other.clientOwer != null)
+				return false;
+		} else if (!clientOwer.equals(other.clientOwer))
+			return false;
+		if (clients != other.clients)
+			return false;
+		if (currentPrice != other.currentPrice)
+			return false;
+		if (descriprion == null) {
+			if (other.descriprion != null)
+				return false;
+		} else if (!descriprion.equals(other.descriprion))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (startPrice != other.startPrice)
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
 	}
 
 	

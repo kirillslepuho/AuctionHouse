@@ -13,8 +13,11 @@ import by.epam.auctionhouse.service.util.DataValidator;
 import java.util.List;
 
 
-
-
+/**
+ * Provides methods to access AdminDAO.
+ *
+ * @author Kirill Slepuho
+ */
 public class AdminServiceImpl implements AdminService{
 
 
@@ -22,6 +25,14 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO adminDAO = daoFactory.getAdminDAO();
 
 
+	/**
+	 * Passes Auction object to the addAuction method of the AdminDAO.
+	 *
+	 * @param auction Auction object
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public void addAuction(Auction auction) throws ServiceException {
 		validateInputData(auction);
@@ -33,6 +44,15 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 	}
+
+	/**
+	 * Passes specified auction id to the deleteAuction method of the AdminDAO.
+	 *
+	 * @param deleteId auction id
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public void deleteAuction(String deleteId) throws ServiceException {
 		DataValidator.checkEmpty(deleteId);
@@ -44,6 +64,15 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 	}
+
+	/**
+	 * Passes Auction object and id to the editAuction method of the AdminDAO.
+	 *
+	 * @param aduction Auction object
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public void editAuction(Auction auction, String changeId) throws ServiceException {
 		validateInputData(auction);
@@ -55,6 +84,15 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 	}
+
+	/**
+	 * Passes Lot object to the addLot method of the AdminDAO.
+	 *
+	 * @param lot Lot object
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public void addLot(Lot lot) throws ServiceException {
 		validateInputData(lot);
@@ -65,6 +103,15 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 	}
+
+	/**
+	 * Passes Lot object and id to the editAuction method of the AdminDAO.
+	 *
+	 * @param aduction Auction object
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public void editLot(Lot lot, String changeId) throws ServiceException {
 		validateInputData(lot);
@@ -76,6 +123,15 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 	}
+
+	/**
+	 * Passes specified lot id to the blockLot method of the AdminDAO.
+	 *
+	 * @param deleteId lot id
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public void blockLot(String deleteId) throws ServiceException {
 		DataValidator.checkEmpty(deleteId);
@@ -84,9 +140,18 @@ public class AdminServiceImpl implements AdminService{
 		} catch(DAOException exception) {
 			throw new ServiceException("Can not add lot", exception);
 		}
-		
+
 	}
-	
+
+	/**
+	 * Gets Lot object from the getLotById method of the AdminDAO.
+	 *
+	 * @param id   
+	 * @return the Lot object
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public Lot getLotById(String lotId) throws ServiceException {
 		DataValidator.checkEmpty(lotId);
@@ -101,6 +166,14 @@ public class AdminServiceImpl implements AdminService{
 		return lot;
 	}
 
+	/**
+	 * Gets Lot object collection from the getLots method of the AdminDAO.
+	 *
+	 * @return the list of Lot objects
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public List<Lot> getLots() throws ServiceException {
 		List<Lot> result;
@@ -114,9 +187,16 @@ public class AdminServiceImpl implements AdminService{
 		return result;
 	}
 
-
-
-
+	/**
+	 * Passes auction id, client id, bet to the setAuctionWinner method of the AdminDAO.
+	 *
+	 * @param auctionID      Auction Id
+	 * @param clientID Client id
+	 * @param bet Bet value
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public void setAuctionWinner(String auctionID, String clientID, String bet) throws ServiceException {
 		DataValidator.checkEmpty(auctionID);
@@ -130,6 +210,16 @@ public class AdminServiceImpl implements AdminService{
 		}
 
 	}
+
+	/**
+	 * Gets Auction winner the specified id from the getAuctionWinner method of the AdminDAO.
+	 *
+	 * @param auctionID      Auction Id
+	 * @return auction winner user
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public User getAuctionWinner(String auctionID) throws ServiceException {
 		DataValidator.checkEmpty(auctionID);
@@ -141,6 +231,15 @@ public class AdminServiceImpl implements AdminService{
 		}
 		return user;
 	}
+	
+	/**
+	 * Gets User object collection from the getUsers method of the AdminDAO.
+	 *
+	 * @return the list of User objects
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public List<User> getUsers() throws ServiceException {
 		List<User> users = null;
@@ -152,6 +251,16 @@ public class AdminServiceImpl implements AdminService{
 		}
 		return users;
 	}
+	
+	/**
+	 * Gets Bet object collection from the getAuctionsBets method of the AdminDAO.
+	 * 
+	 * @param id  
+	 * @return the list of Bet objects
+	 * @throws ServiceException if the DAOException is thrown
+	 * @see DAOException
+	 * @see AdminDAO
+	 */
 	@Override
 	public List<Bet> getAuctionsBets(String auctionId) throws ServiceException {
 		DataValidator.checkEmpty(auctionId);
@@ -164,6 +273,16 @@ public class AdminServiceImpl implements AdminService{
 		}
 		return bets;
 	}
+	
+	/**
+     * Passes the status and user id to the setUserBlockStatus method in the AdminDAO.
+     *
+     * @param status user status
+     * @param userId user id
+     * @throws ServiceException if the DAOException is thrown
+     * @see DAOException
+     * @see AdminDAO
+     */
 	@Override
 	public void setUserBlockStatus(String userId,boolean status) throws ServiceException {
 		DataValidator.checkEmpty(userId);
@@ -176,7 +295,10 @@ public class AdminServiceImpl implements AdminService{
 
 	}
 
-
+	/**
+     * Auction check empty validation
+     *
+     */
 	private void validateInputData(Auction auction) throws ServiceException {
 		DataValidator.checkEmpty(auction.getBeginDate());
 		DataValidator.checkEmpty(auction.getExpirationDate());
@@ -185,9 +307,12 @@ public class AdminServiceImpl implements AdminService{
 		DataValidator.checkEmpty(auction.getTime());
 		DataValidator.checkEmpty(auction.getIsActive());
 		DataValidator.checkEmpty(auction.getType());
-		DataValidator.checkEmpty(auction.getRounds());
 	}
 
+	/**
+     * Lot check empty validation
+     *
+     */
 	private void validateInputData(Lot lot) throws ServiceException {
 
 		DataValidator.checkEmpty(lot.getCurrentPrice());
@@ -196,5 +321,5 @@ public class AdminServiceImpl implements AdminService{
 		DataValidator.checkEmpty(lot.getImage());
 		DataValidator.checkEmpty(lot.getType());
 	}
-	
+
 }

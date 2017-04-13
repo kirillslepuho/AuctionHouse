@@ -19,7 +19,12 @@ import org.json.simple.JSONObject;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-
+/**
+ * Provides an implementation of the ICommand interface.
+ *
+ * @author Kirill Slepuho
+ * @see ICommand
+ */
 public class RegistrationCommand implements ICommand{
 
 	private final static String ERROR_MESSAGE_JSON = "errorMessage";
@@ -37,6 +42,14 @@ public class RegistrationCommand implements ICommand{
 
 	private final static String PATH = "/AuctionHouse/Controller?command=go_to_main_page";
 
+	/**
+     * Gets parameters users from the request parameters and passes them to the registration method in the ClientService,get user with signIn method, and sets it as the session attribute.
+
+    * @param httpRequest  the HttpServletRequest object that contains the request the client made of the servlet
+	 * @param httpResponse the HttpServletResponse object that contains the response the servlet returns to the client
+     * @see ServiceException
+     * @see ClientService
+     */
 	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, ServletException {
 

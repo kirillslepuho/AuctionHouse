@@ -34,7 +34,7 @@
 							<c:out value="${authorization}" />
 						</h3>
 						<p class="text-center text-muted">
-							<a href="signup.jsp">${registration}</a>
+							<a href="/AuctionHouse/SignUp">${registration}</a>
 						</p>
 						<hr>
 

@@ -94,11 +94,6 @@
 								</select>
 							</div>
 
-							<div class="top-margin">
-								<label>${rounds}</label> <input type="text" class="form-control"
-									id="add-auction-rounds">
-							</div>
-
 							<div class="val_error" id="error-add-auction-message">
 								<b id="messageErr"></b>
 							</div>

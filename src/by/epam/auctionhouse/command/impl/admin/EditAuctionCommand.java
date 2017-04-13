@@ -18,7 +18,12 @@ import by.epam.auctionhouse.service.util.Util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+/**
+ * Provides an implementation of the ICommand interface.
+ *
+ * @author Kirill Slepuho
+ * @see ICommand
+ */
 public class EditAuctionCommand implements ICommand{
 
 	private static final String LOT_ID_PARAMETER = "lot_id";
@@ -28,17 +33,25 @@ public class EditAuctionCommand implements ICommand{
 	private static final String TIME_PARAMETER = "time";
 	private static final String TYPE_PARAMETER = "type";
 	private static final String IS_ACTIVE__PARAMETER = "is_active";
-	private static final String ROUNDS_PARAMETER = "rounds";
 	private static final String CHANGE_PRODUCT_ID = "change_id";
 
 	private static final String PATH = "/AuctionHouse/Controller?command=go_to_auctions_page";
 
 	private final static String ERROR_MESSAGE_JSON = "errorMessage";
 	private final static  String REDIRECT_JSON = "redirect";
-	
+
 	private static final Logger logger = LogManager.getLogger(EditAuctionCommand.class.getName());
 
-
+	/**
+	 * Creates a new Auction object from request parameters and passes it to the editAuction method of the AdminService.
+	 *
+	 * @param httpRequest  the HttpServletRequest object that contains the request the client made of the servlet
+	 * @param httpResponse the HttpServletResponse object that contains the response the servlet returns to the client
+	 * @see ServiceException
+	 * @see NumberFormatException
+	 * @see AdminService
+	 */
+	@Override
 	public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws ServletException, IOException {
 		try {
 			String changeId;
@@ -54,7 +67,6 @@ public class EditAuctionCommand implements ICommand{
 			auction.setExpirationDate(httpRequest.getParameter(EXPIRATION_DATE_PARAMETER));			
 			auction.setIsActive(Util.checkBoolean(httpRequest.getParameter(IS_ACTIVE__PARAMETER)));
 			auction.setPlace(httpRequest.getParameter(PLACE_PARAMETER));
-			auction.setRounds(Integer.parseInt((httpRequest.getParameter(ROUNDS_PARAMETER))));
 			auction.setTime(httpRequest.getParameter(TIME_PARAMETER));
 			auction.setType(httpRequest.getParameter(TYPE_PARAMETER));
 

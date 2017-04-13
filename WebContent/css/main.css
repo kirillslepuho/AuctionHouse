@@ -16,7 +16,6 @@
 	padding-top: 0px;
 }
 
-
 #head .btn {
 	margin-bottom: 10px;
 }
@@ -39,7 +38,6 @@
 	background: transparent;
 }
 
-
 @media ( max-width : 767px) {
 	#head {
 		min-height: 420px;
@@ -49,7 +47,6 @@
 		font-size: 34px;
 	}
 }
-
 
 .slideUp {
 	top: -100px;
@@ -62,7 +59,6 @@
 	transition: all 0.4s ease-out;
 }
 
-
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Open sans", Helvetica, Arial;
@@ -71,7 +67,6 @@ h1, h2, h3, h4, h5, h6 {
 h1, .h1, h2, .h2, h3, .h3 {
 	margin-top: 30px;
 }
-
 
 label {
 	color: #777;
@@ -95,7 +90,6 @@ label {
 	padding: 0;
 	margin: 30px 0 0px 0;
 }
-
 
 /* Helpers */
 .container-full {
@@ -158,7 +152,6 @@ label {
 	color: #aaa;
 }
 
-
 .footer2 p {
 	margin: 0;
 }
@@ -168,12 +161,11 @@ img {
 	max-width: 100%;
 }
 
-
 .auction {
 	background: #fff none repeat scroll 0 0;
 	border: 1px solid #c0c0c0;
 	height: 390px;
-    overflow: hidden;
+	overflow: hidden;
 	padding: 25px 15px;
 	position: relative;
 	text-align: center;
@@ -184,20 +176,22 @@ img {
 .auction:hover {
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
 }
+
 .auction-img {
 	height: 200px;
 }
 
-.auction-title a {
+.auction-title {
 	color: #000;
 	font-weight: 500;
 	text-transform: uppercase;
 }
 
 .auction-desc {
-    max-height: 60px;
-    overflow: hidden;
+	max-height: 60px;
+	overflow: hidden;
 }
+
 .auction-price {
 	bottom: 15px;
 	left: 0;
@@ -209,89 +203,91 @@ img {
 }
 
 .image-style {
-    margin-top: 70px;
-    margin-bottom: 20px;
+	margin-top: 70px;
+	margin-bottom: 20px;
 }
 
 .information-border-style {
-    border-bottom: 1px solid #d0d0c0;
-    margin-top: 20px;
+	border-bottom: 1px solid #d0d0c0;
+	margin-top: 20px;
 }
 
 #first-information-block {
-    margin-top: 70px;
+	margin-top: 70px;
 }
 
 .description-style {
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .modal-window-style {
-    background-color: white;
+	background-color: white;
 }
 
 .modal-header-style {
-    border-bottom: 1px solid black;
-    background-color: #232323;
+	border-bottom: 1px solid black;
+	background-color: #232323;
 }
 
 .modal-footer-style {
-    border-top: 1px solid black;
-    background-color: #232323;
-    border-radius: 0px 0px 5px 5px;
+	border-top: 1px solid black;
+	background-color: #232323;
+	border-radius: 0px 0px 5px 5px;
 }
 
 .modal-button-style {
-    background: black;
-    color: white;
-    border-color: black;
+	background: black;
+	color: white;
+	border-color: black;
 }
 
 .modal-button-style:hover {
-    color: white;
-    background: black;
-    border-color: #ffa500;    
+	color: white;
+	background: black;
+	border-color: #ffa500;
 }
 
-.val_error{
-	color:#FF1F1F;
-    text-align: center;
-    padding: 4px;
-}	
+.val_error {
+	color: #FF1F1F;
+	text-align: center;
+	padding: 4px;
+}
 
 .shadow-container {
-    margin: 20px;
-    padding: 10px;
-    box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
-    -moz-box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
-    -webkit-box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
+	margin: 20px;
+	padding: 10px;
+	box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
+	-moz-box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
+	-webkit-box-shadow: 0 0 20px 4px rgba(51, 51, 51, 0.7);
 }
 
 .container-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid #c0c0c0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border: 1px solid #c0c0c0;
 }
 
 .container-btn a {
-    margin: 20px;
-    text-decoration: none;
-    color: black;
+	margin: 20px;
+	text-decoration: none;
+	color: black;
+}
+
+.container-btn:hover {
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
 }
 
 .table-bets {
-    margin-left: 70px;
+	margin-left: 70px;
 }
 
 @media screen and (min-width: 800px) and (min-device-width: 800px) {
-
-    .container-btn {
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    .container-btn a {
-        width: 50%;
-    }
+	.container-btn {
+		flex-direction: row;
+		justify-content: space-around;
+	}
+	.container-btn a {
+		width: 50%;
+	}
 }
