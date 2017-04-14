@@ -10,6 +10,7 @@
 <fmt:message bundle="${loc}" key="local.bet" var="bet" />
 <fmt:message bundle="${loc}" key="local.iswinner" var="winner" />
 
+<main>
 <div class="container">
 	<div class="row">
 
@@ -56,5 +57,5 @@
 
 	</div>
 </div>
-
+</main>
 <%@include file="../templates/footer.jsp"%>

@@ -16,6 +16,10 @@
 <fmt:message bundle="${loc}" key="local.locbutton.name.en"
 	var="en_button" />
 
+<c:if test="${not empty sessionScope.user}">
+	<c:redirect url="/Controller?command=go_to_main_page" />
+</c:if>
+
 <!-- container -->
 <div class="container">
 
@@ -38,24 +42,26 @@
 						</p>
 						<hr>
 
-						<form role="form" id="sign-in-form" action="javascript:void(null);" onsubmit="signIn()" method="post">
+						<form role="form" id="sign-in-form"
+							action="javascript:void(null);" onsubmit="signIn()" method="post">
 							<div class="top-margin">
-								<label>${login}</label> <input type="email" id="sign-in-email" class="form-control">
-							</div>
-							<div class="top-margin">
-								<label>${password}</label> <input type="password" id="sign-in-password"
+								<label>${login}</label> <input type="email" id="sign-in-email"
 									class="form-control">
 							</div>
+							<div class="top-margin">
+								<label>${password}</label> <input type="password"
+									id="sign-in-password" class="form-control">
+							</div>
 							<div class="val_error" id="error-sign-in-message">
-                                    <b id="messageErr"></b>
-                              </div>
+								<b id="messageErr"></b>
+							</div>
 
 							<hr>
 
 							<div class="row">
 								<div class="col-lg-8"></div>
 								<div class="col-lg-4 text-right">
-									<button id="submit_button" class="btn btn-action" type="submit"> 
+									<button id="submit_button" class="btn btn-action" type="submit">
 										<c:out value="${log}" />
 									</button>
 								</div>

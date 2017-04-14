@@ -7,8 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import by.epam.auctionhouse.dao.connection_pool.ConnectionPool;
 import by.epam.auctionhouse.dao.exception.DAOException;
-import by.epam.auctionhouse.service.exception.ServiceException;
-import by.epam.auctionhouse.service.factory.ServiceFactory;
+
 
 import org.apache.logging.log4j.LogManager;
 

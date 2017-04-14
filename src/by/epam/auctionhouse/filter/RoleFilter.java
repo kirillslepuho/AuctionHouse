@@ -14,12 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import by.epam.auctionhouse.bean.User;
 import by.epam.auctionhouse.command.CommandName;
-import by.epam.auctionhouse.command.impl.admin.AddLotCommand;
 
 import static by.epam.auctionhouse.service.util.JspPageName.*;
 
@@ -31,7 +28,6 @@ public class RoleFilter implements Filter{
 	private static final String USER_ID = "userId";
 	private static final String PATH = "/AuctionHouse/Controller?command=go_to_main_page";
 
-	private static final Logger logger = LogManager.getLogger(AddLotCommand.class.getName());
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -116,7 +112,6 @@ public class RoleFilter implements Filter{
 		if (req.getParameter(COMMAND) != null) {
 			String command = req.getParameter(COMMAND).toUpperCase();      
 			return command.equals(CommandName.ADD_AUCTION.toString()) ||
-					command.equals(CommandName.BLOCK_LOT.toString()) ||
 					command.equals(CommandName.CHANGE_USER_STATUS.toString()) ||
 					command.equals(CommandName.DELETE_AUCTION.toString()) ||
 					command.equals(CommandName.EDIT_AUCTION.toString()) ||
@@ -147,6 +142,7 @@ public class RoleFilter implements Filter{
 			return  command.equals(CommandName.GO_TO_CLIENT_PAGE.toString()) ||
 					command.equals(CommandName.PLACE_BLITZ_BET.toString()) ||
 					command.equals(CommandName.PLACE_ENGLISH_BET.toString()) ||
+					command.equals(CommandName.BLOCK_LOT.toString()) ||
 					command.equals(CommandName.ADD_LOT.toString()) ||
 					command.equals(CommandName.CANCEL_BET.toString());
 		} else {

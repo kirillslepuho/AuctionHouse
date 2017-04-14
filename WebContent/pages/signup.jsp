@@ -13,6 +13,10 @@
 <fmt:message bundle="${loc}" key="local.repeatPassword" var="repeatPassword"/>
 <fmt:message bundle="${loc}" key="local.register" var="register"/>
 
+<c:if test="${not empty sessionScope.user}">
+	<c:redirect url="/Controller?command=go_to_main_page" />
+</c:if>
+
 <!-- container -->
 <div class="container">
 

@@ -2,16 +2,15 @@ package by.test;
 
 import org.junit.Test;
 
-import by.epam.auctionhouse.service.exception.ServiceException;
+import by.epam.auctionhouse.service.validator.exception.ValidatorException;
 
-import static by.epam.auctionhouse.service.util.DataValidator.*;
-import static org.junit.Assert.assertEquals;
+import static by.epam.auctionhouse.service.validator.DataValidator.*;
 
 public class ValidatorTest {
 	
 	
-	@Test(expected = ServiceException.class)
-    public void factorialNegative() throws ServiceException {
+	@Test(expected = ValidatorException.class)
+    public void factorialNegative() throws ValidatorException {
         passwordValidation("1");
     }
 

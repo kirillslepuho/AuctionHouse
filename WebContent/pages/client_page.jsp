@@ -22,7 +22,8 @@
 <fmt:message bundle="${loc}" key="local.blitzBet" var="blitzBet" />
 <fmt:message bundle="${loc}" key="local.blitzPrice" var="blitzPrice" />
 <fmt:message bundle="${loc}" key="local.clientPage" var="clientPage" />
-<fmt:message bundle="${loc}" key="local.contactDetails" var="contactDetails" />
+<fmt:message bundle="${loc}" key="local.contactDetails"
+	var="contactDetails" />
 <fmt:message bundle="${loc}" key="local.yourBets" var="yourBets" />
 <fmt:message bundle="${loc}" key="local.yourLots" var="yourLots" />
 
@@ -108,7 +109,9 @@
 								<td><a
 									href="/AuctionHouse/Controller?command=go_to_auction_page&id=${temp.auction}"
 									class="">${temp.winner}</a></td>
-								<td><a href="/AuctionHouse/Controller?command=cancel_bet&auctionId=${temp.auction}&clientId=${temp.client}&bet=${temp.bet}" class="">Cancel</a></td>
+								<td><a
+									href="/AuctionHouse/Controller?command=cancel_bet&auctionId=${temp.auction}&clientId=${temp.client}&bet=${temp.bet}"
+									class="">Cancel</a></td>
 							</tr>
 
 						</c:forEach>
@@ -131,6 +134,7 @@
 							<th>${description}</th>
 							<th>${blitzBet}</th>
 							<th>${blitzPrice}</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -141,7 +145,8 @@
 								<td><a href="" class="">${temp.currentPrice}</a></td>
 								<td><a href="" class="">${temp.descriprion}</a></td>
 								<td><a href="" class="">${temp.blitzBet}</a></td>
-								<td><a href="">${temp.blitzPrice}</a></td>
+								<td><a href="" class="">${temp.blitzPrice}</a></td>
+								<td><a href="">${delete}</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
