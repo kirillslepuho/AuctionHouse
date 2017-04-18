@@ -17,6 +17,8 @@ import by.epam.auctionhouse.service.factory.ServiceFactory;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.apache.logging.log4j.LogManager;
+
+import static by.epam.auctionhouse.service.util.error.MessageManager.*;
 /**
  * Provides an implementation of the ICommand interface.
  *
@@ -74,7 +76,8 @@ public class SignInCommand implements ICommand{
 		}catch(ServiceException e){
 			logger.warn(e);
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(ERROR_MESSAGE_JSON, e.getMessage());
+			String errorMessage = getErrorMessage(httpRequest, e.getErrorKey());
+			jsonObject.put(ERROR_MESSAGE_JSON, errorMessage);
 			String jsonString = jsonObject.toString();
 			httpResponse.getWriter().write(jsonString);
 		}

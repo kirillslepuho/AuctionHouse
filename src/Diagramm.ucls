@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.14" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToAdminPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToAdminPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4827" y="-227"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="by.epam.auctionhouse.command.impl.admin.AddAuctionCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/AddAuctionCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5161" y="-137"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="by.epam.auctionhouse.command.impl.user.SignInCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/SignInCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5495" y="-155"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToClientsPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToClientsPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5829" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="by.epam.auctionhouse.command.impl.user.GoToClientPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/GoToClientPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6163" y="-200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="by.epam.auctionhouse.service.impl.AdminServiceImpl" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/impl/AdminServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14374" y="-110"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="by.epam.auctionhouse.command.CommandHelper" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/CommandHelper.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6438" y="-227"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="by.epam.auctionhouse.command.impl.admin.BlockLotCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/BlockLotCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6723" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="by.epam.auctionhouse.filter.RoleFilter" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/filter/RoleFilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-343" y="-65"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="by.epam.auctionhouse.service.validator.DataValidator" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/validator/DataValidator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-45" y="-137"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="by.epam.auctionhouse.command.impl.Localization" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/Localization.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7057" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToLotEditPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToLotEditPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7391" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToLotsPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToLotsPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7725" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="by.epam.auctionhouse.service.util.MD5" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/util/MD5.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="162" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="by.epam.auctionhouse.command.impl.user.CancelBetCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/CancelBetCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8059" y="-191"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="by.epam.auctionhouse.command.impl.user.SignOutCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/SignOutCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8393" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="by.epam.auctionhouse.service.validator.exception.ValidatorException" 
+    project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/validator/exception/ValidatorException.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="423" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="18" language="java" name="by.epam.auctionhouse.command.CommandName" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/CommandName.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="736" y="7"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="19" language="java" name="by.epam.auctionhouse.dao.connection_pool.DBParameter" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/connection_pool/DBParameter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1001" y="-200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="20" language="java" name="by.epam.auctionhouse.dao.AdminDAO" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/AdminDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14292" y="1299"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="21" language="java" name="by.epam.auctionhouse.service.ClientService" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/ClientService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14961" y="506"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="22" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToEditPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToEditPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8727" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="by.epam.auctionhouse.bean.Auction" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/bean/Auction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4555" y="-11"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="by.epam.auctionhouse.command.impl.NoSuchCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/NoSuchCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9061" y="-227"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="by.epam.auctionhouse.dao.impl.UserDAOImpl" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/impl/UserDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9114" y="560"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="by.epam.auctionhouse.dao.impl.AdminDAOImpl" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/impl/AdminDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8797" y="560"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="by.epam.auctionhouse.bean.Bet" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/bean/Bet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1227" y="-101"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="by.epam.auctionhouse.service.util.JspPageName" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/util/JspPageName.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1443" y="-146"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="by.epam.auctionhouse.service.factory.ServiceFactory" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/factory/ServiceFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14924" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToAuctionsPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToAuctionsPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9395" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="by.epam.auctionhouse.service.exception.ServiceException" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/exception/ServiceException.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1666" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="by.epam.auctionhouse.command.impl.admin.DeleteAuctionCommand" 
+    project="AuctionHouse" file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/DeleteAuctionCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9729" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="by.epam.auctionhouse.bean.User" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/bean/User.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1879" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToAuctionsBetsPageCommand" 
+    project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToAuctionsBetsPageCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="10063" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="by.epam.auctionhouse.command.impl.user.PlaceBlitzBet" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/PlaceBlitzBet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="10397" y="-164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="by.epam.auctionhouse.service.util.Util" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/util/Util.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2079" y="-200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="by.epam.auctionhouse.command.impl.admin.EditAuctionCommand" 
+    project="AuctionHouse" file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/EditAuctionCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="10731" y="-128"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="by.epam.auctionhouse.dao.connection_pool.DBResourceManager" 
+    project="AuctionHouse" file="/AuctionHouse/src/by/epam/auctionhouse/dao/connection_pool/DBResourceManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2303" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="by.epam.auctionhouse.dao.sql.UserQueries" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/sql/UserQueries.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2572" y="-146"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="by.epam.auctionhouse.command.impl.admin.EditLotCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/EditLotCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="11065" y="-128"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="by.epam.auctionhouse.command.impl.user.PlaceEnglishBet" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/PlaceEnglishBet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="11399" y="-164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="by.epam.auctionhouse.dao.exception.DAOException" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/exception/DAOException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2825" y="-209"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="43" language="java" name="by.epam.auctionhouse.command.ICommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/ICommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8999" y="211"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="44" language="java" name="by.epam.auctionhouse.listener.ServletListener" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/listener/ServletListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3076" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="by.epam.auctionhouse.controller.Controller" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/controller/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3390" y="-191"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="by.epam.auctionhouse.command.impl.admin.ChangeUserStatusCommand" 
+    project="AuctionHouse" file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/ChangeUserStatusCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="11733" y="-200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="by.epam.auctionhouse.command.impl.user.PlaceBlitzPrice" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/PlaceBlitzPrice.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="12067" y="-164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="by.epam.auctionhouse.command.impl.user.GoToMainPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/GoToMainPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="12401" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="by.epam.auctionhouse.dao.factory.DAOFactory" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/factory/DAOFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14408" y="443"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="by.epam.auctionhouse.command.impl.admin.AddLotCommand" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/AddLotCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="12735" y="-119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="by.epam.auctionhouse.command.impl.user.GoToAuctionPage" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/GoToAuctionPage.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="13069" y="-200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="by.epam.auctionhouse.dao.sql.ColumnNames" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/sql/ColumnNames.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3698" y="25"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="by.epam.auctionhouse.bean.Lot" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/bean/Lot.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9370" y="740"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="by.epam.auctionhouse.command.impl.user.RegistrationCommand" 
+    project="AuctionHouse" file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/user/RegistrationCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="13403" y="-137"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="55" language="java" name="by.epam.auctionhouse.dao.UserDAO" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/UserDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14613" y="1261"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="56" language="java" name="by.epam.auctionhouse.command.impl.admin.SetAuctionWinner" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/SetAuctionWinner.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="13737" y="-191"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="by.epam.auctionhouse.service.impl.ClientServiceImpl" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/impl/ClientServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14661" y="-119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="by.epam.auctionhouse.dao.connection_pool.ConnectionPool" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/connection_pool/ConnectionPool.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3997" y="-128"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="by.epam.auctionhouse.command.impl.admin.GoToAddAuctionPage" 
+    project="AuctionHouse" file="/AuctionHouse/src/by/epam/auctionhouse/command/impl/admin/GoToAddAuctionPage.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14071" y="-218"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="by.epam.auctionhouse.dao.sql.AdminQueries" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/dao/sql/AdminQueries.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4312" y="-119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="61" language="java" name="by.epam.auctionhouse.service.AdminService" project="AuctionHouse" 
+    file="/AuctionHouse/src/by/epam/auctionhouse/service/AdminService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="14674" y="524"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <realization id="62">    
+    <end type="SOURCE" refId="54"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="63">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="55"/>  
+  </realization>  
+  <association id="64">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="65" name="adminDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="66" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="67">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="68">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="69" name="clientService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="70" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="72" name="adminService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="61" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="58" navigable="false">      
+      <attribute id="75" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="58" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="77">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="78">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="79">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="80">    
+    <end type="SOURCE" refId="57" navigable="false">      
+      <attribute id="81" name="daoFactory">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="84" name="lot">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="85" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="53" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="86">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="87">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="61"/>  
+  </realization>  
+  <realization id="88">    
+    <end type="SOURCE" refId="59"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="89">    
+    <end type="SOURCE" refId="51"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="90">    
+    <bendpoint x="14527" y="376"/>    
+    <end type="SOURCE" refId="57" navigable="false">      
+      <attribute id="91" name="userDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="93">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="94">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="95" name="commands">        
+        <position height="0" width="0" x="-636" y="-205"/>      
+      </attribute>      
+      <multiplicity id="96" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-636" y="-205"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="97">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="98">    
+    <bendpoint x="14260" y="376"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="99" name="adminDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="100" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="102" name="daoFactory">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="103" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="104">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="105">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="106">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="107" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="108" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="109">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="110">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="111">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="112">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="113">    
+    <end type="SOURCE" refId="50"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="114">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="115">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="116">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="117" name="userDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="118" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="119">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="120">    
+    <end type="SOURCE" refId="48"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="121">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <association id="122">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="123" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="124" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="125">    
+    <end type="SOURCE" refId="56"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="126">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="127">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="128">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <association id="129">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="130" name="daoFactory">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="131" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="132">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="133" name="instance">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="134" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="135">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="136">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <realization id="137">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="20"/>  
+  </realization>  
+  <realization id="138">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="43"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

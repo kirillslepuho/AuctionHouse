@@ -17,6 +17,7 @@ public class Controller extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	private final Logger logger = LogManager.getRootLogger();
+	private static final String COMMAND_NAME = "command";
 
 	public Controller(){
 		super();
@@ -33,7 +34,7 @@ public class Controller extends HttpServlet{
 
 	private void doProcess(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
 
-		String commandName = request.getParameter(RequestParameterName.COMMAND_NAME);
+		String commandName = request.getParameter(COMMAND_NAME);
 		ICommand command = CommandHelper.getInstance().getCommand(commandName);
 
 		try{

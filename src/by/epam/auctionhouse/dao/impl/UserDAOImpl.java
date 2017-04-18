@@ -438,6 +438,35 @@ public class UserDAOImpl implements UserDAO {
 
 		return result;
 	}
+	
+	@Override
+	public boolean checkUserBlocked(String userId) throws DAOException {
+		boolean result;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		try {
+			connection = connectionPool.takeConnection();
+			preparedStatement = connection.prepareStatement(CHECK_USER_BLOCKED_SQL);
+			preparedStatement.setString(1, userId);
+			ResultSet resultSet;
+			resultSet = preparedStatement.executeQuery();
+
+			if(resultSet.next()) {
+				result = resultSet.getBoolean(USER_BLOCKED_SQL);
+			}else{
+				result = true;
+			}
+
+		} catch (SQLException exception) {
+			throw new DAOException("Error checking user", exception);
+		} finally {
+			connectionPool.putConnection(connection);
+			releasePreparedStatement(preparedStatement);
+		}
+
+		return result;
+	}
 
 	/**
      * Get auction from resultSet.

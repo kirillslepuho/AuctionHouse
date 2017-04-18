@@ -6,12 +6,19 @@ package by.epam.auctionhouse.service.validator.exception;
  * @author Kirill Slepuho
  */
 public class ValidatorException extends Exception {
-    public ValidatorException() {
+	private static final long serialVersionUID = 1L;
+	private int errorKey;
+	
+	public ValidatorException() {
         super();
     }
 
     public ValidatorException(String s) {
         super(s);
+    }
+    
+    public ValidatorException(int errorCode){
+    	this.errorKey = errorCode;
     }
 
     public ValidatorException(String s, Throwable throwable) {
@@ -22,7 +29,25 @@ public class ValidatorException extends Exception {
         super(throwable);
     }
 
-    public ValidatorException(String s, Throwable throwable, boolean b, boolean b1) {
-        super(s, throwable, b, b1);
-    }
+    public ValidatorException(int errorCode, Throwable throwable){
+		super(throwable);
+		this.errorKey = errorCode;
+	}
+	public ValidatorException(int errorCode, String message){
+		super(message);
+		this.errorKey = errorCode;
+	}
+	
+	public ValidatorException(int errorCode, Exception e, String message){
+		super(message,e);
+		this.errorKey = errorCode;
+	}
+    
+	public int getErrorKey() {
+		return errorKey;
+	}
+
+	public void setErrorKey(int errorKey) {
+		this.errorKey = errorKey;
+	}
 }

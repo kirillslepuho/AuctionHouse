@@ -4,6 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import by.epam.auctionhouse.bean.Lot;
+import by.epam.auctionhouse.dao.UserDAO;
+import by.epam.auctionhouse.dao.exception.DAOException;
+import by.epam.auctionhouse.dao.factory.DAOFactory;
 import by.epam.auctionhouse.service.validator.exception.ValidatorException;
 
 /**
@@ -13,6 +16,14 @@ import by.epam.auctionhouse.service.validator.exception.ValidatorException;
  */
 public class DataValidator {
 
+	private static final int WRONG_DATA_CODE = 1;
+	private static final int ERROR_SHORT_PASSWORD_CODE = 2;
+	private static final int ERROR_LONG_PASSWORD_CODE = 3;
+	private static final int ERROR_EMAIL_CODE = 4;
+	private static final int ERROR_BET_CODE = 5;
+	private static final int WRONG_NUMBER_FORMAT_CODE = 9;
+	private static final int ERROR_USER_RIGHTS_CODE = 11;
+	
     private static final int MIN_PASSWORD_LENGTH = 5;
     private static final int MAX_PASSWORD_LENGTH = 17;
 
@@ -31,7 +42,7 @@ public class DataValidator {
     public static void checkEmpty(String ...data) throws ValidatorException {
         for (String temp : data) {
             if (temp == null || temp.isEmpty()) {
-                throw new ValidatorException("Wrong data");
+                throw new ValidatorException(WRONG_DATA_CODE, "Wrong data");
             }
         }
     }
@@ -39,14 +50,14 @@ public class DataValidator {
     public static void checkEmpty(Integer ...data) throws ValidatorException {
         for (Integer temp : data) {
             if (temp == null) {
-                throw new ValidatorException("Wrong data");
+                throw new ValidatorException(WRONG_DATA_CODE, "Wrong data");
             }
         }
     }
     
     public static void checkEmpty(Boolean data) throws ValidatorException {
             if (data == null) {
-                throw new ValidatorException("Wrong data");
+                throw new ValidatorException(WRONG_DATA_CODE, "Wrong data");
             }
         
     }
@@ -69,11 +80,11 @@ public class DataValidator {
         int passwordLength;
         passwordLength = password.length();
         if (passwordLength < MIN_PASSWORD_LENGTH) {
-            throw new ValidatorException("Password is very short(min 5)");
+            throw new ValidatorException(ERROR_SHORT_PASSWORD_CODE,"Passwort to short");
         }
 
         if (passwordLength > MAX_PASSWORD_LENGTH) {
-            throw new ValidatorException("Password very big(max 17)");
+            throw new ValidatorException(ERROR_LONG_PASSWORD_CODE,"Password to long");
         }
     }
     /**
@@ -88,7 +99,7 @@ public class DataValidator {
         pattern = Pattern.compile(EMAIL_REG_EXP);
         matcher = pattern.matcher(email);
         if (!matcher.matches()) {
-            throw new ValidatorException("E-mail not right");
+            throw new ValidatorException(ERROR_EMAIL_CODE,"E-mail not right");
         }
     }
     /**
@@ -102,11 +113,33 @@ public class DataValidator {
         try {
             temp = Integer.parseInt(bet);
         } catch (NumberFormatException exception) {
-            throw new ValidatorException("Wrong number format", exception);
+            throw new ValidatorException(WRONG_NUMBER_FORMAT_CODE, exception,"Wrong number format");
         }
         
         if(temp < lot.getCurrentPrice()){
-        	throw new ValidatorException("Your bet less then current price " + lot.getCurrentPrice());
+        	throw new ValidatorException(ERROR_BET_CODE,"Wrong bet");
+        }
+        
+    }
+    
+    /**
+     * Validates users rights and throws ValidatorException  if validation is unsuccessful.
+     *
+     * @param email email
+     * @throws ValidatorException if the email is incorrect
+     */
+    public static void userValidation(String userId) throws ValidatorException {
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        UserDAO userDAO = daoFactory.getUserDAO();
+        boolean userBlocked = false;
+		try {
+			userBlocked = userDAO.checkUserBlocked(userId);
+		} catch (DAOException e) {
+            userBlocked = true;
+		}
+        
+        if(userBlocked){
+        	throw new ValidatorException(ERROR_USER_RIGHTS_CODE,"Error with user " + userId + " rights");
         }
         
     }

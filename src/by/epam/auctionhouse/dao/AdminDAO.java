@@ -36,5 +36,6 @@ public interface AdminDAO {
 	List<Bet> getAuctionsBets(String auctionId) throws DAOException;
 	
 	void setUserBlockStatus(String userId,boolean status) throws DAOException;
+	
 		
 }

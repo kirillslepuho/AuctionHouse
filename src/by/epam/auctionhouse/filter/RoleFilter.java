@@ -90,8 +90,7 @@ public class RoleFilter implements Filter{
 		if (session == null || session.getAttribute(USER) == null) {
 			return false;
 		} else {
-			User user = (User) session.getAttribute(USER);
-			return !(user.isBlocked() && isBannedUserCommand(req)) && isClientPage(req);
+			return isClientPage(req);
 		}
 	}
 
@@ -165,17 +164,6 @@ public class RoleFilter implements Filter{
 			}
 		} else {
 			return true;
-		}
-	}
-
-	private boolean isBannedUserCommand(HttpServletRequest req) {
-		if (req.getParameter(COMMAND) != null) {
-			String command = req.getParameter(COMMAND).toUpperCase();
-			return command.equals(CommandName.PLACE_ENGLISH_BET.toString()) ||
-					command.equals(CommandName.PLACE_BLITZ_BET.toString()) ||
-					command.equals(CommandName.PLACE_BLITZ_PRICE.toString());
-		} else {
-			return false;
 		}
 	}
 

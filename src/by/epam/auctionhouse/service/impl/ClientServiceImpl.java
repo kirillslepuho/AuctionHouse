@@ -26,11 +26,15 @@ public class ClientServiceImpl implements ClientService{
 
 	private static final String SESSION_USER_ATTRIBUTE = "user";
 	private static final String SESSION_ADMIN_ATTRIBUTE = "admin";
+	
+	private static final int PASSWORD_NOT_EQUALS_CODE = 6;
+	private static final int SIGN_IN_ERROR_CODE = 7;
+	private static final int REGISTRATION_ERROR_CODE = 8;
 
 	private DAOFactory daoFactory = DAOFactory.getInstance();
 	private UserDAO userDAO = daoFactory.getUserDAO();
 
-	private final Logger logger = LogManager.getLogger("traceLogger");
+	private final Logger logger = LogManager.getLogger("errorLogger");
 
 	/**
 	 * Gets User object from the getUserByEmail method of the UserDAO.
@@ -43,8 +47,6 @@ public class ClientServiceImpl implements ClientService{
 	 * @see UserDAO
 	 */
 	public User signIn(String email,String password) throws ServiceException {
-
-		
 		try {
 			DataValidator.checkEmpty(email, password);
 			DataValidator.emailValidation(email);
@@ -52,9 +54,9 @@ public class ClientServiceImpl implements ClientService{
 			password = MD5.md5(password);
 			return userDAO.getUserByEmail(email,password);
 		} catch (DAOException e) {
-			throw new ServiceException("Wrong email or password", e);
+			throw new ServiceException(SIGN_IN_ERROR_CODE,e,"Wrong email or password");
 		} catch (ValidatorException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 
 	}
@@ -91,7 +93,7 @@ public class ClientServiceImpl implements ClientService{
 			DataValidator.checkEmpty(local);
 			DataValidator.localValidation(local);
 		}catch(ValidatorException e){
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 	}
 
@@ -113,17 +115,17 @@ public class ClientServiceImpl implements ClientService{
 			DataValidator.passwordValidation(userPassword);
 			DataValidator.passwordValidation(passwordRepeat);
 		}catch(ValidatorException e){
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 		if (!passwordRepeat.equals(userPassword)) {
-			throw new ServiceException("Passwords not equals");
+			throw new ServiceException(PASSWORD_NOT_EQUALS_CODE, "Passwords not equals");
 		}
 
 		try {
 			userPassword = MD5.md5(userPassword);
 			userDAO.addUser(userName, userEmail, userPassword, userCardNumber, userPersonalAccount);
 		} catch (DAOException e) {
-			throw new ServiceException("User with such name exist", e);
+			throw new ServiceException(REGISTRATION_ERROR_CODE, e, "Problems with registration");
 		}
 
 	}
@@ -148,7 +150,7 @@ public class ClientServiceImpl implements ClientService{
 			logger.trace("Auction with such lot name: " + lotName + " not found.");
 			throw new ServiceException("No such auction", exception);
 		} catch (ValidatorException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 
 		return auction;
@@ -195,7 +197,7 @@ public class ClientServiceImpl implements ClientService{
 			logger.trace("Can not get auction with id = " + auctionId);
 			throw new ServiceException("Error getting film", exception);
 		} catch (ValidatorException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 
 		return auction;
@@ -217,11 +219,12 @@ public class ClientServiceImpl implements ClientService{
 		try {
 			DataValidator.checkEmpty(clientId, auctionId, bet);
 			DataValidator.betValidation(bet, lot);
+			DataValidator.userValidation(clientId);
 			userDAO.placeEngishBet(clientId, auctionId, bet, lot);
 		} catch (DAOException e) {
 			throw new ServiceException("Error while placing bet", e);
 		} catch (ValidatorException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 
 
@@ -247,7 +250,7 @@ public class ClientServiceImpl implements ClientService{
 		} catch (DAOException e) {
 			throw new ServiceException("Error while getting users bets", e);
 		} catch (ValidatorException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 		return usersBets;
 	}
@@ -271,7 +274,7 @@ public class ClientServiceImpl implements ClientService{
 		} catch (DAOException e) {
 			throw new ServiceException("Error while getting users bets", e);
 		} catch (ValidatorException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 		return usersLots;
 	}
@@ -294,9 +297,9 @@ public class ClientServiceImpl implements ClientService{
 			DataValidator.checkEmpty(clientId, auctionId, bet);
 			userDAO.cancellationBet(clientId, auctionId, bet, lot);
 		} catch (DAOException e) {
-			throw new ServiceException("Error while placing bet", e);
+			throw new ServiceException("Error while cancelling bet", e);
 		} catch (ValidatorException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getErrorKey(),e);
 		}
 
 

@@ -1,5 +1,7 @@
 package by.epam.auctionhouse.command.impl.user;
 
+import static by.epam.auctionhouse.service.util.error.MessageManager.getErrorMessage;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -34,6 +36,8 @@ public class PlaceEnglishBet implements ICommand{
 
 	private final static String ERROR_MESSAGE_JSON = "errorMessage";
 	private final static String REDIRECT_JSON = "redirect";
+	
+	private static final int WRONG_NUMBER_FORMAT_CODE = 9;
 
 	private static final Logger logger = LogManager.getLogger(PlaceEnglishBet.class.getName());
 
@@ -68,7 +72,14 @@ public class PlaceEnglishBet implements ICommand{
 		} catch (ServiceException e) {
 			logger.warn(e);
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(ERROR_MESSAGE_JSON, e.getMessage());
+			String errorMessage = getErrorMessage(httpRequest, e.getErrorKey());
+			jsonObject.put(ERROR_MESSAGE_JSON, errorMessage);
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
+		} catch (NumberFormatException e) {
+			JSONObject jsonObject = new JSONObject();
+			String errorMessage = getErrorMessage(httpRequest, WRONG_NUMBER_FORMAT_CODE);
+			jsonObject.put(ERROR_MESSAGE_JSON, errorMessage);
 			String jsonString = jsonObject.toString();
 			httpResponse.getWriter().write(jsonString);
 		}

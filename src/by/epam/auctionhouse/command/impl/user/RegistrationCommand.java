@@ -1,5 +1,7 @@
 package by.epam.auctionhouse.command.impl.user;
 
+import static by.epam.auctionhouse.service.util.error.MessageManager.getErrorMessage;
+
 import java.io.IOException;
 
 
@@ -40,6 +42,8 @@ public class RegistrationCommand implements ICommand{
 	private final static String LOG_MESSAGE = "User with e-mail : %s sign in";
 	private final static Logger logger = LogManager.getLogger("errorLogger");
 
+	private static final int WRONG_NUMBER_FORMAT_CODE = 9;
+	
 	private final static String PATH = "/AuctionHouse/Controller?command=go_to_main_page";
 
 	/**
@@ -81,15 +85,17 @@ public class RegistrationCommand implements ICommand{
 			httpResponse.getWriter().write(jsonString);
 
 
-		} catch (NumberFormatException e) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(ERROR_MESSAGE_JSON, "Wrong cardnumber");
-			String jsonString = jsonObject.toString();
-			httpResponse.getWriter().write(jsonString);
 		} catch (ServiceException e) {
 			logger.warn(e);
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(ERROR_MESSAGE_JSON, e.getMessage());
+			String errorMessage = getErrorMessage(httpRequest, e.getErrorKey());
+			jsonObject.put(ERROR_MESSAGE_JSON, errorMessage);
+			String jsonString = jsonObject.toString();
+			httpResponse.getWriter().write(jsonString);
+		} catch (NumberFormatException e) {
+			JSONObject jsonObject = new JSONObject();
+			String errorMessage = getErrorMessage(httpRequest, WRONG_NUMBER_FORMAT_CODE);
+			jsonObject.put(ERROR_MESSAGE_JSON, errorMessage);
 			String jsonString = jsonObject.toString();
 			httpResponse.getWriter().write(jsonString);
 		}

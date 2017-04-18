@@ -32,5 +32,7 @@ public class UserQueries {
 	public final static String GET_USERS_LOTS_SQL = "SELECT * FROM lots " +  
 			"WHERE l_ower=?;";
 
+	public final static String CHECK_USER_BLOCKED_SQL = "SELECT us_blocked FROM users " +  
+			"WHERE us_id=?;";
 
 }

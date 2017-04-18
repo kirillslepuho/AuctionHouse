@@ -13,12 +13,6 @@
 <c:set var="user" value="${sessionScope.user}" />
 <c:set var="admin" value="${sessionScope.admin}" />
 
-<c:if test="${empty admin}">
-	<c:redirect url="/Controller?command=go_to_main_page" />
-</c:if>
-<c:if test="${admin eq false}">
-	<c:redirect url="/Controller?command=go_to_main_page" />
-</c:if>
 
 <div class="container">
 	<div class="row">

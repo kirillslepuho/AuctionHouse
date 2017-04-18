@@ -31,4 +31,5 @@ public interface UserDAO {
 
 	void changeLotCurrentPrice(String bet, String lotId) throws DAOException;
 	
+	boolean checkUserBlocked(String userId) throws DAOException;
 }

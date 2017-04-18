@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="ctg" uri="custom" %>
+<%@taglib prefix="ctg" uri="custom"%>
 
 <%@include file="templates/header.jsp"%>
 
@@ -16,11 +16,14 @@
 <fmt:message bundle="${loc}" key="local.round" var="round" />
 <fmt:message bundle="${loc}" key="local.currentPrice" var="currentPrice" />
 <fmt:message bundle="${loc}" key="local.placeBet" var="placeBet" />
-<fmt:message bundle="${loc}" key="local.placeBlitzPrice" var="placeBlitzPrice" />
+<fmt:message bundle="${loc}" key="local.placeBlitzPrice"
+	var="placeBlitzPrice" />
 <fmt:message bundle="${loc}" key="local.blitzBet" var="blitzBet" />
 <fmt:message bundle="${loc}" key="local.blitzPrice" var="blitzPrice" />
-<fmt:message bundle="${loc}" key="local.blitz_auction" var="blitz_auction" />
-<fmt:message bundle="${loc}" key="local.english_auction" var="english_auction" />
+<fmt:message bundle="${loc}" key="local.blitz_auction"
+	var="blitz_auction" />
+<fmt:message bundle="${loc}" key="local.english_auction"
+	var="english_auction" />
 <fmt:message bundle="${loc}" key="local.close" var="close" />
 <fmt:message bundle="${loc}" key="local.bet" var="bet" />
 <fmt:message bundle="${loc}" key="local.bets" var="bets" />
@@ -38,8 +41,10 @@
 		<!-- Article main content -->
 		<article class="col-xs-12 maincontent">
 			<header class="page-header">
-				<h1 class="page-title"><ctg:msg type="${auction.type}"/></h1>
-				
+				<h1 class="page-title">
+					<ctg:msg type="${auction.type}" />
+				</h1>
+
 			</header>
 			<div class="col-md-10 col-md-offset-1 main-style">
 
@@ -173,40 +178,44 @@
 			<c:set var="admin" value="${sessionScope.admin}" />
 			<c:if test="${not empty admin}">
 				<c:if test="${admin eq true}">
-					<div class="col-lg-4 text-right">
-						<a
-							href="/AuctionHouse/Controller?command=go_to_auction_bets_page&auctionId=${auction.id}">
-							<button class="btn btn-info" type="button">
-								<c:out value="${bets}" />
-							</button>
-						</a>
-					</div>
+						<div class="col-lg-4 text-right">
+							<a
+								href="/AuctionHouse/Controller?command=go_to_auction_bets_page&auctionId=${auction.id}">
+								<button class="btn btn-info" type="button">
+									<c:out value="${bets}" />
+								</button>
+							</a>
+						</div>
 				</c:if>
 			</c:if>
 			<c:set var="user" value="${sessionScope.user}" />
 			<c:if test="${not empty user}">
 				<c:if test="${auction.type eq 'английский аукцион'}">
-					<div class="col-lg-10 text-right">
-						<button class="btn btn-action" type="button" data-toggle="modal"
-							data-target="#modal-place-bet">
-							<c:out value="${placeBet}" />
-						</button>
-					</div>
+					<c:if test="${empty requestScope.winner}">
+						<div class="col-lg-10 text-right">
+							<button class="btn btn-action" type="button" data-toggle="modal"
+								data-target="#modal-place-bet">
+								<c:out value="${placeBet}" />
+							</button>
+						</div>
+					</c:if>
 				</c:if>
 			</c:if>
 
 			<c:if test="${not empty user}">
 				<c:if test="${auction.type eq 'блиц-аукцион'}">
-					<div class="col-lg-10 text-right">										
-						<button class="btn btn-action" type="button" data-toggle="modal"
-							data-target="#modal-place-blitz-price">
-							<c:out value="${placeBlitzPrice}" />
-						</button>
-						<button class="btn btn-action" type="button" data-toggle="modal"
-							data-target="#modal-place-blitz-bet">
-							<c:out value="${placeBet}" />
-						</button>
-					</div>
+					<c:if test="${empty requestScope.winner}">
+						<div class="col-lg-10 text-right">
+							<button class="btn btn-action" type="button" data-toggle="modal"
+								data-target="#modal-place-blitz-price">
+								<c:out value="${placeBlitzPrice}" />
+							</button>
+							<button class="btn btn-action" type="button" data-toggle="modal"
+								data-target="#modal-place-blitz-bet">
+								<c:out value="${placeBet}" />
+							</button>
+						</div>
+					</c:if>
 				</c:if>
 			</c:if>
 
@@ -231,7 +240,8 @@
 									type="hidden" id="place-english-client-id" value="${user.id}" />
 								<div class="form-group">
 									<label for="place-bet"></label> <input type="text"
-										class="form-control" id="place-english-bet" placeholder="${bet}">
+										class="form-control" id="place-english-bet"
+										placeholder="${bet}">
 								</div>
 								<div class="val_error" id="error-add-auction-message">
 									<b id="messageErr"></b>
@@ -282,7 +292,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="modal" id="modal-place-blitz-price">
 				<div class="modal-dialog">
 					<div class="modal-content modal-window-style">
