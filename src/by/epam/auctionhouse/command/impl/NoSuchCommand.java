@@ -21,8 +21,8 @@ public class NoSuchCommand implements ICommand{
 	/**
      * Only redirect to the error page.
      *
-     * @param req  the HttpServletRequest object that contains the request the client made of the servlet
-     * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
+     * @param request  the HttpServletRequest object that contains the request the client made of the servlet
+     * @param response the HttpServletResponse object that contains the response the servlet returns to the client
      */
 	@Override
 	public void execute(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
